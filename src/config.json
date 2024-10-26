@@ -1,0 +1,23 @@
+[{  "sceneryName": "Demo",
+    "directory": "sound-samples/demo",
+    "samples": [{
+        "label": "White Noise",
+        "variationNames": ["0a.m4a", "0b.m4a", "0c.m4a"]
+    },
+    {
+        "label": "Pink Noise",
+        "variationNames": ["1a.m4a", "1b.m4a", "1c.m4a"]
+    },
+    {
+        "label": "Brown Noise",
+        "variationNames": ["2a.m4a", "2b.m4a", "2c.m4a"]
+    }],
+    "scenes": [{
+        "label": "Mostly Pink",
+        "sceneSamplesConfig": [
+            {"minVol": 10, "maxVol": 20, "minTimeframeLength": 10000, "maxTimeframeLength": 20000},
+            {"minVol": 50, "maxVol": 90, "minTimeframeLength": 10000, "maxTimeframeLength": 20000},
+            {"minVol": 10, "maxVol": 20, "minTimeframeLength": 10000, "maxTimeframeLength": 20000}
+        ]
+    }]
+}]
