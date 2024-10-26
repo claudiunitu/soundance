@@ -1,6 +1,8 @@
 
 const scenerySamplesAudioData = [];
 
+let selectedSceneIndex = 0;
+
 
 
 let audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -92,7 +94,7 @@ async function startAudio() {
     // await loadSounds();
     await playAllSamples();
     
-    initSlidersAnimations(0)
+    initSlidersAnimations(selectedSceneIndex)
 }
 
 
@@ -269,6 +271,10 @@ loadConfig().then((config)=>{
 
     document.getElementById('startAudioButton').addEventListener('click', startAudio);
     document.getElementById('stopAudioButton').addEventListener('click', stopAudio);
+    document.getElementById('scenery-selector').addEventListener('change', (event)=>{
+        selectedSceneIndex = event.target.value;
+        stopAudio();
+    });
 
 }).catch(e=> {throw e});
 
