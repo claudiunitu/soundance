@@ -48,7 +48,8 @@ async function loadAndParseNewSceneryData(sceneryObject) {
 
             sampleVariationsAudioData.push({
                 audioBuffer,
-                gainNode
+                gainNode,
+                // currentBufferSource: null
             })
         }
 
@@ -60,6 +61,7 @@ async function loadAndParseNewSceneryData(sceneryObject) {
         })
 
         scenerySamplesAudioData.push({
+            currentSource: null,
             sampleSceneConfig, 
             sampleVariationsAudioData, 
             associatedSliderHtmlElement: setupSlider(sceneryObject.samples[i].label, sampleVariationsAudioData)
@@ -94,38 +96,23 @@ async function startAudio() {
 }
 
 
-
-
-
-
 function stopAudio() {
-    if (isStarted === false) {
-        return;
-    } 
+    if (isStarted === false) return;
     isStarted = false;
 
-    
-
-    for(let i = 0; i < scenerySamplesAudioData.length; i++) {  
-        for(let j = 0; j < scenerySamplesAudioData[i].sampleVariationsAudioData.length; j++) {
-            scenerySamplesAudioData[i].sampleVariationsAudioData.bufferSource.stop();
-            scenerySamplesAudioData[i].sampleVariationsAudioData.bufferSource.onended = null
+    for (let i = 0; i < scenerySamplesAudioData.length; i++) {
+        const currentSource = scenerySamplesAudioData[i].currentSource;
+        if (currentSource) {
+            currentSource.stop();  // Stop the audio
+            scenerySamplesAudioData[i].currentSource = null;  // Clear the reference
         }
     }
 
-    
 
-    // Optionally reset sliders if needed
-    sliders.forEach((slider) => (slider.value = 50)); // Reset slider to mid position
-
-    // Hide stop button, show start button for replaying audio
-    // document.getElementById('stopButton').style.display = 'none';
-    // document.getElementById('startButton').style.display = 'inline-block';
-
-
-
-    
 }
+
+
+
 
 
 
@@ -149,13 +136,13 @@ async function loadJson(url) {
 
 
 
+
+
 function playRandomVariation(scenerySampleAudioData) {
     if (isStarted === false) return;
 
     const numberOfVariations = scenerySampleAudioData.sampleVariationsAudioData.length;
-    const randomIndex = Math.floor(Math.random() * numberOfVariations); // Choose a random variation index
-    
-    console.log('Chosen variation:', randomIndex);
+    const randomIndex = Math.floor(Math.random() * numberOfVariations);
 
     const audioBuffer = scenerySampleAudioData.sampleVariationsAudioData[randomIndex].audioBuffer;
     const gainNode = scenerySampleAudioData.sampleVariationsAudioData[randomIndex].gainNode;
@@ -164,9 +151,11 @@ function playRandomVariation(scenerySampleAudioData) {
     audioBufferSource.buffer = audioBuffer;
     audioBufferSource.connect(gainNode).connect(audioContext.destination);
 
-    // Set up the `onended` event to play the next random variation
+    // Store the buffer source for later stopping
+    scenerySampleAudioData.currentSource = audioBufferSource;
+
     audioBufferSource.onended = () => {
-        playRandomVariation(scenerySampleAudioData);
+        if (isStarted) playRandomVariation(scenerySampleAudioData);
     };
 
     audioBufferSource.start();
