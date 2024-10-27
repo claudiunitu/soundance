@@ -4,7 +4,6 @@ const scenerySamplesAudioData = [];
 let selectedSceneIndex = 0;
 
 
-
 let audioContext = new (window.AudioContext || window.webkitAudioContext)();
 let isStarted = false; // Flag to prevent re-initialization
 
@@ -17,21 +16,13 @@ async function loadConfig() {
 
 async function initScenery(sceneryObject) {
 
-
-    
-
-
     await loadAndParseNewSceneryData(sceneryObject);
 
-    // setupSliders(selectedSceneIndex);
-
-    
 }
 
 async function loadAndParseNewSceneryData(sceneryObject) {
 
     
-
     removeCurrentSliders();
 
     scenerySamplesAudioData.length = 0;
@@ -46,13 +37,12 @@ async function loadAndParseNewSceneryData(sceneryObject) {
             const gainNode = audioContext.createGain();
             gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
 
-
-
-            sampleVariationsAudioData.push({
-                audioBuffer,
-                gainNode,
-                // currentBufferSource: null
-            })
+            if (audioBuffer) {
+                sampleVariationsAudioData.push({
+                    audioBuffer,
+                    gainNode,
+                });
+            }
         }
 
         const sampleSceneConfig = sceneryObject.scenes.map(scene => {
@@ -94,7 +84,8 @@ async function startAudio() {
     // await loadSounds();
     await playAllSamples();
     
-    initSlidersAnimations(selectedSceneIndex)
+    // delay initSlidersAnimations(selectedSceneIndex) by a fraction of a second to ensure all sounds have started and prevent race conditions.
+    setTimeout(() => initSlidersAnimations(selectedSceneIndex), 100);
 }
 
 
@@ -113,16 +104,16 @@ function stopAudio() {
 
 }
 
-
-
-
-
-
 // Function to fetch and decode an audio file
 async function loadSound(url) {
-    const response = await fetch(url);
-    const arrayBuffer = await response.arrayBuffer();
-    return audioContext.decodeAudioData(arrayBuffer);
+    try {
+        const response = await fetch(url);
+        const arrayBuffer = await response.arrayBuffer();
+        return await audioContext.decodeAudioData(arrayBuffer);
+    } catch (error) {
+        console.error(`Failed to load sound file at ${url}:`, error);
+        return null; // Return null to prevent errors from breaking the whole program
+    }
 }
 
 async function loadJson(url) {
@@ -135,10 +126,6 @@ async function loadJson(url) {
     return await response.json();
     
 }
-
-
-
-
 
 function playRandomVariation(scenerySampleAudioData) {
     if (isStarted === false) return;
@@ -170,8 +157,6 @@ async function playAllSamples() {
         playRandomVariation(scenerySamplesAudioData[i]);
     }
 }
-
-
 
 
 function removeCurrentSliders(){
@@ -224,44 +209,45 @@ function initSlidersAnimations(selectedSceneIndex) {
         const durationMax = selectedSceneConfigParams.maxTimeframeLength;
         triggerAnimationLoopForSlider(scenerySamplesAudioData[i].associatedSliderHtmlElement, scenerySamplesAudioData[i].sampleVariationsAudioData, volMin, volMax, durationMin, durationMax);
     }
-    // sliders.forEach((slider, index) => {
-    // });
+
 }
 
+
 function triggerAnimationLoopForSlider(sliderHtmlElement, sampleVariationsAudioData, volMin, volMax, durationMin, durationMax) {
-    if(isStarted === false) {
+    if (isStarted === false) {
         return;
     }
-
 
     const targetVolume = Math.floor(Math.random() * (volMax - volMin + 1)) + volMin;
     const duration = Math.floor(Math.random() * (durationMax - durationMin + 1)) + durationMin;
 
-
-    const startVolume = parseInt(sliderHtmlElement.value, 10); // take only the gain value of the first sample as they are all set at the same value
+    const startVolume = parseInt(sliderHtmlElement.value, 10);
     const volumeChange = targetVolume - startVolume;
     const steps = 100;
-    const stepDuration = duration / steps;
-    let step = 1;
+    let startTime = null;
 
-    const animate = () => {
-        if(isStarted === false) {
-            return;
-        }
-        if (step <= steps) {
-            const newVolume = startVolume + (volumeChange * (step / steps));
-            sliderHtmlElement.value = newVolume;
-            for(let j = 0; j < sampleVariationsAudioData.length; j++) {
-                // we don't know which variation is playing so we should set the vorlume to all of them
-                sampleVariationsAudioData[j].gainNode.gain.setValueAtTime(newVolume / 100, audioContext.currentTime);
-            }
-            step++;
-            setTimeout(animate, stepDuration);
+    const animate = (timestamp) => {
+        if (!isStarted) return;  // Check if `isStarted` is false and exit the animation loop
+        if (!startTime) startTime = timestamp;
+        const elapsedTime = timestamp - startTime;
+        const progress = Math.min(elapsedTime / duration, 1);
+
+        const newVolume = startVolume + volumeChange * progress;
+        sliderHtmlElement.value = newVolume;
+
+        sampleVariationsAudioData.forEach(data => {
+            data.gainNode.gain.setValueAtTime(newVolume / 100, audioContext.currentTime);
+        });
+
+        if (progress < 1) {
+            requestAnimationFrame(animate);
         } else {
-            return triggerAnimationLoopForSlider(sliderHtmlElement,  sampleVariationsAudioData, volMin, volMax, durationMin, durationMax)
+            // Restart with a new target
+            triggerAnimationLoopForSlider(sliderHtmlElement, sampleVariationsAudioData, volMin, volMax, durationMin, durationMax);
         }
     };
-    animate();
+
+    requestAnimationFrame(animate);
 }
 
 
@@ -271,9 +257,11 @@ loadConfig().then((config)=>{
 
     document.getElementById('startAudioButton').addEventListener('click', startAudio);
     document.getElementById('stopAudioButton').addEventListener('click', stopAudio);
-    document.getElementById('scenery-selector').addEventListener('change', (event)=>{
-        selectedSceneIndex = event.target.value;
-        stopAudio();
+
+    document.getElementById('scenery-selector').addEventListener('change', (event) => {
+        selectedSceneIndex = parseInt(event.target.value, 10);
+        stopAudio();  // Stop the audio
+        // startAudio(); // Restart with the new configuration
     });
 
 }).catch(e=> {throw e});
