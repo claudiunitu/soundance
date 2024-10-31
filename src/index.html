@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>Ambient Noise Generator</h1>
+    <button id="generateJsonButton">Generate JSON</button>
     <div>
         <label for="scene-selector">Scene</label><br />
         <select id="scene-selector"></select>
@@ -18,6 +19,10 @@
     </div>
     <button id="startAudioButton">Start Audio</button>
     <button id="stopAudioButton">Stop Audio</button>
+    <div>
+        <label for="animation-toggle">Animate volume slider between min and max</label>
+        <input type="checkbox" name="animation-toggle" id="animation-toggle">
+    </div>
     <div id="sliders"></div>
     <script src="script.js"></script>
 </body>

@@ -1,8 +1,9 @@
+const shouldAnimate = false;
 
 const sceneSamplesAudioData = [];
 
-let selectedSceneIndex = 0;
-let selectedSubsceneIndex = 0;
+// let selectedSceneIndex = 0;
+// let selectedSubsceneIndex = 0;
 
 
 let audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -12,39 +13,41 @@ let isStarted = false; // Flag to prevent re-initialization
 
 
 async function loadConfig() {
-    return await loadJson(`/config.json`).catch(e => {throw e});
+    return await loadJson(`/config.json`).catch(e => { throw e });
 }
 
-async function initScene(scenes, selectedSceneIndex) {
-    const selectedScene = scenes[selectedSceneIndex];
-    await loadAndParseNewSceneData(selectedScene);
+async function initScene(scenes, _selectedSceneIndex, _selectedSubsceneIndex) {
+    const selectedScene = scenes[_selectedSceneIndex];
+    await loadAndParseNewSceneData(selectedScene, _selectedSubsceneIndex);
 
-    
 
+    // Populate the scene selector
+    populateScenesSelector(scenes, _selectedSceneIndex);
     // Populate the subscene selector
-    populateSubscenesSelector(selectedScene.subscenes);
+    populateSubscenesSelector(selectedScene.subscenes, _selectedSubsceneIndex);
 
 }
 
-async function loadAndParseNewSceneData(sceneObject) {
+async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex) {
 
-    
+
     removeCurrentSliders();
 
     sceneSamplesAudioData.length = 0;
 
     for (let i = 0; i < sceneObject.samples.length; i++) {
         const sampleVariationsAudioData = [];
-        
+
         for (let j = 0; j < sceneObject.samples[i].variationNames.length; j++) {
 
-            const audioBuffer = await loadSound(`${sceneObject.directory}/${sceneObject.samples[i].variationNames[j]}`).catch(e => {throw e});
+            const audioBuffer = await loadSound(`${sceneObject.directory}/${sceneObject.samples[i].variationNames[j]}`).catch(e => { throw e });
 
             const gainNode = audioContext.createGain();
             gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
 
             if (audioBuffer) {
                 sampleVariationsAudioData.push({
+                    variationName: sceneObject.samples[i].variationNames[j],
                     audioBuffer,
                     gainNode,
                 });
@@ -56,13 +59,54 @@ async function loadAndParseNewSceneData(sceneObject) {
                 label: scene.label,
                 params: scene.sceneSamplesConfig[i]
             }
-        })
+        });
+
+
 
         sceneSamplesAudioData.push({
             currentSource: null,
-            sampleSubsceneConfigParams, 
-            sampleVariationsAudioData, 
-            associatedSliderHtmlElement: setupSlider(sceneObject.samples[i].label, sampleVariationsAudioData)
+            sampleSubsceneConfigParams,
+            sampleVariationsAudioData,
+            associatedCurrentVolumeSliderHtmlElement: setupCurrentVolumeSlider(
+                sceneObject.samples[i].label, 
+                Math.floor((sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minVol + sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxVol) / 2 ),
+                sampleVariationsAudioData
+            ),
+            associatedMinVolSliderHtmlElement: setupScenePropertySlider(
+                'range',
+                sampleSubsceneConfigParams[_selectedSubsceneIndex].params, 
+                sceneObject.samples[i].label, 
+                "minVol", 
+                0, 
+                100, 
+                sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minVol
+            ),
+            associatedMaxVolSliderHtmlElement: setupScenePropertySlider(
+                'range',
+                sampleSubsceneConfigParams[_selectedSubsceneIndex].params, 
+                sceneObject.samples[i].label, 
+                "maxVol", 
+                0,
+                100, 
+                sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxVol
+            ),
+            associatedMinTimeframeLengthSliderHtmlElement: setupScenePropertySlider(
+                'number',
+                sampleSubsceneConfigParams[_selectedSubsceneIndex].params, 
+                sceneObject.samples[i].label, "minTimeframeLength", 
+                2*1000, 
+                60 * 60 *1000, 
+                sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minTimeframeLength
+            ),
+            associatedMaxTimeframeLengthSliderHtmlElement: setupScenePropertySlider(
+                'number',
+                sampleSubsceneConfigParams[_selectedSubsceneIndex].params, 
+                sceneObject.samples[i].label, 
+                "maxTimeframeLength", 
+                2*1000, 
+                60 * 60 *1000, 
+                sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxTimeframeLength
+            )
         });
     }
 
@@ -70,7 +114,7 @@ async function loadAndParseNewSceneData(sceneObject) {
 }
 
 // Function to populate the scene selector
-function populateScenesSelector(scenes) {
+function populateScenesSelector(scenes, selectedIndex) {
     const sceneSelector = document.getElementById('scene-selector');
 
     // Clear existing options
@@ -81,12 +125,15 @@ function populateScenesSelector(scenes) {
         const option = document.createElement('option');
         option.value = index;  // Using the index as the value
         option.textContent = scene.sceneName;  // Displaying the scene label
+        if(index === selectedIndex) {
+            option.selected = "selected"
+        }
         sceneSelector.appendChild(option);
     });
 }
 
 // Function to populate the subscene selector
-function populateSubscenesSelector(subscenes) {
+function populateSubscenesSelector(subscenes, selectedIndex) {
     const subscenesSelector = document.getElementById('subscene-selector');
 
     // Clear existing options
@@ -97,16 +144,19 @@ function populateSubscenesSelector(subscenes) {
         const option = document.createElement('option');
         option.value = index;  // Using the index as the value
         option.textContent = subscene.label;  // Displaying the scene label
+        if(index === selectedIndex) {
+            option.selected = "selected"
+        }
         subscenesSelector.appendChild(option);
     });
 }
 
 // Function to start the audio context and load sounds
-async function startAudio() {
+async function startAudio(_selectedSubsceneIndex) {
     if (isStarted) return; // Prevents multiple initializations
     isStarted = true;
 
-    
+
 
     // Hide start button, show sliders
     // document.getElementById('startButton').style.display = 'none';
@@ -114,9 +164,13 @@ async function startAudio() {
 
     // await loadSounds();
     await playAllSamples();
+
+    const shouldAnimate = document.getElementById('animation-toggle').checked;
+    if(shouldAnimate){
+        // delay initSlidersAnimations(selectedSceneIndex) by a fraction of a second to ensure all sounds have started and prevent race conditions.
+        setTimeout(() => initSlidersAnimations(_selectedSubsceneIndex), 100);
+    }
     
-    // delay initSlidersAnimations(selectedSceneIndex) by a fraction of a second to ensure all sounds have started and prevent race conditions.
-    setTimeout(() => initSlidersAnimations(selectedSubsceneIndex), 100);
 }
 
 
@@ -151,11 +205,11 @@ async function loadJson(url) {
 
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error(`Error fetching config file. Response status: ${response.status}`);
+        throw new Error(`Error fetching config file. Response status: ${response.status}`);
     }
 
     return await response.json();
-    
+
 }
 
 function playRandomVariation(scenerySampleAudioData) {
@@ -190,55 +244,94 @@ async function playAllSamples() {
 }
 
 
-function removeCurrentSliders(){
+function removeCurrentSliders() {
     const slidersContainer = document.getElementById('sliders');
     slidersContainer.innerHTML = '';
 }
 
-function setupSlider(label, sampleVariationsAudioData) {
+function setupCurrentVolumeSlider(label, currentValue, sampleVariationsAudioData) {
 
     const slidersContainer = document.getElementById('sliders');
 
     const sliderWrapper = document.createElement('div');
+    sliderWrapper.className = "property-slider-wrapper";
     const slider = document.createElement('input');
     // slider.id = `#slider-${i}`;
     slider.type = "range";
     slider.min = "0";
     slider.max = "100";
-    slider.value =  "50";
+    slider.value = currentValue;
+
+    
+
+    // set initial volume
+    for (let j = 0; j < sampleVariationsAudioData.length; j++) {
+        // we don't know which variation is playing so we should set the vorlume to all of them
+        sampleVariationsAudioData[j].gainNode.gain.setValueAtTime(currentValue / 100, audioContext.currentTime);
+    }
 
     slider.addEventListener('input', (e) => {
-        const volume = e.target.value / 100;
-        for(let j = 0; j < sampleVariationsAudioData.length; j++) {
+        for (let j = 0; j < sampleVariationsAudioData.length; j++) {
             // we don't know which variation is playing so we should set the vorlume to all of them
-            sampleVariationsAudioData[j].gainNode.gain.setValueAtTime(volume, audioContext.currentTime);
+            sampleVariationsAudioData[j].gainNode.gain.setValueAtTime(e.target.value / 100, audioContext.currentTime);
         }
     });
 
     const sliderLabel = document.createElement('label');
-    sliderLabel.innerText = label;
+    sliderLabel.innerText = label + ' current volume';
 
-    sliderWrapper.append(slider);
     sliderWrapper.append(sliderLabel)
+    sliderWrapper.append(slider);
     slidersContainer.append(sliderWrapper);
 
     return slider
 
 }
 
+function setupScenePropertySlider(inputType, mutateStatePropertyHere, label, propertyName, min, max, currentValue) {
+    const slidersContainer = document.getElementById('sliders');
+
+    const sliderWrapper = document.createElement('div');
+    sliderWrapper.className = "property-slider-wrapper";
+
+
+
+    const sliderLabel = document.createElement('label');
+    sliderLabel.innerText = `${label} ${propertyName}: `;
+
+    const input = document.createElement('input');
+    input.type = inputType;
+    input.min = min;
+    input.max = max;
+    input.value = currentValue
+
+    input.addEventListener('input', (e) => {
+        const value = parseInt(e.target.value, 10);
+        mutateStatePropertyHere[propertyName] = value
+        stopAudio()
+    });
+
+    sliderWrapper.appendChild(sliderLabel);
+    sliderWrapper.appendChild(input);
+
+
+    slidersContainer.appendChild(sliderWrapper);
+    return input;
+}
+
 // Animate sliders over random timeframes to random positions
-function initSlidersAnimations(selectedSubsceneIndex) {
-    if(isStarted === false) {
+function initSlidersAnimations(_selectedSubsceneIndex) {
+    if (isStarted === false) {
         return;
     }
     for (let i = 0; i < sceneSamplesAudioData.length; i++) {
 
-        const selectedSceneConfigParams = sceneSamplesAudioData[i].sampleSubsceneConfigParams[selectedSubsceneIndex].params;
+        const selectedSceneConfigParams = sceneSamplesAudioData[i].sampleSubsceneConfigParams[_selectedSubsceneIndex].params;
         const volMin = selectedSceneConfigParams.minVol;
         const volMax = selectedSceneConfigParams.maxVol;
         const durationMin = selectedSceneConfigParams.minTimeframeLength;
         const durationMax = selectedSceneConfigParams.maxTimeframeLength;
-        triggerAnimationLoopForSlider(sceneSamplesAudioData[i].associatedSliderHtmlElement, sceneSamplesAudioData[i].sampleVariationsAudioData, volMin, volMax, durationMin, durationMax);
+        triggerAnimationLoopForSlider(sceneSamplesAudioData[i].associatedCurrentVolumeSliderHtmlElement, sceneSamplesAudioData[i].sampleVariationsAudioData, volMin, volMax, durationMin, durationMax);
     }
 
 }
@@ -281,29 +374,74 @@ function triggerAnimationLoopForSlider(sliderHtmlElement, sampleVariationsAudioD
     requestAnimationFrame(animate);
 }
 
+function generateCurrentConfigJson() {
+    const selectedSubsceneIndex = parseInt(document.getElementById('subscene-selector').value);
+    
 
-loadConfig().then((config)=>{
+    const configData = {
+        length: 60 * 60 * 1000,
+        bitDepth: 32,
+        sampleRate: 44100,
+        format: 'aac',
+        sampleDataConfig: sceneSamplesAudioData.map(sample => {
 
-    // Populate the scenery selector
-    populateScenesSelector(config);
+            const params = {
+                ...sample.sampleSubsceneConfigParams[selectedSubsceneIndex].params,
+                ...{
+                    minVolRatio: sample.sampleSubsceneConfigParams[selectedSubsceneIndex].params.minVol/100,
+                    maxVolRatio: sample.sampleSubsceneConfigParams[selectedSubsceneIndex].params.maxVol/100
+                }
+            };
 
-    initScene(config, selectedSceneIndex).then().catch(e=> {throw e});
+            const variationNames = sample.sampleVariationsAudioData.map(sampleVariationAudioData => sampleVariationAudioData.variationName);
 
-    document.getElementById('startAudioButton').addEventListener('click', startAudio);
+            return {
+                variationNames,
+                params
+            };
+        })
+    };
+
+    const jsonString = JSON.stringify(configData, null, 2); // Pretty print the JSON
+    downloadJsonFile(jsonString, 'currentConfig.json'); // Trigger download
+}
+
+function downloadJsonFile(jsonString, filename) {
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url); // Free up memory
+}
+
+
+loadConfig().then((config) => {
+
+    
+
+    initScene(config, 0, 0).then().catch(e => { throw e });
+
+    document.getElementById('startAudioButton').addEventListener('click', () => startAudio(parseInt(document.getElementById('subscene-selector').value)));
     document.getElementById('stopAudioButton').addEventListener('click', stopAudio);
 
     document.getElementById('scene-selector').addEventListener('change', (event) => {
-        selectedSceneIndex = parseInt(event.target.value, 10);
+        // selectedSceneIndex = parseInt(event.target.value, 10);
         stopAudio();  // Stop the audio
-        initScene(config, selectedSceneIndex).then().catch(e=> {throw e});
+        initScene(config, parseInt(event.target.value, 10), 0).then().catch(e => { throw e });
     });
 
     document.getElementById('subscene-selector').addEventListener('change', (event) => {
-        selectedSubsceneIndex = parseInt(event.target.value, 10);
         stopAudio();  // Stop the audio
+        initScene(config, parseInt(document.getElementById('scene-selector').value), parseInt(event.target.value), 0).then().catch(e => { throw e });
     });
 
-}).catch(e=> {throw e});
+    document.getElementById('generateJsonButton').addEventListener('click', generateCurrentConfigJson);
+
+}).catch(e => { throw e });
 
 
 
