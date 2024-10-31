@@ -39,15 +39,16 @@ async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex) {
         const sampleVariationsAudioData = [];
 
         for (let j = 0; j < sceneObject.samples[i].variationNames.length; j++) {
+            const variationFilePath = `${sceneObject.directory}/${sceneObject.samples[i].variationNames[j]}`;
 
-            const audioBuffer = await loadSound(`${sceneObject.directory}/${sceneObject.samples[i].variationNames[j]}`).catch(e => { throw e });
+            const audioBuffer = await loadSound(variationFilePath).catch(e => { throw e });
 
             const gainNode = audioContext.createGain();
             gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
 
             if (audioBuffer) {
                 sampleVariationsAudioData.push({
-                    variationName: sceneObject.samples[i].variationNames[j],
+                    variationFilePath,
                     audioBuffer,
                     gainNode,
                 });
@@ -386,17 +387,16 @@ function generateCurrentConfigJson() {
         sampleDataConfig: sceneSamplesAudioData.map(sample => {
 
             const params = {
-                ...sample.sampleSubsceneConfigParams[selectedSubsceneIndex].params,
-                ...{
-                    minVolRatio: sample.sampleSubsceneConfigParams[selectedSubsceneIndex].params.minVol/100,
-                    maxVolRatio: sample.sampleSubsceneConfigParams[selectedSubsceneIndex].params.maxVol/100
-                }
+                minVolRatio: sample.sampleSubsceneConfigParams[selectedSubsceneIndex].params.minVol/100,
+                maxVolRatio: sample.sampleSubsceneConfigParams[selectedSubsceneIndex].params.maxVol/100,
+                minTimeframeLength: sample.sampleSubsceneConfigParams[selectedSubsceneIndex].params.minTimeframeLength,
+                maxTimeframeLength: sample.sampleSubsceneConfigParams[selectedSubsceneIndex].params.maxTimeframeLength
             };
 
-            const variationNames = sample.sampleVariationsAudioData.map(sampleVariationAudioData => sampleVariationAudioData.variationName);
+            const variationFilePath = sample.sampleVariationsAudioData.map(sampleVariationAudioData => sampleVariationAudioData.variationFilePath);
 
             return {
-                variationNames,
+                variationFilePath,
                 params
             };
         })
