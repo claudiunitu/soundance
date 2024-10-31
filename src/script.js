@@ -313,8 +313,11 @@ function setupScenePropertySlider(inputType, mutateStatePropertyHere, label, pro
 
     input.addEventListener('input', (e) => {
         const value = parseInt(e.target.value, 10);
-        mutateStatePropertyHere[propertyName] = value
-        stopAudio()
+        mutateStatePropertyHere[propertyName] = value;
+        const shouldAnimate = document.getElementById('animation-toggle').checked;
+        if(shouldAnimate){
+            stopAudio();
+        }
     });
 
     sliderWrapper.appendChild(sliderLabel);

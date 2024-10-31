@@ -35,5 +35,74 @@
                 {"minVol": 90, "maxVol": 100, "minTimeframeLength": 10000, "maxTimeframeLength": 20000}
             ]
         }]
+    },
+    {  "sceneName": "Rain on a tent",
+        "directory": "./sound-samples/custom/rain-on-a-tent",
+        "samples": [{
+            "label": "Sub-Bass",
+            "variationNames": ["0a.ogg", "0b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 200
+        },{
+            "label": "Low-Bass",
+            "variationNames": ["1a.ogg", "1b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 8000
+        },{
+            "label": "Bass",
+            "variationNames": ["2a.ogg", "2b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 6000
+        },{
+            "label": "High Bass",
+            "variationNames": ["3a.ogg", "3b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 4500
+        },{
+            "label": "Low Mids",
+            "variationNames": ["4a.ogg", "4b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 6000
+        },{
+            "label": "Mids",
+            "variationNames": ["5a.ogg", "5b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 5000
+        },{
+            "label": "High Mids",
+            "variationNames": ["6a.ogg", "6b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 10000
+        },{
+            "label": "Low Treble",
+            "variationNames": ["7a.ogg", "7b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 3000
+        },{
+            "label": "Treble",
+            "variationNames": ["8a.ogg", "8b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 9000
+        },{
+            "label": "High Treble",
+            "variationNames": ["9a.ogg", "9b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 4000
+        }],
+        "subscenes": [{
+            "label": "Rainy Day",
+            "sceneSamplesConfig": [
+                {"minVol": 55, "maxVol": 75, "minTimeframeLength": 60000, "maxTimeframeLength": 240000},
+                {"minVol": 25, "maxVol": 45, "minTimeframeLength": 60000, "maxTimeframeLength": 240000},
+                {"minVol": 10, "maxVol": 30, "minTimeframeLength": 60000, "maxTimeframeLength": 240000},
+                {"minVol": 35, "maxVol": 55, "minTimeframeLength": 60000, "maxTimeframeLength": 240000},
+                {"minVol": 45, "maxVol": 65, "minTimeframeLength": 60000, "maxTimeframeLength": 240000},
+                {"minVol": 35, "maxVol": 55, "minTimeframeLength": 60000, "maxTimeframeLength": 240000},
+                {"minVol": 30, "maxVol": 50, "minTimeframeLength": 60000, "maxTimeframeLength": 240000},
+                {"minVol": 25, "maxVol": 45, "minTimeframeLength": 60000, "maxTimeframeLength": 240000},
+                {"minVol": 22, "maxVol": 42, "minTimeframeLength": 60000, "maxTimeframeLength": 240000},
+                {"minVol": 17, "maxVol": 37, "minTimeframeLength": 60000, "maxTimeframeLength": 240000}
+            ]
+        }]
     }
 ]
