@@ -62,10 +62,15 @@ async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex) {
             }
         });
 
+        const stitchingMethd = sceneObject.samples[i].stitchingMethd;
+        const concatOverlayMs = sceneObject.samples[i].concatOverlayMs;
+
 
 
         sceneSamplesAudioData.push({
             currentSource: null,
+            stitchingMethd,
+            concatOverlayMs,
             sampleSubsceneConfigParams,
             sampleVariationsAudioData,
             associatedCurrentVolumeSliderHtmlElement: setupCurrentVolumeSlider(
@@ -380,17 +385,19 @@ function generateCurrentConfigJson() {
     
 
     const configData = {
-        length: 60 * 60 * 1000,
+        lengthMs: 60 * 60 * 1000,
         bitDepth: 32,
         sampleRate: 44100,
-        format: 'aac',
+        format: 'adts', // aac
         sampleDataConfig: sceneSamplesAudioData.map(sample => {
 
             const params = {
+                stitchingMethod: sample.stitchingMethd,
+                concatOverlayMs: sample.concatOverlayMs,
                 minVolRatio: sample.sampleSubsceneConfigParams[selectedSubsceneIndex].params.minVol/100,
                 maxVolRatio: sample.sampleSubsceneConfigParams[selectedSubsceneIndex].params.maxVol/100,
-                minTimeframeLength: sample.sampleSubsceneConfigParams[selectedSubsceneIndex].params.minTimeframeLength,
-                maxTimeframeLength: sample.sampleSubsceneConfigParams[selectedSubsceneIndex].params.maxTimeframeLength
+                minTimeframeLengthMs: sample.sampleSubsceneConfigParams[selectedSubsceneIndex].params.minTimeframeLength,
+                maxTimeframeLengthMs: sample.sampleSubsceneConfigParams[selectedSubsceneIndex].params.maxTimeframeLength
             };
 
             const variationFilePath = sample.sampleVariationsAudioData.map(sampleVariationAudioData => sampleVariationAudioData.variationFilePath);

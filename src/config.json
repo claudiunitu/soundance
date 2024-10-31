@@ -3,15 +3,21 @@
         "directory": "sound-samples/demo",
         "samples": [{
             "label": "White Noise",
-            "variationNames": ["0a.m4a", "0b.m4a", "0c.m4a"]
+            "variationNames": ["0a.m4a", "0b.m4a", "0c.m4a"],
+            "stitchingMethd": "JOIN_WITH_CROSSFADE",
+            "concatOverlayMs": 1000
         },
         {
             "label": "Pink Noise",
-            "variationNames": ["1a.m4a", "1b.m4a", "1c.m4a"]
+            "variationNames": ["1a.m4a", "1b.m4a", "1c.m4a"],
+            "stitchingMethd": "JOIN_WITH_CROSSFADE",
+            "concatOverlayMs": 1000
         },
         {
             "label": "Brown Noise",
-            "variationNames": ["2a.m4a", "2b.m4a", "2c.m4a"]
+            "variationNames": ["2a.m4a", "2b.m4a", "2c.m4a"],
+            "stitchingMethd": "JOIN_WITH_CROSSFADE",
+            "concatOverlayMs": 1000
         }],
         "subscenes": [{
             "label": "Mostly Pink",
@@ -22,74 +28,8 @@
             ]
         },
         {
-            "label": "Mostly Full",
+            "label": "Full",
             "sceneSamplesConfig": [
-                {"minVol": 90, "maxVol": 100, "minTimeframeLength": 10000, "maxTimeframeLength": 20000},
-                {"minVol": 90, "maxVol": 100, "minTimeframeLength": 10000, "maxTimeframeLength": 20000},
-                {"minVol": 90, "maxVol": 100, "minTimeframeLength": 10000, "maxTimeframeLength": 20000}
-            ]
-        }]
-    },
-    {  "sceneName": "Fireplace",
-        "directory": "sound-samples/fireplace",
-        "samples": [{
-            "label": "White Noise",
-            "variationNames": ["0a.ogg", "0b.ogg"]
-        },
-        {
-            "label": "Pink Noise",
-            "variationNames": ["1a.ogg", "1b.ogg"]
-        },
-        {
-            "label": "Brown Noise",
-            "variationNames": ["2a.ogg", "2b.ogg"]
-        }, {
-            "label": "Hiss Noise",
-            "variationNames": ["3a.ogg", "3b.ogg"]
-        }, {
-            "label": "Hiss Noise",
-            "variationNames": ["4a.ogg", "4b.ogg"]
-        }, {
-            "label": "Hiss Noise",
-            "variationNames": ["5a.ogg", "5b.ogg"]
-        }, {
-            "label": "Hiss Noise",
-            "variationNames": ["6a.ogg", "6b.ogg"]
-        }, {
-            "label": "Hiss Noise",
-            "variationNames": ["7a.ogg", "7b.ogg"]
-        }, {
-            "label": "Hiss Noise",
-            "variationNames": ["8a.ogg", "8b.ogg"]
-        }, {
-            "label": "Hiss Noise",
-            "variationNames": ["9a.ogg", "9b.ogg"]
-        }],
-        "subscenes": [{
-            "label": "Mostly Pink",
-            "sceneSamplesConfig": [
-                {"minVol": 10, "maxVol": 20, "minTimeframeLength": 10000, "maxTimeframeLength": 20000},
-                {"minVol": 50, "maxVol": 90, "minTimeframeLength": 10000, "maxTimeframeLength": 20000},
-                {"minVol": 10, "maxVol": 20, "minTimeframeLength": 10000, "maxTimeframeLength": 20000},
-                {"minVol": 60, "maxVol": 80, "minTimeframeLength": 10000, "maxTimeframeLength": 20000},
-                {"minVol": 60, "maxVol": 80, "minTimeframeLength": 10000, "maxTimeframeLength": 20000},
-                {"minVol": 60, "maxVol": 80, "minTimeframeLength": 10000, "maxTimeframeLength": 20000},
-                {"minVol": 60, "maxVol": 80, "minTimeframeLength": 10000, "maxTimeframeLength": 20000},
-                {"minVol": 60, "maxVol": 80, "minTimeframeLength": 10000, "maxTimeframeLength": 20000},
-                {"minVol": 60, "maxVol": 80, "minTimeframeLength": 10000, "maxTimeframeLength": 20000},
-                {"minVol": 60, "maxVol": 80, "minTimeframeLength": 10000, "maxTimeframeLength": 20000}
-            ]
-        },
-        {
-            "label": "Mostly Full",
-            "sceneSamplesConfig": [
-                {"minVol": 90, "maxVol": 100, "minTimeframeLength": 10000, "maxTimeframeLength": 20000},
-                {"minVol": 90, "maxVol": 100, "minTimeframeLength": 10000, "maxTimeframeLength": 20000},
-                {"minVol": 90, "maxVol": 100, "minTimeframeLength": 10000, "maxTimeframeLength": 20000},
-                {"minVol": 90, "maxVol": 100, "minTimeframeLength": 10000, "maxTimeframeLength": 20000},
-                {"minVol": 90, "maxVol": 100, "minTimeframeLength": 10000, "maxTimeframeLength": 20000},
-                {"minVol": 90, "maxVol": 100, "minTimeframeLength": 10000, "maxTimeframeLength": 20000},
-                {"minVol": 90, "maxVol": 100, "minTimeframeLength": 10000, "maxTimeframeLength": 20000},
                 {"minVol": 90, "maxVol": 100, "minTimeframeLength": 10000, "maxTimeframeLength": 20000},
                 {"minVol": 90, "maxVol": 100, "minTimeframeLength": 10000, "maxTimeframeLength": 20000},
                 {"minVol": 90, "maxVol": 100, "minTimeframeLength": 10000, "maxTimeframeLength": 20000}
