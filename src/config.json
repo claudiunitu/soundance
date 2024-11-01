@@ -104,5 +104,74 @@
                 {"minVol": 17, "maxVol": 37, "minTimeframeLength": 60000, "maxTimeframeLength": 240000}
             ]
         }]
+    },
+    {  "sceneName": "Foliage wind",
+        "directory": "./sound-samples/custom/full-spectrum-foliage-wind",
+        "samples": [{
+            "label": "Rumbling",
+            "variationNames": ["0a.ogg", "0b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 6000
+        },{
+            "label": "Warm",
+            "variationNames": ["1a.ogg", "1b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 9000
+        },{
+            "label": "Resonant",
+            "variationNames": ["2a.ogg", "2b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 10000
+        },{
+            "label": "Mellow",
+            "variationNames": ["3a.ogg", "3b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 5000
+        },{
+            "label": "Full",
+            "variationNames": ["4a.ogg", "4b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 4000
+        },{
+            "label": "Clear",
+            "variationNames": ["5a.ogg", "5b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 4000
+        },{
+            "label": "Bright",
+            "variationNames": ["6a.ogg", "6b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 5000
+        },{
+            "label": "Crisp",
+            "variationNames": ["7a.ogg", "7b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 4000
+        },{
+            "label": "Sharp",
+            "variationNames": ["8a.ogg", "8b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 4000
+        },{
+            "label": "Tiny",
+            "variationNames": ["9a.ogg", "9b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 5000
+        }],
+        "subscenes": [{
+            "label": "Organic Pink",
+            "sceneSamplesConfig": [
+                {"minVol": 0, "maxVol": 10, "minTimeframeLength": 60000, "maxTimeframeLength": 240000},
+                {"minVol": 20, "maxVol": 30, "minTimeframeLength": 60000, "maxTimeframeLength": 240000},
+                {"minVol": 30, "maxVol": 40, "minTimeframeLength": 60000, "maxTimeframeLength": 240000},
+                {"minVol": 40, "maxVol": 50, "minTimeframeLength": 60000, "maxTimeframeLength": 240000},
+                {"minVol": 55, "maxVol": 65, "minTimeframeLength": 60000, "maxTimeframeLength": 240000},
+                {"minVol": 55, "maxVol": 65, "minTimeframeLength": 60000, "maxTimeframeLength": 240000},
+                {"minVol": 40, "maxVol": 50, "minTimeframeLength": 60000, "maxTimeframeLength": 240000},
+                {"minVol": 30, "maxVol": 40, "minTimeframeLength": 60000, "maxTimeframeLength": 240000},
+                {"minVol": 20, "maxVol": 30, "minTimeframeLength": 60000, "maxTimeframeLength": 240000},
+                {"minVol": 0, "maxVol": 10, "minTimeframeLength": 60000, "maxTimeframeLength": 240000}
+            ]
+        }]
     }
 ]
