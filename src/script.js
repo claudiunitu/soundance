@@ -494,9 +494,9 @@ function generateCurrentConfigJson() {
 
     const configData = {
         lengthMs: 60 * 60 * 1000,
-        bitDepth: 32,
+        bitDepth: 16,
         sampleRate: 44100,
-        format: 'adts', // aac
+        format: 'wav', // aac = adts
         sampleDataConfig: sceneSamplesAudioData.map(sample => {
 
             const params = {
