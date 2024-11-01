@@ -66,6 +66,136 @@ async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex) {
         const concatOverlayMs = sceneObject.samples[i].concatOverlayMs;
 
 
+        addSeparatorToSlidersContainer('sample-fields-separator');
+
+        addLabelToSampleControlsGroup(sceneObject.samples[i].label, 'sample-fields-groul-label');
+
+        const associatedCurrentVolumeSliderHtmlElement = setupCurrentVolumeSlider(
+            Math.floor((sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minVol + sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxVol) / 2 ),
+            sampleVariationsAudioData,
+            (event) => {
+                const value = parseInt(event.target.value);
+                const upperLimit = sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxVol;
+                const lowerLimit = sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minVol;
+
+                if(value > upperLimit){
+                    event.target.value = upperLimit;
+                } else if(value < lowerLimit){
+                    event.target.value = lowerLimit;
+                }
+        
+                for (let j = 0; j < sampleVariationsAudioData.length; j++) {
+                    // we don't know which variation is playing so we should set the vorlume to all of them
+                    sampleVariationsAudioData[j].gainNode.gain.setValueAtTime(parseInt(event.target.value) / 100, audioContext.currentTime);
+                }
+            }
+        );
+
+        const associatedMinVolSliderHtmlElement = setupScenePropertySlider(
+            'range', 
+            "minVol", 
+            0, 
+            100, 
+            sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minVol,
+            (event) => {
+                const value = parseInt(event.target.value, 10);
+
+                const limitingValue = sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxVol;
+                if(value >= limitingValue){
+                    sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minVol = limitingValue;
+                    event.target.value = limitingValue;
+                } else {
+                    sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minVol = value;
+                }
+
+                if(value > associatedCurrentVolumeSliderHtmlElement.value){
+                    associatedCurrentVolumeSliderHtmlElement.value = event.target.value;
+                    associatedCurrentVolumeSliderHtmlElement.dispatchEvent(new Event('change'));
+                }
+
+                const shouldAnimate = document.getElementById('animation-toggle').checked;
+                if(shouldAnimate){
+                    stopAudio();
+                }
+            }
+        );
+
+        const associatedMaxVolSliderHtmlElement = setupScenePropertySlider(
+            'range',
+            "maxVol", 
+            0,
+            100, 
+            sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxVol,
+            (event) => {
+                const value = parseInt(event.target.value, 10);
+
+                const limitingValue = sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minVol;
+                if(value <= limitingValue){
+                    sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxVol = limitingValue;
+                    event.target.value = limitingValue;
+                } else {
+                    sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxVol = value;
+                }
+
+                if(value < associatedCurrentVolumeSliderHtmlElement.value){
+                    associatedCurrentVolumeSliderHtmlElement.value = event.target.value;
+                    associatedCurrentVolumeSliderHtmlElement.dispatchEvent(new Event('change'));
+                }
+                
+                const shouldAnimate = document.getElementById('animation-toggle').checked;
+                if(shouldAnimate){
+                    stopAudio();
+                }
+            }
+        );
+
+        const associatedMinTimeframeLengthSliderHtmlElement = setupScenePropertySlider(
+            'number',
+             "minTimeframeLength", 
+            2*1000, 
+            60 * 60 *1000, 
+            sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minTimeframeLength,
+            (event) => {
+                const value = parseInt(event.target.value, 10);
+
+                const limitingValue = sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxTimeframeLength;
+                if(value >= limitingValue){
+                    sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minTimeframeLength = limitingValue;
+                    event.target.value = limitingValue;
+                } else {
+                    sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minTimeframeLength = value;
+                }
+                
+                const shouldAnimate = document.getElementById('animation-toggle').checked;
+                if(shouldAnimate){
+                    stopAudio();
+                }
+            }
+        );
+
+        const associatedMaxTimeframeLengthSliderHtmlElement = setupScenePropertySlider(
+            'number',
+            "maxTimeframeLength", 
+            2*1000, 
+            60 * 60 *1000, 
+            sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxTimeframeLength,
+            (event) => {
+                const value = parseInt(event.target.value, 10);
+
+                const limitingValue = sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minTimeframeLength;
+                if(value <= limitingValue){
+                    sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxTimeframeLength = limitingValue;
+                    event.target.value = limitingValue;
+                } else {
+                    sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxTimeframeLength = value;
+                }
+
+                const shouldAnimate = document.getElementById('animation-toggle').checked;
+                if(shouldAnimate){
+                    stopAudio();
+                }
+            }
+        );
 
         sceneSamplesAudioData.push({
             currentSource: null,
@@ -73,47 +203,13 @@ async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex) {
             concatOverlayMs,
             sampleSubsceneConfigParams,
             sampleVariationsAudioData,
-            associatedCurrentVolumeSliderHtmlElement: setupCurrentVolumeSlider(
-                sceneObject.samples[i].label, 
-                Math.floor((sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minVol + sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxVol) / 2 ),
-                sampleVariationsAudioData
-            ),
-            associatedMinVolSliderHtmlElement: setupScenePropertySlider(
-                'range',
-                sampleSubsceneConfigParams[_selectedSubsceneIndex].params, 
-                sceneObject.samples[i].label, 
-                "minVol", 
-                0, 
-                100, 
-                sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minVol
-            ),
-            associatedMaxVolSliderHtmlElement: setupScenePropertySlider(
-                'range',
-                sampleSubsceneConfigParams[_selectedSubsceneIndex].params, 
-                sceneObject.samples[i].label, 
-                "maxVol", 
-                0,
-                100, 
-                sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxVol
-            ),
-            associatedMinTimeframeLengthSliderHtmlElement: setupScenePropertySlider(
-                'number',
-                sampleSubsceneConfigParams[_selectedSubsceneIndex].params, 
-                sceneObject.samples[i].label, "minTimeframeLength", 
-                2*1000, 
-                60 * 60 *1000, 
-                sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minTimeframeLength
-            ),
-            associatedMaxTimeframeLengthSliderHtmlElement: setupScenePropertySlider(
-                'number',
-                sampleSubsceneConfigParams[_selectedSubsceneIndex].params, 
-                sceneObject.samples[i].label, 
-                "maxTimeframeLength", 
-                2*1000, 
-                60 * 60 *1000, 
-                sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxTimeframeLength
-            )
+            associatedCurrentVolumeSliderHtmlElement,
+            associatedMinVolSliderHtmlElement,
+            associatedMaxVolSliderHtmlElement,
+            associatedMinTimeframeLengthSliderHtmlElement,
+            associatedMaxTimeframeLengthSliderHtmlElement
         });
+        addSeparatorToSlidersContainer('sample-fields-separator');
     }
 
 
@@ -255,7 +351,7 @@ function removeCurrentSliders() {
     slidersContainer.innerHTML = '';
 }
 
-function setupCurrentVolumeSlider(label, currentValue, sampleVariationsAudioData) {
+function setupCurrentVolumeSlider(currentValue, sampleVariationsAudioData, onChangeFunction) {
 
     const slidersContainer = document.getElementById('sliders');
 
@@ -276,15 +372,10 @@ function setupCurrentVolumeSlider(label, currentValue, sampleVariationsAudioData
         sampleVariationsAudioData[j].gainNode.gain.setValueAtTime(currentValue / 100, audioContext.currentTime);
     }
 
-    slider.addEventListener('input', (e) => {
-        for (let j = 0; j < sampleVariationsAudioData.length; j++) {
-            // we don't know which variation is playing so we should set the vorlume to all of them
-            sampleVariationsAudioData[j].gainNode.gain.setValueAtTime(e.target.value / 100, audioContext.currentTime);
-        }
-    });
+    slider.addEventListener('input', onChangeFunction);
 
     const sliderLabel = document.createElement('label');
-    sliderLabel.innerText = label + ' current volume';
+    sliderLabel.innerText =' current volume';
 
     sliderWrapper.append(sliderLabel)
     sliderWrapper.append(slider);
@@ -294,7 +385,7 @@ function setupCurrentVolumeSlider(label, currentValue, sampleVariationsAudioData
 
 }
 
-function setupScenePropertySlider(inputType, mutateStatePropertyHere, label, propertyName, min, max, currentValue) {
+function setupScenePropertySlider(inputType, propertyName, min, max, currentValue, onChangeFunction) {
     const slidersContainer = document.getElementById('sliders');
 
     const sliderWrapper = document.createElement('div');
@@ -303,7 +394,7 @@ function setupScenePropertySlider(inputType, mutateStatePropertyHere, label, pro
 
 
     const sliderLabel = document.createElement('label');
-    sliderLabel.innerText = `${label} ${propertyName}: `;
+    sliderLabel.innerText = `${propertyName}: `;
 
     const input = document.createElement('input');
     input.type = inputType;
@@ -311,14 +402,7 @@ function setupScenePropertySlider(inputType, mutateStatePropertyHere, label, pro
     input.max = max;
     input.value = currentValue
 
-    input.addEventListener('input', (e) => {
-        const value = parseInt(e.target.value, 10);
-        mutateStatePropertyHere[propertyName] = value;
-        const shouldAnimate = document.getElementById('animation-toggle').checked;
-        if(shouldAnimate){
-            stopAudio();
-        }
-    });
+    input.addEventListener('input', (e) => onChangeFunction(e));
 
     sliderWrapper.appendChild(sliderLabel);
     sliderWrapper.appendChild(input);
@@ -327,6 +411,27 @@ function setupScenePropertySlider(inputType, mutateStatePropertyHere, label, pro
     slidersContainer.appendChild(sliderWrapper);
     return input;
 }
+
+function addSeparatorToSlidersContainer(className) {
+    const slidersContainer = document.getElementById('sliders');
+
+    const separatorElement = document.createElement('hr');
+    separatorElement.classList.add(className)
+
+    slidersContainer.appendChild(separatorElement);
+}
+
+function addLabelToSampleControlsGroup(label, className) {
+    const slidersContainer = document.getElementById('sliders');
+
+    const labelElement = document.createElement('label');
+    labelElement.classList.add(className);
+    labelElement.innerText = label;
+
+    slidersContainer.appendChild(labelElement);
+}
+
+
 
 // Animate sliders over random timeframes to random positions
 function initSlidersAnimations(_selectedSubsceneIndex) {
@@ -410,6 +515,8 @@ function generateCurrentConfigJson() {
                 params
             };
         })
+        // do not add to export file the samples with max volume = 0
+        .filter(mappedSample => mappedSample.params.maxVolRatio !== 0)
     };
 
     const jsonString = JSON.stringify(configData, null, 2); // Pretty print the JSON

@@ -27,3 +27,11 @@ input[type="range"] {
 .property-slider-wrapper input{
     width: 50%;
 }
+
+.sample-fields-separator {
+    display: block;
+    width: 100%;
+}
+.sample-fields-groul-label {
+    text-align: center;
+}
