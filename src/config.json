@@ -232,6 +232,89 @@
             ]
         }]
     },
+    {  "sceneName": "Distant Thunder",
+        "directory": "./sound-samples/custom/distant-thunder",
+        "samples": [{
+            "label": "Rumble",
+            "variationNames": ["0a.ogg", "0b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 2000
+        },{
+            "label": "Rumble",
+            "variationNames": ["1a.ogg", "1b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 2000
+        },{
+            "label": "Low Thunder",
+            "variationNames": ["2a.ogg", "2b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 1500
+        },{
+            "label": "Low Thunder",
+            "variationNames": ["3a.ogg", "3b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 2000
+        },{
+            "label": "Thunder",
+            "variationNames": ["4a.ogg", "4b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 2000
+        },{
+            "label": "Thunder & Light Rain",
+            "variationNames": ["5a.ogg", "5b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 5000
+        },{
+            "label": "Thunder & Rain",
+            "variationNames": ["6a.ogg", "6b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 5000
+        },{
+            "label": "Thunder & Rain",
+            "variationNames": ["7a.ogg", "7b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 5000
+        },{
+            "label": "Rain",
+            "variationNames": ["8a.ogg", "8b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 5000
+        },{
+            "label": "Rain",
+            "variationNames": ["9a.ogg", "9b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 4000
+        }],
+        "subscenes": [{
+            "label": "Equal",
+            "sceneSamplesConfig": [
+                {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+            ]
+        },{
+            "label": "Calm Storm",
+            "sceneSamplesConfig": [
+                {"minVol": 50, "maxVol": 70, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                {"minVol": 32, "maxVol": 48, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                {"minVol": 32, "maxVol": 48, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                {"minVol": 32, "maxVol": 48, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                {"minVol": 32, "maxVol": 48, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                {"minVol": 32, "maxVol": 48, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                {"minVol": 44, "maxVol": 52, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                {"minVol": 44, "maxVol": 52, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                {"minVol": 44, "maxVol": 52, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                {"minVol": 44, "maxVol": 52, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+            ]
+        }]
+    },
     {  "sceneName": "Rain on a tent",
         "directory": "./sound-samples/custom/rain-on-a-tent",
         "samples": [{
