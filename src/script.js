@@ -110,7 +110,7 @@ async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex) {
 
                 if(value > associatedCurrentVolumeSliderHtmlElement.value){
                     associatedCurrentVolumeSliderHtmlElement.value = event.target.value;
-                    associatedCurrentVolumeSliderHtmlElement.dispatchEvent(new Event('change'));
+                    associatedCurrentVolumeSliderHtmlElement.dispatchEvent(new Event('input'));
                 }
 
                 const shouldAnimate = document.getElementById('animation-toggle').checked;
@@ -139,7 +139,7 @@ async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex) {
 
                 if(value < associatedCurrentVolumeSliderHtmlElement.value){
                     associatedCurrentVolumeSliderHtmlElement.value = event.target.value;
-                    associatedCurrentVolumeSliderHtmlElement.dispatchEvent(new Event('change'));
+                    associatedCurrentVolumeSliderHtmlElement.dispatchEvent(new Event('input'));
                 }
                 
                 const shouldAnimate = document.getElementById('animation-toggle').checked;
