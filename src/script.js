@@ -1,6 +1,9 @@
+let localConfigData; // will be populated with config.json data
+
 const shouldAnimate = false;
 
 const sceneSamplesAudioData = [];
+
 
 
 let audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -12,6 +15,7 @@ const ctas = {
     exportJsonButton: document.getElementById('generateJsonButton'),
     sceneSelect: document.getElementById('scene-selector'),
     subsceneSelect: document.getElementById('subscene-selector'),
+    subsceneWindowSelect: document.getElementById('subscene-window-selector'),
     animationToggle: document.getElementById('animation-toggle')
 }
 
@@ -36,10 +40,10 @@ async function loadConfig() {
     return config;
 }
 
-async function initScene(scenes, _selectedSceneIndex, _selectedSubsceneIndex) {
+async function initScene(scenes, _selectedSceneIndex, _selectedSubsceneIndex, _selectedSubsceneWindowIndex) {
 
     const selectedScene = scenes[_selectedSceneIndex];
-    await loadAndParseNewSceneData(selectedScene, _selectedSubsceneIndex);
+    await loadAndParseNewSceneData(selectedScene, _selectedSubsceneIndex, _selectedSubsceneWindowIndex);
 
 
     // Populate the scene selector
@@ -47,9 +51,19 @@ async function initScene(scenes, _selectedSceneIndex, _selectedSubsceneIndex) {
     // Populate the subscene selector
     populateSubscenesSelector(selectedScene.subscenes, _selectedSubsceneIndex);
 
+    populateSubscenesWindowsSelector(selectedScene.subscenes, _selectedSubsceneIndex, _selectedSubsceneWindowIndex);
+    setupSubscenesWindowsSelectorCurrentEdit(
+        selectedScene.subscenes, 
+        _selectedSubsceneIndex, 
+        _selectedSubsceneWindowIndex, 
+        0, 
+        60*60*1000, 
+        selectedScene.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].startAt
+    )
+
 }
 
-async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex) {
+async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex, _selectedSubsceneWindowIndex) {
 
     onLoadingStarted();
 
@@ -80,7 +94,7 @@ async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex) {
         const sampleSubsceneConfigParams = sceneObject.subscenes.map(scene => {
             return {
                 label: scene.label,
-                params: scene.sceneSamplesConfig[i]
+                params: !scene.subsceneWindows[_selectedSubsceneWindowIndex] ? null : scene.subsceneWindows[_selectedSubsceneWindowIndex].config[i]
             }
         });
 
@@ -116,6 +130,9 @@ async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex) {
                     // we don't know which variation is playing so we should set the vorlume to all of them
                     sampleVariationsAudioData[j].gainNode.gain.setValueAtTime(parseInt(event.target.value) / 100, audioContext.currentTime);
                 }
+
+                // persist value in state
+                sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].currentVol = parseInt(event.target.value)
             }
         );
 
@@ -140,6 +157,9 @@ async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex) {
                     associatedCurrentVolumeSliderHtmlElement.value = event.target.value;
                     associatedCurrentVolumeSliderHtmlElement.dispatchEvent(new Event('input'));
                 }
+
+                // persist value in state
+                sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].minVol = parseInt(event.target.value)
 
                 const shouldAnimate = ctas.animationToggle.checked;
                 if(shouldAnimate){
@@ -169,6 +189,9 @@ async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex) {
                     associatedCurrentVolumeSliderHtmlElement.value = event.target.value;
                     associatedCurrentVolumeSliderHtmlElement.dispatchEvent(new Event('input'));
                 }
+
+                // persist value in state
+                sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].maxVol = parseInt(event.target.value)
                 
                 const shouldAnimate = ctas.animationToggle.checked;
                 if(shouldAnimate){
@@ -193,6 +216,9 @@ async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex) {
                 } else {
                     sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minTimeframeLength = value;
                 }
+
+                // persist value in state
+                sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].minTimeframeLength = parseInt(event.target.value)
                 
                 const shouldAnimate = ctas.animationToggle.checked;
                 if(shouldAnimate){
@@ -218,12 +244,17 @@ async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex) {
                     sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxTimeframeLength = value;
                 }
 
+                // persist value in state
+                sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].maxTimeframeLength = parseInt(event.target.value)
+
                 const shouldAnimate = ctas.animationToggle.checked;
                 if(shouldAnimate){
                     stopAudio();
                 }
             }
         );
+
+        
 
         sceneSamplesAudioData.push({
             currentSource: null,
@@ -235,10 +266,11 @@ async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex) {
             associatedMinVolSliderHtmlElement,
             associatedMaxVolSliderHtmlElement,
             associatedMinTimeframeLengthSliderHtmlElement,
-            associatedMaxTimeframeLengthSliderHtmlElement
+            associatedMaxTimeframeLengthSliderHtmlElement,
         });
         addSeparatorToSlidersContainer('sample-fields-separator');
     }
+    
 
 
     onLoadingFinished();
@@ -246,7 +278,7 @@ async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex) {
 
 // Function to populate the scene selector
 function populateScenesSelector(scenes, selectedIndex) {
-    const sceneSelector = document.getElementById('scene-selector');
+    const sceneSelector = ctas.sceneSelect;
 
     // Clear existing options
     sceneSelector.innerHTML = '';
@@ -265,7 +297,7 @@ function populateScenesSelector(scenes, selectedIndex) {
 
 // Function to populate the subscene selector
 function populateSubscenesSelector(subscenes, selectedIndex) {
-    const subscenesSelector = document.getElementById('subscene-selector');
+    const subscenesSelector = ctas.subsceneSelect;
 
     // Clear existing options
     subscenesSelector.innerHTML = '';
@@ -282,16 +314,34 @@ function populateSubscenesSelector(subscenes, selectedIndex) {
     });
 }
 
+// Function to populate the subscene windows selector
+function populateSubscenesWindowsSelector(subscenes, selectedSubsceneIndex, selectedSubsceneWindowIndex) {
+    const subscenesWindowSelector = ctas.subsceneWindowSelect;
+
+    // Clear existing options
+    subscenesWindowSelector.innerHTML = '';
+
+    // Create an option for each scene
+    subscenes[selectedSubsceneIndex].subsceneWindows.forEach((subsceneWindow, index) => {
+        const option = document.createElement('option');
+        option.value = index;  // Using the index as the value
+        option.textContent = subsceneWindow.startAt;
+        if(index === selectedSubsceneWindowIndex) {
+            option.selected = "selected"
+        }
+        subscenesWindowSelector.appendChild(option);
+    });
+}
+
+
+
+
+
 // Function to start the audio context and load sounds
 async function startAudio(_selectedSubsceneIndex) {
     if (isStarted) return; // Prevents multiple initializations
     isStarted = true;
 
-
-
-    // Hide start button, show sliders
-    // document.getElementById('startButton').style.display = 'none';
-    // document.getElementById('sliders').style.display = 'block';
 
     // await loadSounds();
     await playAllSamples();
@@ -464,6 +514,35 @@ function setupScenePropertySlider(inputType, propertyName, min, max, currentValu
     return input;
 }
 
+function setupSubscenesWindowsSelectorCurrentEdit(subscenes, selectedSubsceneIndex, selectedSubsceneWindowIndex, min, max, currentValue) {
+    const container = document.getElementById('subscene-window-selector-current-edit-wrapper');
+
+    // empty the container to avoid previous inputs and their event listeners
+    container.innerHTML = '';
+
+    const input = document.createElement('input');
+    input.type = 'number';
+    input.min = min;
+    input.max = max;
+    input.value = currentValue
+
+    container.appendChild(input);
+
+    input.addEventListener('input', (e) => {
+        subscenes[selectedSubsceneIndex].subsceneWindows[selectedSubsceneWindowIndex].startAt = parseInt(e.target.value);
+        for ( let option of ctas.subsceneWindowSelect.querySelectorAll('option')){
+            if(option.selected){
+                option.value = subscenes[selectedSubsceneIndex].subsceneWindows[selectedSubsceneWindowIndex].startAt;
+                option.innerText =  subscenes[selectedSubsceneIndex].subsceneWindows[selectedSubsceneWindowIndex].startAt;
+                return;
+            }
+
+        }
+
+    });
+    return input;
+}
+
 function addSeparatorToSlidersContainer(className) {
     const slidersContainer = document.getElementById('sliders');
 
@@ -541,34 +620,46 @@ function triggerAnimationLoopForSlider(sliderHtmlElement, sampleVariationsAudioD
 }
 
 function generateCurrentConfigJson() {
-    const selectedSubsceneIndex = parseInt(document.getElementById('subscene-selector').value);
-    
+    const selectedSceneIndex = parseInt(ctas.sceneSelect.value);
+    const selectedSubsceneIndex = parseInt(ctas.subsceneSelect.value);
+    const currentScene = localConfigData[selectedSceneIndex];
+    const currentSubscene = currentScene.subscenes[selectedSubsceneIndex];
 
     const configData = {
         lengthMs: 60 * 60 * 1000,
         bitDepth: 16,
         sampleRate: 44100,
         format: 'wav', // aac = adts
-        sampleDataConfig: sceneSamplesAudioData.map(sample => {
+        sampleDataConfig: currentScene.samples.map((sample, sampleIndex) => {
 
-            const params = {
-                stitchingMethod: sample.stitchingMethd,
-                concatOverlayMs: sample.concatOverlayMs,
-                minVolRatio: sample.sampleSubsceneConfigParams[selectedSubsceneIndex].params.minVol/100,
-                maxVolRatio: sample.sampleSubsceneConfigParams[selectedSubsceneIndex].params.maxVol/100,
-                minTimeframeLengthMs: sample.sampleSubsceneConfigParams[selectedSubsceneIndex].params.minTimeframeLength,
-                maxTimeframeLengthMs: sample.sampleSubsceneConfigParams[selectedSubsceneIndex].params.maxTimeframeLength
-            };
+            const timingWindows = currentSubscene.subsceneWindows.map((subsceneWindow, i) => {
+                if(i === 0 && subsceneWindow.startAt !== 0){
+                   throw new Error("The property 'startAt' needs to be 0 in the first timing window") 
+                }
+                return {
+                    startAt: subsceneWindow.startAt,
+                    
+                    params: {
+                        
+                        minVolRatio: subsceneWindow.config[sampleIndex].minVol/100,
+                        maxVolRatio: subsceneWindow.config[sampleIndex].maxVol/100,
+                        minTimeframeLengthMs: subsceneWindow.config[sampleIndex].minTimeframeLength,
+                        maxTimeframeLengthMs: subsceneWindow.config[sampleIndex].maxTimeframeLength
+                    }
+                }
+            })
 
-            const variationFilePath = sample.sampleVariationsAudioData.map(sampleVariationAudioData => sampleVariationAudioData.variationFilePath);
+            const variationFilePath = sample.variationNames.map(variationName => `./${currentScene.directory}/${variationName}`);
 
             return {
                 variationFilePath,
-                params
+                stitchingMethod: sample.stitchingMethd,
+                concatOverlayMs: sample.concatOverlayMs,
+                timingWindows
             };
         })
         // do not add to export file the samples with max volume = 0
-        .filter(mappedSample => mappedSample.params.maxVolRatio !== 0)
+        .filter(mappedSample => mappedSample.timingWindows.some(timingWindow => timingWindow.params.maxVolRatio !== 0))
     };
 
     const jsonString = JSON.stringify(configData, null, 2); // Pretty print the JSON
@@ -593,12 +684,17 @@ function addCtaEventListeners(config){
 
     ctas.sceneSelect.addEventListener('change', (event) => {
         stopAudio();  // Stop the audio
-        initScene(config, parseInt(event.target.value, 10), 0).then().catch(e => { throw e });
+        initScene(config, parseInt(event.target.value, 10), 0, 0).then().catch(e => { throw e });
     });
 
     ctas.subsceneSelect.addEventListener('change', (event) => {
         stopAudio();  // Stop the audio
-        initScene(config, parseInt(ctas.sceneSelect.value), parseInt(event.target.value), 0).then().catch(e => { throw e });
+        initScene(config, parseInt(ctas.sceneSelect.value), parseInt(event.target.value), 0, 0).then().catch(e => { throw e });
+    });
+
+    ctas.subsceneWindowSelect.addEventListener('change', (event) => {
+        stopAudio();  // Stop the audio
+        initScene(config, parseInt(ctas.sceneSelect.value), parseInt(ctas.subsceneSelect.value), parseInt(event.target.value)).then().catch(e => { throw e });
     });
 
     ctas.exportJsonButton.addEventListener('click', generateCurrentConfigJson);
@@ -606,8 +702,9 @@ function addCtaEventListeners(config){
 
 
 loadConfig().then((config) => {
-    addCtaEventListeners(config);
-    initScene(config, 0, 0).then().catch(e => { throw e });
+    localConfigData = config;
+    addCtaEventListeners(localConfigData);
+    initScene(localConfigData, 0, 0, 0).then().catch(e => { throw e });
 }).catch(e => { throw e });
 
 
