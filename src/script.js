@@ -2,7 +2,7 @@ let localConfigData; // will be populated with config.json data
 
 const shouldAnimate = false;
 
-const sceneSamplesAudioData = [];
+let sceneSamplesAudioData = [];
 
 
 
@@ -69,7 +69,7 @@ async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex, _se
 
     removeCurrentSliders();
 
-    sceneSamplesAudioData.length = 0;
+    sceneSamplesAudioData = [];
 
     for (let i = 0; i < sceneObject.samples.length; i++) {
         const sampleVariationsAudioData = [];
@@ -257,6 +257,7 @@ async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex, _se
         
 
         sceneSamplesAudioData.push({
+            overlayTimeout: null,
             currentSource: null,
             stitchingMethd,
             concatOverlayMs,
@@ -360,6 +361,10 @@ function stopAudio() {
     isStarted = false;
 
     for (let i = 0; i < sceneSamplesAudioData.length; i++) {
+        if(sceneSamplesAudioData[i].overlayTimeout){
+
+            clearTimeout(sceneSamplesAudioData[i].overlayTimeout)
+        }
         const currentSource = sceneSamplesAudioData[i].currentSource;
         if (currentSource) {
             currentSource.stop();  // Stop the audio
@@ -402,6 +407,7 @@ function playRandomVariation(scenerySampleAudioData) {
     const audioBuffer = scenerySampleAudioData.sampleVariationsAudioData[randomIndex].audioBuffer;
     const gainNode = scenerySampleAudioData.sampleVariationsAudioData[randomIndex].gainNode;
 
+
     const audioBufferSource = audioContext.createBufferSource();
     audioBufferSource.buffer = audioBuffer;
     audioBufferSource.connect(gainNode).connect(audioContext.destination);
@@ -430,7 +436,7 @@ function playRandomVariation(scenerySampleAudioData) {
             nextStartTime = audioBuffer.duration;
         }
         // Set a timeout to start the next variation before the current one ends
-        setTimeout(() => {
+        scenerySampleAudioData.overlayTimeout = setTimeout(() => {
             if (isStarted) playRandomVariation(scenerySampleAudioData);
         }, nextStartTime);
 
