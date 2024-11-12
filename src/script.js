@@ -359,9 +359,14 @@ function playRandomVariation(scenerySampleAudioData) {
     // Store the buffer source for later stopping
     scenerySampleAudioData.currentSource = audioBufferSource;
 
-    audioBufferSource.onended = () => {
+    // Schedule the next variation to start before the current one ends
+    const overlapTime = scenerySampleAudioData.concatOverlayMs; // Time in milliseconds for the overlap
+    const nextStartTime = Math.max(0, audioBuffer.duration * 1000 - overlapTime);
+
+    // Set a timeout to start the next variation before the current one ends
+    setTimeout(() => {
         if (isStarted) playRandomVariation(scenerySampleAudioData);
-    };
+    }, nextStartTime);
 
     audioBufferSource.start();
 }
