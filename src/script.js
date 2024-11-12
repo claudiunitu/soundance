@@ -359,15 +359,33 @@ function playRandomVariation(scenerySampleAudioData) {
     // Store the buffer source for later stopping
     scenerySampleAudioData.currentSource = audioBufferSource;
 
-    // Schedule the next variation to start before the current one ends
-    const overlapTime = scenerySampleAudioData.concatOverlayMs; // Time in milliseconds for the overlap
-    const nextStartTime = Math.max(0, audioBuffer.duration * 1000 - overlapTime);
+    if(scenerySampleAudioData.stitchingMethd === "JOIN_WITH_CROSSFADE") {
 
-    // Set a timeout to start the next variation before the current one ends
-    setTimeout(() => {
-        if (isStarted) playRandomVariation(scenerySampleAudioData);
-    }, nextStartTime);
+        // this will only start immediately after one sample ended and does not really create a crossfade
+        audioBufferSource.onended = () => {
+            if (isStarted) playRandomVariation(scenerySampleAudioData);
+        };
 
+    } else if(scenerySampleAudioData.stitchingMethd === "JOIN_WITH_OVERLAY") {
+
+        // Schedule the next variation to start before the current one ends
+        let nextStartTime = audioBuffer.duration * 1000 - scenerySampleAudioData.concatOverlayMs;
+
+        if(nextStartTime <= 0){
+            console.warn(`
+                The overlay duration must be higher than the sample duration.\n
+                Will play the next variation after the current one ends:\n
+                ${scenerySampleAudioData.sampleVariationsAudioData[randomIndex].variationFilePath}
+            `);
+            nextStartTime = audioBuffer.duration;
+        }
+        // Set a timeout to start the next variation before the current one ends
+        setTimeout(() => {
+            if (isStarted) playRandomVariation(scenerySampleAudioData);
+        }, nextStartTime);
+
+    }
+    
     audioBufferSource.start();
 }
 
