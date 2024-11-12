@@ -2,21 +2,42 @@ const shouldAnimate = false;
 
 const sceneSamplesAudioData = [];
 
-// let selectedSceneIndex = 0;
-// let selectedSubsceneIndex = 0;
-
 
 let audioContext = new (window.AudioContext || window.webkitAudioContext)();
 let isStarted = false; // Flag to prevent re-initialization
 
+const ctas = {
+    startAudioButton: document.getElementById('startAudioButton'),
+    stopAudioButton: document.getElementById('stopAudioButton'),
+    exportJsonButton: document.getElementById('generateJsonButton'),
+    sceneSelect: document.getElementById('scene-selector'),
+    subsceneSelect: document.getElementById('subscene-selector'),
+    animationToggle: document.getElementById('animation-toggle')
+}
+
+function onLoadingStarted(){
+    for(let ctaKey in ctas){
+        ctas[ctaKey].setAttribute("disabled", "disabled");
+    }
+}
+
+function onLoadingFinished(){
+    for(let ctaKey in ctas){
+        ctas[ctaKey].removeAttribute("disabled");
+    }
+}
 
 
 
 async function loadConfig() {
-    return await loadJson(`/config.json`).catch(e => { throw e });
+    onLoadingStarted();
+    const config =  await loadJson(`/config.json`).catch(e => { throw e });
+    onLoadingFinished();
+    return config;
 }
 
 async function initScene(scenes, _selectedSceneIndex, _selectedSubsceneIndex) {
+
     const selectedScene = scenes[_selectedSceneIndex];
     await loadAndParseNewSceneData(selectedScene, _selectedSubsceneIndex);
 
@@ -30,6 +51,7 @@ async function initScene(scenes, _selectedSceneIndex, _selectedSubsceneIndex) {
 
 async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex) {
 
+    onLoadingStarted();
 
     removeCurrentSliders();
 
@@ -70,8 +92,14 @@ async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex) {
 
         addLabelToSampleControlsGroup(sceneObject.samples[i].label, 'sample-fields-groul-label');
 
+        let currentSceneSampleVol = 0; 
+        if(typeof sampleSubsceneConfigParams[_selectedSubsceneIndex].params.currentVol === "number"){
+            currentSceneSampleVol = sampleSubsceneConfigParams[_selectedSubsceneIndex].params.currentVol;
+        } else if(typeof sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minVol === "number" && typeof sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxVol === "number") {
+            currentSceneSampleVol = Math.floor((sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minVol + sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxVol) / 2 );
+        }
         const associatedCurrentVolumeSliderHtmlElement = setupCurrentVolumeSlider(
-            Math.floor((sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minVol + sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxVol) / 2 ),
+            currentSceneSampleVol,
             sampleVariationsAudioData,
             (event) => {
                 const value = parseInt(event.target.value);
@@ -113,7 +141,7 @@ async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex) {
                     associatedCurrentVolumeSliderHtmlElement.dispatchEvent(new Event('input'));
                 }
 
-                const shouldAnimate = document.getElementById('animation-toggle').checked;
+                const shouldAnimate = ctas.animationToggle.checked;
                 if(shouldAnimate){
                     stopAudio();
                 }
@@ -142,7 +170,7 @@ async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex) {
                     associatedCurrentVolumeSliderHtmlElement.dispatchEvent(new Event('input'));
                 }
                 
-                const shouldAnimate = document.getElementById('animation-toggle').checked;
+                const shouldAnimate = ctas.animationToggle.checked;
                 if(shouldAnimate){
                     stopAudio();
                 }
@@ -166,7 +194,7 @@ async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex) {
                     sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minTimeframeLength = value;
                 }
                 
-                const shouldAnimate = document.getElementById('animation-toggle').checked;
+                const shouldAnimate = ctas.animationToggle.checked;
                 if(shouldAnimate){
                     stopAudio();
                 }
@@ -190,7 +218,7 @@ async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex) {
                     sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxTimeframeLength = value;
                 }
 
-                const shouldAnimate = document.getElementById('animation-toggle').checked;
+                const shouldAnimate = ctas.animationToggle.checked;
                 if(shouldAnimate){
                     stopAudio();
                 }
@@ -213,6 +241,7 @@ async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex) {
     }
 
 
+    onLoadingFinished();
 }
 
 // Function to populate the scene selector
@@ -267,7 +296,7 @@ async function startAudio(_selectedSubsceneIndex) {
     // await loadSounds();
     await playAllSamples();
 
-    const shouldAnimate = document.getElementById('animation-toggle').checked;
+    const shouldAnimate = ctas.animationToggle.checked;
     if(shouldAnimate){
         // delay initSlidersAnimations(selectedSceneIndex) by a fraction of a second to ensure all sounds have started and prevent race conditions.
         setTimeout(() => initSlidersAnimations(_selectedSubsceneIndex), 100);
@@ -535,29 +564,27 @@ function downloadJsonFile(jsonString, filename) {
     URL.revokeObjectURL(url); // Free up memory
 }
 
+function addCtaEventListeners(config){
+    ctas.startAudioButton.addEventListener('click', () => startAudio(parseInt(ctas.subsceneSelect.value)));
+    ctas.stopAudioButton.addEventListener('click', stopAudio);
 
-loadConfig().then((config) => {
-
-    
-
-    initScene(config, 0, 0).then().catch(e => { throw e });
-
-    document.getElementById('startAudioButton').addEventListener('click', () => startAudio(parseInt(document.getElementById('subscene-selector').value)));
-    document.getElementById('stopAudioButton').addEventListener('click', stopAudio);
-
-    document.getElementById('scene-selector').addEventListener('change', (event) => {
-        // selectedSceneIndex = parseInt(event.target.value, 10);
+    ctas.sceneSelect.addEventListener('change', (event) => {
         stopAudio();  // Stop the audio
         initScene(config, parseInt(event.target.value, 10), 0).then().catch(e => { throw e });
     });
 
-    document.getElementById('subscene-selector').addEventListener('change', (event) => {
+    ctas.subsceneSelect.addEventListener('change', (event) => {
         stopAudio();  // Stop the audio
-        initScene(config, parseInt(document.getElementById('scene-selector').value), parseInt(event.target.value), 0).then().catch(e => { throw e });
+        initScene(config, parseInt(ctas.sceneSelect.value), parseInt(event.target.value), 0).then().catch(e => { throw e });
     });
 
-    document.getElementById('generateJsonButton').addEventListener('click', generateCurrentConfigJson);
+    ctas.exportJsonButton.addEventListener('click', generateCurrentConfigJson);
+}
 
+
+loadConfig().then((config) => {
+    addCtaEventListeners(config);
+    initScene(config, 0, 0).then().catch(e => { throw e });
 }).catch(e => { throw e });
 
 
