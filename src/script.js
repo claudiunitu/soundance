@@ -117,13 +117,15 @@ async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex, _se
             sampleVariationsAudioData,
             (event) => {
                 const value = parseInt(event.target.value);
-                const upperLimit = sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxVol;
-                const lowerLimit = sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minVol;
 
-                if(value > upperLimit){
-                    event.target.value = upperLimit;
-                } else if(value < lowerLimit){
-                    event.target.value = lowerLimit;
+                if(value > associatedMaxVolSliderHtmlElement.value){
+                    associatedMaxVolSliderHtmlElement.value = event.target.value;
+                    associatedMaxVolSliderHtmlElement.dispatchEvent(new Event('input'));
+                }
+
+                if(value < associatedMinVolSliderHtmlElement.value){
+                    associatedMinVolSliderHtmlElement.value = event.target.value;
+                    associatedMinVolSliderHtmlElement.dispatchEvent(new Event('input'));
                 }
         
                 for (let j = 0; j < sampleVariationsAudioData.length; j++) {
@@ -144,14 +146,6 @@ async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex, _se
             sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minVol,
             (event) => {
                 const value = parseInt(event.target.value, 10);
-
-                const limitingValue = sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxVol;
-                if(value >= limitingValue){
-                    sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minVol = limitingValue;
-                    event.target.value = limitingValue;
-                } else {
-                    sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minVol = value;
-                }
 
                 if(value > associatedCurrentVolumeSliderHtmlElement.value){
                     associatedCurrentVolumeSliderHtmlElement.value = event.target.value;
@@ -176,14 +170,6 @@ async function loadAndParseNewSceneData(sceneObject, _selectedSubsceneIndex, _se
             sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxVol,
             (event) => {
                 const value = parseInt(event.target.value, 10);
-
-                const limitingValue = sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minVol;
-                if(value <= limitingValue){
-                    sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxVol = limitingValue;
-                    event.target.value = limitingValue;
-                } else {
-                    sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxVol = value;
-                }
 
                 if(value < associatedCurrentVolumeSliderHtmlElement.value){
                     associatedCurrentVolumeSliderHtmlElement.value = event.target.value;
