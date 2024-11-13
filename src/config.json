@@ -1125,7 +1125,7 @@
                     "startAt": 0,
                     "config": [
                         {"minVol": 60, "maxVol": 80, "currentVol": 60, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
-                        {"minVol": 10, "maxVol": 20, "currentVol": 60, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
+                        {"minVol": 10, "maxVol": 20, "currentVol": 15, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
                         {"minVol": 60, "maxVol": 80, "currentVol": 60, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
                         {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
                         {"minVol": 60, "maxVol": 80, "currentVol": 60, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
@@ -1139,16 +1139,16 @@
                 {
                     "startAt": 150000,
                     "config": [
-                        {"minVol": 20, "maxVol": 30, "currentVol": 60, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
-                        {"minVol": 30, "maxVol": 40, "currentVol": 60, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
-                        {"minVol": 20, "maxVol": 30, "currentVol": 60, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
+                        {"minVol": 20, "maxVol": 30, "currentVol": 25, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
+                        {"minVol": 30, "maxVol": 40, "currentVol": 35, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
+                        {"minVol": 20, "maxVol": 30, "currentVol": 25, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
                         {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
                         {"minVol": 60, "maxVol": 80, "currentVol": 60, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
                         {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
                         {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
                         {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
                         {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
-                        {"minVol": 50, "maxVol": 60, "currentVol": 0, "minTimeframeLength": 30000, "maxTimeframeLength": 60000}
+                        {"minVol": 50, "maxVol": 60, "currentVol": 55, "minTimeframeLength": 30000, "maxTimeframeLength": 60000}
                     ]
                 },
                 {
@@ -1160,10 +1160,10 @@
                         {"minVol": 45, "maxVol": 62, "currentVol": 58, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
                         {"minVol": 12, "maxVol": 20, "currentVol": 17, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
                         {"minVol": 45, "maxVol": 62, "currentVol": 58, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
                         {"minVol": 16, "maxVol": 23, "currentVol": 19, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
                         {"minVol": 16, "maxVol": 23, "currentVol": 19, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
                     ]
                 }
                 
