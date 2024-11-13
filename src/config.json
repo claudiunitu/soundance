@@ -25,17 +25,17 @@
                 {
                     "startAt": 0,
                     "config": [
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
                     ]
                 },
                 {
                     "startAt": 5000,
                     "config": [
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
                     ]
                 }
                 
@@ -164,16 +164,16 @@
                 {
                     "startAt": 0,
                     "config": [
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
                     ]
                 }
                 
@@ -337,16 +337,16 @@
                 {
                     "startAt": 0,
                     "config": [
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
                     ]
                 }
                 
@@ -452,16 +452,16 @@
                 {
                     "startAt": 0,
                     "config": [
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
                     ]
                 }
                 
@@ -567,16 +567,16 @@
                 {
                     "startAt": 0,
                     "config": [
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
                     ]
                 }
                 
@@ -683,16 +683,16 @@
                 {
                     "startAt": 0,
                     "config": [
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
                     ]
                 }
                 
@@ -798,16 +798,16 @@
                 {
                     "startAt": 0,
                     "config": [
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
                     ]
                 }
                 
@@ -893,16 +893,16 @@
                 {
                     "startAt": 0,
                     "config": [
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
                     ]
                 }
                 
@@ -988,16 +988,16 @@
                 {
                     "startAt": 0,
                     "config": [
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
                     ]
                 }
                 
@@ -1075,7 +1075,7 @@
             "label": "Rain",
             "variationNames": ["9a.ogg", "9b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
-            "concatOverlayMs": 6000
+            "concatOverlayMs": 10000
         }],
         "subscenes": [{
             "label": "All Muted",
@@ -1083,16 +1083,16 @@
                 {
                     "startAt": 0,
                     "config": [
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
                     ]
                 }
                 
@@ -1229,16 +1229,16 @@
                 {
                     "startAt": 0,
                     "config": [
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
-                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
                     ]
                 }
                 
