@@ -624,7 +624,6 @@
             ]
         }]
     },
-    
     {  "sceneName": "Foliage wind",
         "directory": "./sound-samples/custom/full-spectrum-foliage-wind",
         "samples": [{
@@ -1019,6 +1018,152 @@
                         {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
                         {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
                         {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                    ]
+                }
+                
+            ]
+        }]
+    },
+    {  "sceneName": "Irish Coast",
+        "directory": "./sound-samples/custom/irish-coast",
+        "samples": [{
+            "label": "Wind Rumble",
+            "variationNames": ["0a.ogg", "0b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 1000
+        },{
+            "label": "Waves Crash",
+            "variationNames": ["1a.ogg", "1b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 2000
+        },{
+            "label": "Wind",
+            "variationNames": ["2a.ogg", "2b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 1000
+        },{
+            "label": "Shore Noise",
+            "variationNames": ["3a.ogg", "3b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 2000
+        },{
+            "label": "Inland",
+            "variationNames": ["4a.ogg", "4b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 1000
+        },{
+            "label": "Seaside",
+            "variationNames": ["5a.ogg", "5b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 1500
+        },{
+            "label": "Loch",
+            "variationNames": ["6a.ogg", "6b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 1500
+        },{
+            "label": "Pebbles Shore",
+            "variationNames": ["7a.ogg", "7b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 1500
+        },{
+            "label": "Water",
+            "variationNames": ["8a.ogg", "8b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 2000
+        },{
+            "label": "Rain",
+            "variationNames": ["9a.ogg", "9b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 6000
+        }],
+        "subscenes": [{
+            "label": "All Muted",
+            "subsceneWindows": [
+                {
+                    "startAt": 0,
+                    "config": [
+                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                    ]
+                }
+                
+            ]
+        },{
+            "label": "Equal",
+            "subsceneWindows": [
+                {
+                    "startAt": 0,
+                    "config": [
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                    ]
+                }
+                
+            ]
+        },
+        {
+            "label": "Breaking Waves",
+            "subsceneWindows": [
+                {
+                    "startAt": 0,
+                    "config": [
+                        {"minVol": 60, "maxVol": 80, "currentVol": 60, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
+                        {"minVol": 10, "maxVol": 20, "currentVol": 60, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
+                        {"minVol": 60, "maxVol": 80, "currentVol": 60, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
+                        {"minVol": 60, "maxVol": 80, "currentVol": 60, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 30000, "maxTimeframeLength": 60000}
+                    ]
+                },
+                {
+                    "startAt": 150000,
+                    "config": [
+                        {"minVol": 20, "maxVol": 30, "currentVol": 60, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
+                        {"minVol": 30, "maxVol": 40, "currentVol": 60, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
+                        {"minVol": 20, "maxVol": 30, "currentVol": 60, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
+                        {"minVol": 60, "maxVol": 80, "currentVol": 60, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 30000, "maxTimeframeLength": 60000},
+                        {"minVol": 50, "maxVol": 60, "currentVol": 0, "minTimeframeLength": 30000, "maxTimeframeLength": 60000}
+                    ]
+                },
+                {
+                    "startAt": 300000,
+                    "config": [
+                        {"minVol": 15, "maxVol": 22, "currentVol": 18, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 45, "maxVol": 62, "currentVol": 58, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 25, "maxVol": 33, "currentVol": 29, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 45, "maxVol": 62, "currentVol": 58, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 12, "maxVol": 20, "currentVol": 17, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 45, "maxVol": 62, "currentVol": 58, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 16, "maxVol": 23, "currentVol": 19, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 16, "maxVol": 23, "currentVol": 19, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 100, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
                     ]
                 }
                 
