@@ -1265,6 +1265,101 @@
             ]
         }]
     },
+    {  "sceneName": "Peninsula",
+        "directory": "./sound-samples/custom/peninsula-waves-spectrum",
+        "samples": [{
+            "label": "Farthest",
+            "variationNames": ["0a.ogg", "0b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 7000
+        },{
+            "label": "Farther",
+            "variationNames": ["1a.ogg", "1b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 4000
+        },{
+            "label": "Far",
+            "variationNames": ["2a.ogg", "2b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 6000
+        },{
+            "label": "Not So Far",
+            "variationNames": ["3a.ogg", "3b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 7000
+        },{
+            "label": "In Between",
+            "variationNames": ["4a.ogg", "4b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 5500
+        },{
+            "label": "Not So Close",
+            "variationNames": ["5a.ogg", "5b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 6000
+        },{
+            "label": "Getting Closer",
+            "variationNames": ["6a.ogg", "6b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 4500
+        },{
+            "label": "Closer",
+            "variationNames": ["7a.ogg", "7b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 5000
+        },{
+            "label": "Close",
+            "variationNames": ["8a.ogg", "8b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 4000
+        },{
+            "label": "Closest",
+            "variationNames": ["9a.ogg", "9b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 5000
+        }],
+        "subscenes": [{
+            "label": "All Muted",
+            "subsceneWindows": [
+                {
+                    "startAt": 0,
+                    "config": [
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                    ]
+                }
+                
+            ]
+        },{
+            "label": "Equal",
+            "subsceneWindows": [
+                {
+                    "startAt": 0,
+                    "config": [
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                    ]
+                }
+                
+            ]
+        }]
+    },
     {  "sceneName": "Rain on a tent",
         "directory": "./sound-samples/custom/rain-on-a-tent",
         "samples": [{

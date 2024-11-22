@@ -670,33 +670,38 @@ function downloadJsonFile(jsonString, filename) {
     URL.revokeObjectURL(url); // Free up memory
 }
 
-function addCtaEventListeners(config){
+function addCtaEventListeners(){
     ctas.startAudioButton.addEventListener('click', () => startAudio(parseInt(ctas.subsceneSelect.value)));
     ctas.stopAudioButton.addEventListener('click', stopAudio);
 
     ctas.sceneSelect.addEventListener('change', (event) => {
         stopAudio();  // Stop the audio
-        initScene(config, parseInt(event.target.value, 10), 0, 0).then().catch(e => { throw e });
+        initScene(localConfigData, parseInt(event.target.value, 10), 0, 0).then().catch(e => { throw e });
     });
 
     ctas.subsceneSelect.addEventListener('change', (event) => {
         stopAudio();  // Stop the audio
-        initScene(config, parseInt(ctas.sceneSelect.value), parseInt(event.target.value), 0, 0).then().catch(e => { throw e });
+        initScene(localConfigData, parseInt(ctas.sceneSelect.value), parseInt(event.target.value), 0, 0).then().catch(e => { throw e });
     });
 
     ctas.subsceneWindowSelect.addEventListener('change', (event) => {
         stopAudio();  // Stop the audio
-        initScene(config, parseInt(ctas.sceneSelect.value), parseInt(ctas.subsceneSelect.value), parseInt(event.target.value)).then().catch(e => { throw e });
+        initScene(localConfigData, parseInt(ctas.sceneSelect.value), parseInt(ctas.subsceneSelect.value), parseInt(event.target.value)).then().catch(e => { throw e });
     });
 
     ctas.exportJsonButton.addEventListener('click', generateCurrentConfigJson);
 }
 
+function initApp(config){
+    localConfigData = config;
+    initScene(localConfigData, 0, 0, 0).then().catch(e => { throw e });
+    
+}
 
 loadConfig().then((config) => {
-    localConfigData = config;
+    initApp(config)
     addCtaEventListeners(localConfigData);
-    initScene(localConfigData, 0, 0, 0).then().catch(e => { throw e });
+    
 }).catch(e => { throw e });
 
 
