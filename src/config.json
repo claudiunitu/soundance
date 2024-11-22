@@ -1360,6 +1360,101 @@
             ]
         }]
     },
+    {  "sceneName": "Railroads",
+        "directory": "./sound-samples/custom/railroads",
+        "samples": [{
+            "label": "Sub-Bass",
+            "variationNames": ["0a.ogg", "0b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 2000
+        },{
+            "label": "Low-Bass",
+            "variationNames": ["1a.ogg", "1b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 3000
+        },{
+            "label": "Bass",
+            "variationNames": ["2a.ogg", "2b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 2500
+        },{
+            "label": "High Bass",
+            "variationNames": ["3a.ogg", "3b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 4000
+        },{
+            "label": "Low Mids",
+            "variationNames": ["4a.ogg", "4b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 5000
+        },{
+            "label": "Mids",
+            "variationNames": ["5a.ogg", "5b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 3000
+        },{
+            "label": "High Mids",
+            "variationNames": ["6a.ogg", "6b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 3500
+        },{
+            "label": "Low Treble",
+            "variationNames": ["7a.ogg", "7b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 4000
+        },{
+            "label": "Treble",
+            "variationNames": ["8a.ogg", "8b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 3000
+        },{
+            "label": "High Treble",
+            "variationNames": ["9a.ogg", "9b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 2700
+        }],
+        "subscenes": [{
+            "label": "All Muted",
+            "subsceneWindows": [
+                {
+                    "startAt": 0,
+                    "config": [
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                    ]
+                }
+                
+            ]
+        },{
+            "label": "Equal",
+            "subsceneWindows": [
+                {
+                    "startAt": 0,
+                    "config": [
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                    ]
+                }
+                
+            ]
+        }]
+    },
     {  "sceneName": "Rain on a tent",
         "directory": "./sound-samples/custom/rain-on-a-tent",
         "samples": [{
