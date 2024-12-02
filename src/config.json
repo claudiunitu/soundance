@@ -1455,6 +1455,101 @@
             ]
         }]
     },
+    {  "sceneName": "Rain Full Spectrum",
+        "directory": "./sound-samples/custom/rain-noise-full-spectrum",
+        "samples": [{
+            "label": "Sub-Bass",
+            "variationNames": ["0a.ogg", "0b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 4000
+        },{
+            "label": "Low-Bass",
+            "variationNames": ["1a.ogg", "1b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 2000
+        },{
+            "label": "Bass",
+            "variationNames": ["2a.ogg", "2b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 3500
+        },{
+            "label": "High Bass",
+            "variationNames": ["3a.ogg", "3b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 5500
+        },{
+            "label": "Low Mids",
+            "variationNames": ["4a.ogg", "4b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 5500
+        },{
+            "label": "Mids",
+            "variationNames": ["5a.ogg", "5b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 5000
+        },{
+            "label": "High Mids",
+            "variationNames": ["6a.ogg", "6b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 5000
+        },{
+            "label": "Low Treble",
+            "variationNames": ["7a.ogg", "7b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 5000
+        },{
+            "label": "Treble",
+            "variationNames": ["8a.ogg", "8b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 5000
+        },{
+            "label": "High Treble",
+            "variationNames": ["9a.ogg", "9b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 4500
+        }],
+        "subscenes": [{
+            "label": "All Muted",
+            "subsceneWindows": [
+                {
+                    "startAt": 0,
+                    "config": [
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                    ]
+                }
+                
+            ]
+        },{
+            "label": "Equal",
+            "subsceneWindows": [
+                {
+                    "startAt": 0,
+                    "config": [
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                    ]
+                }
+                
+            ]
+        }]
+    },
     {  "sceneName": "Rain on a tent",
         "directory": "./sound-samples/custom/rain-on-a-tent",
         "samples": [{
@@ -1564,6 +1659,196 @@
                         {"minVol": 25, "maxVol": 45, "minTimeframeLength": 60000, "maxTimeframeLength": 240000},
                         {"minVol": 22, "maxVol": 42, "minTimeframeLength": 60000, "maxTimeframeLength": 240000},
                         {"minVol": 17, "maxVol": 37, "minTimeframeLength": 60000, "maxTimeframeLength": 240000}
+                    ]
+                }
+                
+            ]
+        }]
+    },
+    {  "sceneName": "Stormy Weather",
+        "directory": "./sound-samples/custom/stormy-weather",
+        "samples": [{
+            "label": "Storm Wind",
+            "variationNames": ["0a.ogg", "0b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 10000
+        },{
+            "label": "Storm Rain",
+            "variationNames": ["1a.ogg", "1b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 10000
+        },{
+            "label": "Wind and Rain",
+            "variationNames": ["2a.ogg", "2b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 8000
+        },{
+            "label": "Rain and Thunder",
+            "variationNames": ["3a.ogg", "3b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 10000
+        },{
+            "label": "Rain and Thunder",
+            "variationNames": ["4a.ogg", "4b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 10000
+        },{
+            "label": "Rain and Thunder",
+            "variationNames": ["5a.ogg", "5b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 10000
+        },{
+            "label": "Porch Rain",
+            "variationNames": ["6a.ogg", "6b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 10000
+        },{
+            "label": "White Rain",
+            "variationNames": ["7a.ogg", "7b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 10000
+        },{
+            "label": "Droplets",
+            "variationNames": ["8a.ogg", "8b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 11000
+        },{
+            "label": "Sizzle",
+            "variationNames": ["9a.ogg", "9b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 10000
+        }],
+        "subscenes": [{
+            "label": "All Muted",
+            "subsceneWindows": [
+                {
+                    "startAt": 0,
+                    "config": [
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                    ]
+                }
+                
+            ]
+        },{
+            "label": "Equal",
+            "subsceneWindows": [
+                {
+                    "startAt": 0,
+                    "config": [
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                    ]
+                }
+                
+            ]
+        }]
+    },
+    {  "sceneName": "The Falls",
+        "directory": "./sound-samples/custom/the-falls-waterfall-full-spectrum",
+        "samples": [{
+            "label": "Rumble",
+            "variationNames": ["0a.ogg", "0b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 10000
+        },{
+            "label": "Low Gurgle",
+            "variationNames": ["1a.ogg", "1b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 10000
+        },{
+            "label": "Distant Lo",
+            "variationNames": ["2a.ogg", "2b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 9000
+        },{
+            "label": "Distand Med",
+            "variationNames": ["3a.ogg", "3b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 10000
+        },{
+            "label": "Distant Hi",
+            "variationNames": ["4a.ogg", "4b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 11000
+        },{
+            "label": "Close Lo",
+            "variationNames": ["5a.ogg", "5b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 10000
+        },{
+            "label": "Close Hi",
+            "variationNames": ["6a.ogg", "6b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 9000
+        },{
+            "label": "Water Noise Lo",
+            "variationNames": ["7a.ogg", "7b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 10000
+        },{
+            "label": "Water Noise Med",
+            "variationNames": ["8a.ogg", "8b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 10000
+        },{
+            "label": "Water Noise Hi",
+            "variationNames": ["9a.ogg", "9b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 9000
+        }],
+        "subscenes": [{
+            "label": "All Muted",
+            "subsceneWindows": [
+                {
+                    "startAt": 0,
+                    "config": [
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                    ]
+                }
+                
+            ]
+        },{
+            "label": "Equal",
+            "subsceneWindows": [
+                {
+                    "startAt": 0,
+                    "config": [
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
                     ]
                 }
                 
