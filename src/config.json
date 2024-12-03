@@ -200,6 +200,146 @@
             ]
         },
         {
+            "label": "Brown",
+            "subsceneWindows": [
+                {
+                    "startAt": 0,
+                    "config": [
+                        {
+                            "minVol": 65,
+                            "maxVol": 65,
+                            "minTimeframeLength": 360000,
+                            "maxTimeframeLength": 720000
+                        },
+                        {
+                            "minVol": 57,
+                            "maxVol": 57,
+                            "minTimeframeLength": 360000,
+                            "maxTimeframeLength": 720000
+                        },
+                        {
+                            "minVol": 49,
+                            "maxVol": 49,
+                            "minTimeframeLength": 360000,
+                            "maxTimeframeLength": 720000
+                        },
+                        {
+                            "minVol": 42,
+                            "maxVol": 42,
+                            "minTimeframeLength": 360000,
+                            "maxTimeframeLength": 720000
+                        },
+                        {
+                            "minVol": 32,
+                            "maxVol": 32,
+                            "minTimeframeLength": 360000,
+                            "maxTimeframeLength": 720000
+                        },
+                        {
+                            "minVol": 25,
+                            "maxVol": 25,
+                            "minTimeframeLength": 360000,
+                            "maxTimeframeLength": 720000
+                        },
+                        {
+                            "minVol": 19,
+                            "maxVol": 19,
+                            "minTimeframeLength": 360000,
+                            "maxTimeframeLength": 720000
+                        },
+                        {
+                            "minVol": 13,
+                            "maxVol": 13,
+                            "minTimeframeLength": 360000,
+                            "maxTimeframeLength": 720000
+                        },
+                        {
+                            "minVol": 7,
+                            "maxVol": 7,
+                            "minTimeframeLength": 360000,
+                            "maxTimeframeLength": 720000
+                        },
+                        {
+                            "minVol": 4,
+                            "maxVol": 4,
+                            "minTimeframeLength": 360000,
+                            "maxTimeframeLength": 720000
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "label": "Lay Down Close",
+            "subsceneWindows": [
+                {
+                    "startAt": 0,
+                    "config": [
+                        {
+                            "minVol": 0,
+                            "maxVol": 0,
+                            "minTimeframeLength": 360000,
+                            "maxTimeframeLength": 720000
+                        },
+                        {
+                            "minVol": 5,
+                            "maxVol": 5,
+                            "minTimeframeLength": 360000,
+                            "maxTimeframeLength": 720000
+                        },
+                        {
+                            "minVol": 9,
+                            "maxVol": 9,
+                            "minTimeframeLength": 360000,
+                            "maxTimeframeLength": 720000
+                        },
+                        {
+                            "minVol": 27,
+                            "maxVol": 27,
+                            "minTimeframeLength": 360000,
+                            "maxTimeframeLength": 720000
+                        },
+                        {
+                            "minVol": 72,
+                            "maxVol": 72,
+                            "minTimeframeLength": 360000,
+                            "maxTimeframeLength": 720000
+                        },
+                        {
+                            "minVol": 28,
+                            "maxVol": 28,
+                            "minTimeframeLength": 360000,
+                            "maxTimeframeLength": 720000
+                        },
+                        {
+                            "minVol": 21,
+                            "maxVol": 21,
+                            "minTimeframeLength": 360000,
+                            "maxTimeframeLength": 720000
+                        },
+                        {
+                            "minVol": 14,
+                            "maxVol": 14,
+                            "minTimeframeLength": 360000,
+                            "maxTimeframeLength": 720000
+                        },
+                        {
+                            "minVol": 9,
+                            "maxVol": 9,
+                            "minTimeframeLength": 360000,
+                            "maxTimeframeLength": 720000
+                        },
+                        {
+                            "minVol": 9,
+                            "maxVol": 9,
+                            "minTimeframeLength": 360000,
+                            "maxTimeframeLength": 720000
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "label": "Quiet Brook",
             "subsceneWindows": [
                 {

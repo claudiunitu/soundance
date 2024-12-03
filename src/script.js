@@ -13,6 +13,7 @@ const ctas = {
     startAudioButton: document.getElementById('startAudioButton'),
     stopAudioButton: document.getElementById('stopAudioButton'),
     exportJsonButton: document.getElementById('generateJsonButton'),
+    exportCurrentSubscene: document.getElementById('exportCurrentSubscene'),
     sceneSelect: document.getElementById('scene-selector'),
     subsceneSelect: document.getElementById('subscene-selector'),
     subsceneWindowSelect: document.getElementById('subscene-window-selector'),
@@ -658,6 +659,46 @@ function generateCurrentConfigJson() {
     downloadJsonFile(jsonString, 'currentConfig.json'); // Trigger download
 }
 
+function generateCurrentSubsceneJson() {
+
+    console.log({
+        label: "Subscene Label",
+        subsceneWindows: [
+            {
+                startAt: 0,
+                config: sceneSamplesAudioData.map(item => {
+                    return {
+                        minVol: parseInt(item.associatedMinVolSliderHtmlElement.value),
+                        maxVol: parseInt(item.associatedMaxVolSliderHtmlElement.value),
+                        minTimeframeLength: parseInt(item.associatedMinTimeframeLengthSliderHtmlElement.value), 
+                        maxTimeframeLength: parseInt(item.associatedMaxTimeframeLengthSliderHtmlElement.value),
+                    }
+                })
+            }
+            
+        ]
+    })
+    console.log(JSON.stringify({
+        label: "Subscene Label",
+        subsceneWindows: [
+            {
+                startAt: 0,
+                config: sceneSamplesAudioData.map(item => {
+                    return {
+                        minVol: parseInt(item.associatedMinVolSliderHtmlElement.value),
+                        maxVol: parseInt(item.associatedMaxVolSliderHtmlElement.value),
+                        minTimeframeLength: parseInt(item.associatedMinTimeframeLengthSliderHtmlElement.value), 
+                        maxTimeframeLength: parseInt(item.associatedMaxTimeframeLengthSliderHtmlElement.value),
+                    }
+                })
+            }
+            
+        ]
+    }, null, '    '))
+
+        
+}
+
 function downloadJsonFile(jsonString, filename) {
     const blob = new Blob([jsonString], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
@@ -690,6 +731,10 @@ function addCtaEventListeners(){
     });
 
     ctas.exportJsonButton.addEventListener('click', generateCurrentConfigJson);
+
+    ctas.exportCurrentSubscene.addEventListener('click', generateCurrentSubsceneJson);
+
+    
 }
 
 function initApp(config){
