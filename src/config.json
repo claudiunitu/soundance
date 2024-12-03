@@ -2374,5 +2374,385 @@
                 
             ]
         }]
+    },
+    {  "sceneName": "Meadow Land",
+        "directory": "./sound-samples/custom/meadow-land",
+        "samples": [{
+            "label": "Water Cavity",
+            "variationNames": ["0a.ogg", "0b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 6000
+        },{
+            "label": "Distant Stream",
+            "variationNames": ["1a.ogg", "1b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 7500
+        },{
+            "label": "Beaver Dam",
+            "variationNames": ["2a.ogg", "2b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 6000
+        },{
+            "label": "Creak",
+            "variationNames": ["3a.ogg", "3b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 6500
+        },{
+            "label": "Brook",
+            "variationNames": ["4a.ogg", "4b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 7000
+        },{
+            "label": "Water and Birds",
+            "variationNames": ["5a.ogg", "5b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 1500
+        },{
+            "label": "Thrush",
+            "variationNames": ["6a.ogg", "6b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 1200
+        },{
+            "label": "Thrush",
+            "variationNames": ["7a.ogg", "7b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 1100
+        },{
+            "label": "Grass Winds",
+            "variationNames": ["8a.ogg", "8b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 4000
+        },{
+            "label": "Crickets",
+            "variationNames": ["9a.ogg", "9b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 1000
+        }],
+        "subscenes": [{
+            "label": "All Muted",
+            "subsceneWindows": [
+                {
+                    "startAt": 0,
+                    "config": [
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                    ]
+                }
+                
+            ]
+        },{
+            "label": "Equal",
+            "subsceneWindows": [
+                {
+                    "startAt": 0,
+                    "config": [
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                    ]
+                }
+                
+            ]
+        }]
+    },
+    {  "sceneName": "Spring Walk Deep Woods",
+        "directory": "./sound-samples/custom/spring-walk",
+        "samples": [{
+            "label": "Footsteps",
+            "variationNames": ["0a.ogg", "0b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 500
+        },{
+            "label": "Footsteps",
+            "variationNames": ["1a.ogg", "1b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 500
+        },{
+            "label": "Bees",
+            "variationNames": ["2a.ogg", "2b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 2000
+        },{
+            "label": "Wind",
+            "variationNames": ["3a.ogg", "3b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 5000
+        },{
+            "label": "Water",
+            "variationNames": ["4a.ogg", "4b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 4000
+        },{
+            "label": "Blackbird",
+            "variationNames": ["5a.ogg", "5b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 1000
+        },{
+            "label": "Birds",
+            "variationNames": ["6a.ogg", "6b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 1000
+        },{
+            "label": "Birds",
+            "variationNames": ["7a.ogg", "7b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 1000
+        },{
+            "label": "Birds",
+            "variationNames": ["8a.ogg", "8b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 1000
+        },{
+            "label": "Birds",
+            "variationNames": ["9a.ogg", "9b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 1000
+        }],
+        "subscenes": [{
+            "label": "All Muted",
+            "subsceneWindows": [
+                {
+                    "startAt": 0,
+                    "config": [
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                    ]
+                }
+                
+            ]
+        },{
+            "label": "Equal",
+            "subsceneWindows": [
+                {
+                    "startAt": 0,
+                    "config": [
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                    ]
+                }
+                
+            ]
+        }]
+    },
+    {  "sceneName": "Summer Walk",
+        "directory": "./sound-samples/custom/summer-walk",
+        "samples": [{
+            "label": "Warm Wind",
+            "variationNames": ["0a.ogg", "0b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 1000
+        },{
+            "label": "River",
+            "variationNames": ["1a.ogg", "1b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 8000
+        },{
+            "label": "Footsteps",
+            "variationNames": ["2a.ogg", "2b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 700
+        },{
+            "label": "Bees Flying",
+            "variationNames": ["3a.ogg", "3b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 1000
+        },{
+            "label": "Buzzy Bees",
+            "variationNames": ["4a.ogg", "4b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 8000
+        },{
+            "label": "Larks",
+            "variationNames": ["5a.ogg", "5b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 3000
+        },{
+            "label": "Grass Wind",
+            "variationNames": ["6a.ogg", "6b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 2000
+        },{
+            "label": "Grasshopers",
+            "variationNames": ["7a.ogg", "7b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 1000
+        },{
+            "label": "Grasshopers",
+            "variationNames": ["8a.ogg", "8b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 1000
+        },{
+            "label": "Grasshopers",
+            "variationNames": ["9a.ogg", "9b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 2000
+        }],
+        "subscenes": [{
+            "label": "All Muted",
+            "subsceneWindows": [
+                {
+                    "startAt": 0,
+                    "config": [
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                    ]
+                }
+                
+            ]
+        },{
+            "label": "Equal",
+            "subsceneWindows": [
+                {
+                    "startAt": 0,
+                    "config": [
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                    ]
+                }
+                
+            ]
+        }]
+    },
+    {  "sceneName": "Palm Garden",
+        "directory": "./sound-samples/custom/palm-garden",
+        "samples": [{
+            "label": "Wind",
+            "variationNames": ["0a.ogg", "0b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 5000
+        },{
+            "label": "Wind",
+            "variationNames": ["1a.ogg", "1b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 4500
+        },{
+            "label": "Wind",
+            "variationNames": ["2a.ogg", "2b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 5000
+        },{
+            "label": "Water",
+            "variationNames": ["3a.ogg", "3b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 6000
+        },{
+            "label": "Water",
+            "variationNames": ["4a.ogg", "4b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 5000
+        },{
+            "label": "Water",
+            "variationNames": ["5a.ogg", "5b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 6000
+        },{
+            "label": "Birds",
+            "variationNames": ["6a.ogg", "6b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 4500
+        },{
+            "label": "Dove",
+            "variationNames": ["7a.ogg", "7b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 1000
+        },{
+            "label": "Sparrows",
+            "variationNames": ["8a.ogg", "8b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 1000
+        },{
+            "label": "Sparrows",
+            "variationNames": ["9a.ogg", "9b.ogg"],
+            "stitchingMethd": "JOIN_WITH_OVERLAY",
+            "concatOverlayMs": 1500
+        }],
+        "subscenes": [{
+            "label": "All Muted",
+            "subsceneWindows": [
+                {
+                    "startAt": 0,
+                    "config": [
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                    ]
+                }
+                
+            ]
+        },{
+            "label": "Equal",
+            "subsceneWindows": [
+                {
+                    "startAt": 0,
+                    "config": [
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                    ]
+                }
+                
+            ]
+        }]
     }
 ]
