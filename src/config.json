@@ -3,19 +3,19 @@
         "directory": "sound-samples/demo",
         "samples": [{
             "label": "White Noise",
-            "variationNames": ["0a.m4a", "0b.m4a", "0c.m4a"],
+            "variationNames": ["sound-samples/demo/0a.m4a", "sound-samples/demo/0b.m4a", "sound-samples/demo/0c.m4a"],
             "stitchingMethd": "JOIN_WITH_CROSSFADE",
             "concatOverlayMs": 1000
         },
         {
             "label": "Pink Noise",
-            "variationNames": ["1a.m4a", "1b.m4a", "1c.m4a"],
+            "variationNames": ["sound-samples/demo/1a.m4a", "sound-samples/demo/1b.m4a", "sound-samples/demo/1c.m4a"],
             "stitchingMethd": "JOIN_WITH_CROSSFADE",
             "concatOverlayMs": 1000
         },
         {
             "label": "Brown Noise",
-            "variationNames": ["2a.m4a", "2b.m4a", "2c.m4a"],
+            "variationNames": ["sound-samples/demo/2a.m4a", "sound-samples/demo/2b.m4a", "sound-samples/demo/2c.m4a"],
             "stitchingMethd": "JOIN_WITH_CROSSFADE",
             "concatOverlayMs": 1000
         }],
@@ -109,52 +109,52 @@
         "directory": "./sound-samples/custom/crystal-clear-stream",
         "samples": [{
             "label": "Sub-Bass",
-            "variationNames": ["0a.ogg", "0b.ogg"],
+            "variationNames": ["sound-samples/custom/crystal-clear-stream/0a.ogg", "sound-samples/custom/crystal-clear-stream/0b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         },{
             "label": "Low-Bass",
-            "variationNames": ["1a.ogg", "1b.ogg"],
+            "variationNames": ["sound-samples/custom/crystal-clear-stream/1a.ogg", "sound-samples/custom/crystal-clear-stream/1b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 2000
         },{
             "label": "Bass",
-            "variationNames": ["2a.ogg", "2b.ogg"],
+            "variationNames": ["sound-samples/custom/crystal-clear-stream/2a.ogg", "sound-samples/custom/crystal-clear-stream/2b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         },{
             "label": "High Bass",
-            "variationNames": ["3a.ogg", "3b.ogg"],
+            "variationNames": ["sound-samples/custom/crystal-clear-stream/3a.ogg", "sound-samples/custom/crystal-clear-stream/3b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         },{
             "label": "Low Mids",
-            "variationNames": ["4a.ogg", "4b.ogg"],
+            "variationNames": ["sound-samples/custom/crystal-clear-stream/4a.ogg", "sound-samples/custom/crystal-clear-stream/4b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 3000
         },{
             "label": "Mids",
-            "variationNames": ["5a.ogg", "5b.ogg"],
+            "variationNames": ["sound-samples/custom/crystal-clear-stream/5a.ogg", "sound-samples/custom/crystal-clear-stream/5b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 2500
         },{
             "label": "High Mids",
-            "variationNames": ["6a.ogg", "6b.ogg"],
+            "variationNames": ["sound-samples/custom/crystal-clear-stream/6a.ogg", "sound-samples/custom/crystal-clear-stream/6b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 2500
         },{
             "label": "Low Treble",
-            "variationNames": ["7a.ogg", "7b.ogg"],
+            "variationNames": ["sound-samples/custom/crystal-clear-stream/7a.ogg", "sound-samples/custom/crystal-clear-stream/7b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 2000
         },{
             "label": "Treble",
-            "variationNames": ["8a.ogg", "8b.ogg"],
+            "variationNames": ["sound-samples/custom/crystal-clear-stream/8a.ogg", "sound-samples/custom/crystal-clear-stream/8b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 2000
         },{
             "label": "High Treble",
-            "variationNames": ["9a.ogg", "9b.ogg"],
+            "variationNames": ["sound-samples/custom/crystal-clear-stream/9a.ogg", "sound-samples/custom/crystal-clear-stream/9b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 2000
         }],
@@ -422,52 +422,52 @@
         "directory": "./sound-samples/custom/desert-wind-full-spectrum",
         "samples": [{
             "label": "Sub-Bass",
-            "variationNames": ["0a.ogg", "0b.ogg"],
+            "variationNames": ["sound-samples/custom/desert-wind-full-spectrum/0a.ogg", "sound-samples/custom/desert-wind-full-spectrum/0b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 7000
         },{
             "label": "Low-Bass",
-            "variationNames": ["1a.ogg", "1b.ogg"],
+            "variationNames": ["sound-samples/custom/desert-wind-full-spectrum/1a.ogg", "sound-samples/custom/desert-wind-full-spectrum/1b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         },{
             "label": "Bass",
-            "variationNames": ["2a.ogg", "2b.ogg"],
+            "variationNames": ["sound-samples/custom/desert-wind-full-spectrum/2a.ogg", "sound-samples/custom/desert-wind-full-spectrum/2b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "High Bass",
-            "variationNames": ["3a.ogg", "3b.ogg"],
+            "variationNames": ["sound-samples/custom/desert-wind-full-spectrum/3a.ogg", "sound-samples/custom/desert-wind-full-spectrum/3b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 7000
         },{
             "label": "Low Mids",
-            "variationNames": ["4a.ogg", "4b.ogg"],
+            "variationNames": ["sound-samples/custom/desert-wind-full-spectrum/4a.ogg", "sound-samples/custom/desert-wind-full-spectrum/4b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 3000
         },{
             "label": "Mids",
-            "variationNames": ["5a.ogg", "5b.ogg"],
+            "variationNames": ["sound-samples/custom/desert-wind-full-spectrum/5a.ogg", "sound-samples/custom/desert-wind-full-spectrum/5b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 3000
         },{
             "label": "High Mids",
-            "variationNames": ["6a.ogg", "6b.ogg"],
+            "variationNames": ["sound-samples/custom/desert-wind-full-spectrum/6a.ogg", "sound-samples/custom/desert-wind-full-spectrum/6b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 6000
         },{
             "label": "Low Treble",
-            "variationNames": ["7a.ogg", "7b.ogg"],
+            "variationNames": ["sound-samples/custom/desert-wind-full-spectrum/7a.ogg", "sound-samples/custom/desert-wind-full-spectrum/7b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1500
         },{
             "label": "Treble",
-            "variationNames": ["8a.ogg", "8b.ogg"],
+            "variationNames": ["sound-samples/custom/desert-wind-full-spectrum/8a.ogg", "sound-samples/custom/desert-wind-full-spectrum/8b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 2000
         },{
             "label": "High Treble",
-            "variationNames": ["9a.ogg", "9b.ogg"],
+            "variationNames": ["sound-samples/custom/desert-wind-full-spectrum/9a.ogg", "sound-samples/custom/desert-wind-full-spectrum/9b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 2000
         }],
@@ -537,52 +537,52 @@
         "directory": "./sound-samples/custom/distant-thunder",
         "samples": [{
             "label": "Rumble",
-            "variationNames": ["0a.ogg", "0b.ogg"],
+            "variationNames": ["sound-samples/custom/distant-thunder/0a.ogg", "sound-samples/custom/distant-thunder/0b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 2000
         },{
             "label": "Rumble",
-            "variationNames": ["1a.ogg", "1b.ogg"],
+            "variationNames": ["sound-samples/custom/distant-thunder/1a.ogg", "sound-samples/custom/distant-thunder/1b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 2000
         },{
             "label": "Low Thunder",
-            "variationNames": ["2a.ogg", "2b.ogg"],
+            "variationNames": ["sound-samples/custom/distant-thunder/2a.ogg", "sound-samples/custom/distant-thunder/2b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1500
         },{
             "label": "Low Thunder",
-            "variationNames": ["3a.ogg", "3b.ogg"],
+            "variationNames": ["sound-samples/custom/distant-thunder/3a.ogg", "sound-samples/custom/distant-thunder/3b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 2000
         },{
             "label": "Thunder",
-            "variationNames": ["4a.ogg", "4b.ogg"],
+            "variationNames": ["sound-samples/custom/distant-thunder/4a.ogg", "sound-samples/custom/distant-thunder/4b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 2000
         },{
             "label": "Thunder & Light Rain",
-            "variationNames": ["5a.ogg", "5b.ogg"],
+            "variationNames": ["sound-samples/custom/distant-thunder/5a.ogg", "sound-samples/custom/distant-thunder/5b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "Thunder & Rain",
-            "variationNames": ["6a.ogg", "6b.ogg"],
+            "variationNames": ["sound-samples/custom/distant-thunder/6a.ogg", "sound-samples/custom/distant-thunder/6b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "Thunder & Rain",
-            "variationNames": ["7a.ogg", "7b.ogg"],
+            "variationNames": ["sound-samples/custom/distant-thunder/7a.ogg", "sound-samples/custom/distant-thunder/7b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "Rain",
-            "variationNames": ["8a.ogg", "8b.ogg"],
+            "variationNames": ["sound-samples/custom/distant-thunder/8a.ogg", "sound-samples/custom/distant-thunder/8b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "Rain",
-            "variationNames": ["9a.ogg", "9b.ogg"],
+            "variationNames": ["sound-samples/custom/distant-thunder/9a.ogg", "sound-samples/custom/distant-thunder/9b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         }],
@@ -652,52 +652,52 @@
         "directory": "./sound-samples/custom/fireplace",
         "samples": [{
             "label": "Sub-Bass",
-            "variationNames": ["0a.ogg", "0b.ogg"],
+            "variationNames": ["sound-samples/custom/fireplace/0a.ogg", "sound-samples/custom/fireplace/0b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "Low-Bass",
-            "variationNames": ["1a.ogg", "1b.ogg"],
+            "variationNames": ["sound-samples/custom/fireplace/1a.ogg", "sound-samples/custom/fireplace/1b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 6000
         },{
             "label": "Bass",
-            "variationNames": ["2a.ogg", "2b.ogg"],
+            "variationNames": ["sound-samples/custom/fireplace/2a.ogg", "sound-samples/custom/fireplace/2b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 6000
         },{
             "label": "High Bass",
-            "variationNames": ["3a.ogg", "3b.ogg"],
+            "variationNames": ["sound-samples/custom/fireplace/3a.ogg", "sound-samples/custom/fireplace/3b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         },{
             "label": "Low Mids",
-            "variationNames": ["4a.ogg", "4b.ogg"],
+            "variationNames": ["sound-samples/custom/fireplace/4a.ogg", "sound-samples/custom/fireplace/4b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         },{
             "label": "Mids",
-            "variationNames": ["5a.ogg", "5b.ogg"],
+            "variationNames": ["sound-samples/custom/fireplace/5a.ogg", "sound-samples/custom/fireplace/5b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         },{
             "label": "High Mids",
-            "variationNames": ["6a.ogg", "6b.ogg"],
+            "variationNames": ["sound-samples/custom/fireplace/6a.ogg", "sound-samples/custom/fireplace/6b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 3500
         },{
             "label": "Low Treble",
-            "variationNames": ["7a.ogg", "7b.ogg"],
+            "variationNames": ["sound-samples/custom/fireplace/7a.ogg", "sound-samples/custom/fireplace/7b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 3000
         },{
             "label": "Treble",
-            "variationNames": ["8a.ogg", "8b.ogg"],
+            "variationNames": ["sound-samples/custom/fireplace/8a.ogg", "sound-samples/custom/fireplace/8b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         },{
             "label": "High Treble",
-            "variationNames": ["9a.ogg", "9b.ogg"],
+            "variationNames": ["sound-samples/custom/fireplace/9a.ogg", "sound-samples/custom/fireplace/9b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 2000
         }],
@@ -768,52 +768,52 @@
         "directory": "./sound-samples/custom/full-spectrum-foliage-wind",
         "samples": [{
             "label": "Rumbling",
-            "variationNames": ["0a.ogg", "0b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-foliage-wind/0a.ogg", "sound-samples/custom/full-spectrum-foliage-wind/0b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 6000
         },{
             "label": "Warm",
-            "variationNames": ["1a.ogg", "1b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-foliage-wind/1a.ogg", "sound-samples/custom/full-spectrum-foliage-wind/1b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 9000
         },{
             "label": "Resonant",
-            "variationNames": ["2a.ogg", "2b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-foliage-wind/2a.ogg", "sound-samples/custom/full-spectrum-foliage-wind/2b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 10000
         },{
             "label": "Mellow",
-            "variationNames": ["3a.ogg", "3b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-foliage-wind/3a.ogg", "sound-samples/custom/full-spectrum-foliage-wind/3b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "Full",
-            "variationNames": ["4a.ogg", "4b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-foliage-wind/4a.ogg", "sound-samples/custom/full-spectrum-foliage-wind/4b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         },{
             "label": "Clear",
-            "variationNames": ["5a.ogg", "5b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-foliage-wind/5a.ogg", "sound-samples/custom/full-spectrum-foliage-wind/5b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         },{
             "label": "Bright",
-            "variationNames": ["6a.ogg", "6b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-foliage-wind/6a.ogg", "sound-samples/custom/full-spectrum-foliage-wind/6b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "Crisp",
-            "variationNames": ["7a.ogg", "7b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-foliage-wind/7a.ogg", "sound-samples/custom/full-spectrum-foliage-wind/7b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         },{
             "label": "Sharp",
-            "variationNames": ["8a.ogg", "8b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-foliage-wind/8a.ogg", "sound-samples/custom/full-spectrum-foliage-wind/8b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         },{
             "label": "Tiny",
-            "variationNames": ["9a.ogg", "9b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-foliage-wind/9a.ogg", "sound-samples/custom/full-spectrum-foliage-wind/9b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         }],
@@ -883,52 +883,52 @@
         "directory": "./sound-samples/custom/full-spectrum-pure-white",
         "samples": [{
             "label": "Sub-Bass",
-            "variationNames": ["0a.ogg", "0b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-pure-white/0a.ogg", "sound-samples/custom/full-spectrum-pure-white/0b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 7000
         },{
             "label": "Low-Bass",
-            "variationNames": ["1a.ogg", "1b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-pure-white/1a.ogg", "sound-samples/custom/full-spectrum-pure-white/1b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 7000
         },{
             "label": "Bass",
-            "variationNames": ["2a.ogg", "2b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-pure-white/2a.ogg", "sound-samples/custom/full-spectrum-pure-white/2b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 7000
         },{
             "label": "High Bass",
-            "variationNames": ["3a.ogg", "3b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-pure-white/3a.ogg", "sound-samples/custom/full-spectrum-pure-white/3b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 7000
         },{
             "label": "Low Mids",
-            "variationNames": ["4a.ogg", "4b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-pure-white/4a.ogg", "sound-samples/custom/full-spectrum-pure-white/4b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 7000
         },{
             "label": "Mids",
-            "variationNames": ["5a.ogg", "5b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-pure-white/5a.ogg", "sound-samples/custom/full-spectrum-pure-white/5b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 7000
         },{
             "label": "High Mids",
-            "variationNames": ["6a.ogg", "6b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-pure-white/6a.ogg", "sound-samples/custom/full-spectrum-pure-white/6b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 7000
         },{
             "label": "Low Treble",
-            "variationNames": ["7a.ogg", "7b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-pure-white/7a.ogg", "sound-samples/custom/full-spectrum-pure-white/7b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 7000
         },{
             "label": "Treble",
-            "variationNames": ["8a.ogg", "8b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-pure-white/8a.ogg", "sound-samples/custom/full-spectrum-pure-white/8b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 6000
         },{
             "label": "High Treble",
-            "variationNames": ["9a.ogg", "9b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-pure-white/9a.ogg", "sound-samples/custom/full-spectrum-pure-white/9b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 6000
         }],
@@ -978,52 +978,52 @@
         "directory": "./sound-samples/custom/full-spectrum-wind",
         "samples": [{
             "label": "Sub-Bass",
-            "variationNames": ["0a.ogg", "0b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-wind/0a.ogg", "sound-samples/custom/full-spectrum-wind/0b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 8000
         },{
             "label": "Low-Bass",
-            "variationNames": ["1a.ogg", "1b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-wind/1a.ogg", "sound-samples/custom/full-spectrum-wind/1b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 8000
         },{
             "label": "Bass",
-            "variationNames": ["2a.ogg", "2b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-wind/2a.ogg", "sound-samples/custom/full-spectrum-wind/2b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 8000
         },{
             "label": "High Bass",
-            "variationNames": ["3a.ogg", "3b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-wind/3a.ogg", "sound-samples/custom/full-spectrum-wind/3b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 6000
         },{
             "label": "Low Mids",
-            "variationNames": ["4a.ogg", "4b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-wind/4a.ogg", "sound-samples/custom/full-spectrum-wind/4b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 6000
         },{
             "label": "Mids",
-            "variationNames": ["5a.ogg", "5b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-wind/5a.ogg", "sound-samples/custom/full-spectrum-wind/5b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "High Mids",
-            "variationNames": ["6a.ogg", "6b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-wind/6a.ogg", "sound-samples/custom/full-spectrum-wind/6b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "Low Treble",
-            "variationNames": ["7a.ogg", "7b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-wind/7a.ogg", "sound-samples/custom/full-spectrum-wind/7b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "Treble",
-            "variationNames": ["8a.ogg", "8b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-wind/8a.ogg", "sound-samples/custom/full-spectrum-wind/8b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 6000
         },{
             "label": "High Treble",
-            "variationNames": ["9a.ogg", "9b.ogg"],
+            "variationNames": ["sound-samples/custom/full-spectrum-wind/9a.ogg", "sound-samples/custom/full-spectrum-wind/9b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         }],
@@ -1073,52 +1073,52 @@
         "directory": "./sound-samples/custom/healing-water",
         "samples": [{
             "label": "Footsteps",
-            "variationNames": ["0a.ogg", "0b.ogg"],
+            "variationNames": ["sound-samples/custom/healing-water/0a.ogg", "sound-samples/custom/healing-water/0b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 2500
         },{
             "label": "Waterfall Far",
-            "variationNames": ["1a.ogg", "1b.ogg"],
+            "variationNames": ["sound-samples/custom/healing-water/1a.ogg", "sound-samples/custom/healing-water/1b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         },{
             "label": "Waterfall Near",
-            "variationNames": ["2a.ogg", "2b.ogg"],
+            "variationNames": ["sound-samples/custom/healing-water/2a.ogg", "sound-samples/custom/healing-water/2b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "Stream",
-            "variationNames": ["3a.ogg", "3b.ogg"],
+            "variationNames": ["sound-samples/custom/healing-water/3a.ogg", "sound-samples/custom/healing-water/3b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 6000
         },{
             "label": "Cavity",
-            "variationNames": ["4a.ogg", "4b.ogg"],
+            "variationNames": ["sound-samples/custom/healing-water/4a.ogg", "sound-samples/custom/healing-water/4b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "Creek Far",
-            "variationNames": ["5a.ogg", "5b.ogg"],
+            "variationNames": ["sound-samples/custom/healing-water/5a.ogg", "sound-samples/custom/healing-water/5b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "Creek Near",
-            "variationNames": ["6a.ogg", "6b.ogg"],
+            "variationNames": ["sound-samples/custom/healing-water/6a.ogg", "sound-samples/custom/healing-water/6b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4500
         },{
             "label": "Brook Far",
-            "variationNames": ["7a.ogg", "7b.ogg"],
+            "variationNames": ["sound-samples/custom/healing-water/7a.ogg", "sound-samples/custom/healing-water/7b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         },{
             "label": "Brook Near",
-            "variationNames": ["8a.ogg", "8b.ogg"],
+            "variationNames": ["sound-samples/custom/healing-water/8a.ogg", "sound-samples/custom/healing-water/8b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         },{
             "label": "Birds",
-            "variationNames": ["9a.ogg", "9b.ogg"],
+            "variationNames": ["sound-samples/custom/healing-water/9a.ogg", "sound-samples/custom/healing-water/9b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 2000
         }],
@@ -1168,52 +1168,52 @@
         "directory": "./sound-samples/custom/irish-coast",
         "samples": [{
             "label": "Wind Rumble",
-            "variationNames": ["0a.ogg", "0b.ogg"],
+            "variationNames": ["sound-samples/custom/irish-coast/0a.ogg", "sound-samples/custom/irish-coast/0b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1000
         },{
             "label": "Waves Crash",
-            "variationNames": ["1a.ogg", "1b.ogg"],
+            "variationNames": ["sound-samples/custom/irish-coast/1a.ogg", "sound-samples/custom/irish-coast/1b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 2000
         },{
             "label": "Wind",
-            "variationNames": ["2a.ogg", "2b.ogg"],
+            "variationNames": ["sound-samples/custom/irish-coast/2a.ogg", "sound-samples/custom/irish-coast/2b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1000
         },{
             "label": "Shore Noise",
-            "variationNames": ["3a.ogg", "3b.ogg"],
+            "variationNames": ["sound-samples/custom/irish-coast/3a.ogg", "sound-samples/custom/irish-coast/3b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 2000
         },{
             "label": "Inland",
-            "variationNames": ["4a.ogg", "4b.ogg"],
+            "variationNames": ["sound-samples/custom/irish-coast/4a.ogg", "sound-samples/custom/irish-coast/4b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1000
         },{
             "label": "Seaside",
-            "variationNames": ["5a.ogg", "5b.ogg"],
+            "variationNames": ["sound-samples/custom/irish-coast/5a.ogg", "sound-samples/custom/irish-coast/5b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1500
         },{
             "label": "Loch",
-            "variationNames": ["6a.ogg", "6b.ogg"],
+            "variationNames": ["sound-samples/custom/irish-coast/6a.ogg", "sound-samples/custom/irish-coast/6b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1500
         },{
             "label": "Pebbles Shore",
-            "variationNames": ["7a.ogg", "7b.ogg"],
+            "variationNames": ["sound-samples/custom/irish-coast/7a.ogg", "sound-samples/custom/irish-coast/7b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1500
         },{
             "label": "Water",
-            "variationNames": ["8a.ogg", "8b.ogg"],
+            "variationNames": ["sound-samples/custom/irish-coast/8a.ogg", "sound-samples/custom/irish-coast/8b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 2000
         },{
             "label": "Rain",
-            "variationNames": ["9a.ogg", "9b.ogg"],
+            "variationNames": ["sound-samples/custom/irish-coast/9a.ogg", "sound-samples/custom/irish-coast/9b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 10000
         }],
@@ -1314,52 +1314,52 @@
         "directory": "./sound-samples/custom/nocturnal-garden",
         "samples": [{
             "label": "Prayer Call",
-            "variationNames": ["0a.ogg", "0b.ogg"],
+            "variationNames": ["sound-samples/custom/nocturnal-garden/0a.ogg", "sound-samples/custom/nocturnal-garden/0b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1000
         },{
             "label": "Seguia",
-            "variationNames": ["1a.ogg", "1b.ogg"],
+            "variationNames": ["sound-samples/custom/nocturnal-garden/1a.ogg", "sound-samples/custom/nocturnal-garden/1b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1500
         },{
             "label": "Frog",
-            "variationNames": ["2a.ogg", "2b.ogg"],
+            "variationNames": ["sound-samples/custom/nocturnal-garden/2a.ogg", "sound-samples/custom/nocturnal-garden/2b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1500
         },{
             "label": "Frog",
-            "variationNames": ["3a.ogg", "3b.ogg"],
+            "variationNames": ["sound-samples/custom/nocturnal-garden/3a.ogg", "sound-samples/custom/nocturnal-garden/3b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1500
         },{
             "label": "Cricket",
-            "variationNames": ["4a.ogg", "4b.ogg"],
+            "variationNames": ["sound-samples/custom/nocturnal-garden/4a.ogg", "sound-samples/custom/nocturnal-garden/4b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1500
         },{
             "label": "Cricket",
-            "variationNames": ["5a.ogg", "5b.ogg"],
+            "variationNames": ["sound-samples/custom/nocturnal-garden/5a.ogg", "sound-samples/custom/nocturnal-garden/5b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1000
         },{
             "label": "Cricket",
-            "variationNames": ["6a.ogg", "6b.ogg"],
+            "variationNames": ["sound-samples/custom/nocturnal-garden/6a.ogg", "sound-samples/custom/nocturnal-garden/6b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 3000
         },{
             "label": "Cicada",
-            "variationNames": ["7a.ogg", "7b.ogg"],
+            "variationNames": ["sound-samples/custom/nocturnal-garden/7a.ogg", "sound-samples/custom/nocturnal-garden/7b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 2000
         },{
             "label": "Cicada",
-            "variationNames": ["8a.ogg", "8b.ogg"],
+            "variationNames": ["sound-samples/custom/nocturnal-garden/8a.ogg", "sound-samples/custom/nocturnal-garden/8b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 500
         },{
             "label": "Cicada",
-            "variationNames": ["9a.ogg", "9b.ogg"],
+            "variationNames": ["sound-samples/custom/nocturnal-garden/9a.ogg", "sound-samples/custom/nocturnal-garden/9b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 3000
         }],
@@ -1409,52 +1409,52 @@
         "directory": "./sound-samples/custom/peninsula-waves-spectrum",
         "samples": [{
             "label": "Farthest",
-            "variationNames": ["0a.ogg", "0b.ogg"],
+            "variationNames": ["sound-samples/custom/peninsula-waves-spectrum/0a.ogg", "sound-samples/custom/peninsula-waves-spectrum/0b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 7000
         },{
             "label": "Farther",
-            "variationNames": ["1a.ogg", "1b.ogg"],
+            "variationNames": ["sound-samples/custom/peninsula-waves-spectrum/1a.ogg", "sound-samples/custom/peninsula-waves-spectrum/1b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         },{
             "label": "Far",
-            "variationNames": ["2a.ogg", "2b.ogg"],
+            "variationNames": ["sound-samples/custom/peninsula-waves-spectrum/2a.ogg", "sound-samples/custom/peninsula-waves-spectrum/2b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 6000
         },{
             "label": "Not So Far",
-            "variationNames": ["3a.ogg", "3b.ogg"],
+            "variationNames": ["sound-samples/custom/peninsula-waves-spectrum/3a.ogg", "sound-samples/custom/peninsula-waves-spectrum/3b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 7000
         },{
             "label": "In Between",
-            "variationNames": ["4a.ogg", "4b.ogg"],
+            "variationNames": ["sound-samples/custom/peninsula-waves-spectrum/4a.ogg", "sound-samples/custom/peninsula-waves-spectrum/4b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5500
         },{
             "label": "Not So Close",
-            "variationNames": ["5a.ogg", "5b.ogg"],
+            "variationNames": ["sound-samples/custom/peninsula-waves-spectrum/5a.ogg", "sound-samples/custom/peninsula-waves-spectrum/5b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 6000
         },{
             "label": "Getting Closer",
-            "variationNames": ["6a.ogg", "6b.ogg"],
+            "variationNames": ["sound-samples/custom/peninsula-waves-spectrum/6a.ogg", "sound-samples/custom/peninsula-waves-spectrum/6b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4500
         },{
             "label": "Closer",
-            "variationNames": ["7a.ogg", "7b.ogg"],
+            "variationNames": ["sound-samples/custom/peninsula-waves-spectrum/7a.ogg", "sound-samples/custom/peninsula-waves-spectrum/7b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "Close",
-            "variationNames": ["8a.ogg", "8b.ogg"],
+            "variationNames": ["sound-samples/custom/peninsula-waves-spectrum/8a.ogg", "sound-samples/custom/peninsula-waves-spectrum/8b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         },{
             "label": "Closest",
-            "variationNames": ["9a.ogg", "9b.ogg"],
+            "variationNames": ["sound-samples/custom/peninsula-waves-spectrum/9a.ogg", "sound-samples/custom/peninsula-waves-spectrum/9b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         }],
@@ -1504,52 +1504,52 @@
         "directory": "./sound-samples/custom/railroads",
         "samples": [{
             "label": "Sub-Bass",
-            "variationNames": ["0a.ogg", "0b.ogg"],
+            "variationNames": ["sound-samples/custom/railroads/0a.ogg", "sound-samples/custom/railroads/0b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 2000
         },{
             "label": "Low-Bass",
-            "variationNames": ["1a.ogg", "1b.ogg"],
+            "variationNames": ["sound-samples/custom/railroads/1a.ogg", "sound-samples/custom/railroads/1b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 3000
         },{
             "label": "Bass",
-            "variationNames": ["2a.ogg", "2b.ogg"],
+            "variationNames": ["sound-samples/custom/railroads/2a.ogg", "sound-samples/custom/railroads/2b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 2500
         },{
             "label": "High Bass",
-            "variationNames": ["3a.ogg", "3b.ogg"],
+            "variationNames": ["sound-samples/custom/railroads/3a.ogg", "sound-samples/custom/railroads/3b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         },{
             "label": "Low Mids",
-            "variationNames": ["4a.ogg", "4b.ogg"],
+            "variationNames": ["sound-samples/custom/railroads/4a.ogg", "sound-samples/custom/railroads/4b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "Mids",
-            "variationNames": ["5a.ogg", "5b.ogg"],
+            "variationNames": ["sound-samples/custom/railroads/5a.ogg", "sound-samples/custom/railroads/5b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 3000
         },{
             "label": "High Mids",
-            "variationNames": ["6a.ogg", "6b.ogg"],
+            "variationNames": ["sound-samples/custom/railroads/6a.ogg", "sound-samples/custom/railroads/6b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 3500
         },{
             "label": "Low Treble",
-            "variationNames": ["7a.ogg", "7b.ogg"],
+            "variationNames": ["sound-samples/custom/railroads/7a.ogg", "sound-samples/custom/railroads/7b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         },{
             "label": "Treble",
-            "variationNames": ["8a.ogg", "8b.ogg"],
+            "variationNames": ["sound-samples/custom/railroads/8a.ogg", "sound-samples/custom/railroads/8b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 3000
         },{
             "label": "High Treble",
-            "variationNames": ["9a.ogg", "9b.ogg"],
+            "variationNames": ["sound-samples/custom/railroads/9a.ogg", "sound-samples/custom/railroads/9b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 2700
         }],
@@ -1599,52 +1599,52 @@
         "directory": "./sound-samples/custom/rain-noise-full-spectrum",
         "samples": [{
             "label": "Sub-Bass Thunder",
-            "variationNames": ["0a.ogg", "0b.ogg"],
+            "variationNames": ["sound-samples/custom/rain-noise-full-spectrum/0a.ogg", "sound-samples/custom/rain-noise-full-spectrum/0b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         },{
             "label": "Low-Bass Thunder",
-            "variationNames": ["1a.ogg", "1b.ogg"],
+            "variationNames": ["sound-samples/custom/rain-noise-full-spectrum/1a.ogg", "sound-samples/custom/rain-noise-full-spectrum/1b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 2000
         },{
             "label": "Bass",
-            "variationNames": ["2a.ogg", "2b.ogg"],
+            "variationNames": ["sound-samples/custom/rain-noise-full-spectrum/2a.ogg", "sound-samples/custom/rain-noise-full-spectrum/2b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 3500
         },{
             "label": "High Bass",
-            "variationNames": ["3a.ogg", "3b.ogg"],
+            "variationNames": ["sound-samples/custom/rain-noise-full-spectrum/3a.ogg", "sound-samples/custom/rain-noise-full-spectrum/3b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5500
         },{
             "label": "Low Mids",
-            "variationNames": ["4a.ogg", "4b.ogg"],
+            "variationNames": ["sound-samples/custom/rain-noise-full-spectrum/4a.ogg", "sound-samples/custom/rain-noise-full-spectrum/4b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5500
         },{
             "label": "Mids",
-            "variationNames": ["5a.ogg", "5b.ogg"],
+            "variationNames": ["sound-samples/custom/rain-noise-full-spectrum/5a.ogg", "sound-samples/custom/rain-noise-full-spectrum/5b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "High Mids",
-            "variationNames": ["6a.ogg", "6b.ogg"],
+            "variationNames": ["sound-samples/custom/rain-noise-full-spectrum/6a.ogg", "sound-samples/custom/rain-noise-full-spectrum/6b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "Low Treble",
-            "variationNames": ["7a.ogg", "7b.ogg"],
+            "variationNames": ["sound-samples/custom/rain-noise-full-spectrum/7a.ogg", "sound-samples/custom/rain-noise-full-spectrum/7b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "Treble",
-            "variationNames": ["8a.ogg", "8b.ogg"],
+            "variationNames": ["sound-samples/custom/rain-noise-full-spectrum/8a.ogg", "sound-samples/custom/rain-noise-full-spectrum/8b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "High Treble",
-            "variationNames": ["9a.ogg", "9b.ogg"],
+            "variationNames": ["sound-samples/custom/rain-noise-full-spectrum/9a.ogg", "sound-samples/custom/rain-noise-full-spectrum/9b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4500
         }],
@@ -1694,52 +1694,52 @@
         "directory": "./sound-samples/custom/rain-on-a-tent",
         "samples": [{
             "label": "Sub-Bass",
-            "variationNames": ["0a.ogg", "0b.ogg"],
+            "variationNames": ["sound-samples/custom/rain-on-a-tent/0a.ogg", "sound-samples/custom/rain-on-a-tent/0b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 200
         },{
             "label": "Low-Bass",
-            "variationNames": ["1a.ogg", "1b.ogg"],
+            "variationNames": ["sound-samples/custom/rain-on-a-tent/1a.ogg", "sound-samples/custom/rain-on-a-tent/1b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 8000
         },{
             "label": "Bass",
-            "variationNames": ["2a.ogg", "2b.ogg"],
+            "variationNames": ["sound-samples/custom/rain-on-a-tent/2a.ogg", "sound-samples/custom/rain-on-a-tent/2b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 6000
         },{
             "label": "High Bass",
-            "variationNames": ["3a.ogg", "3b.ogg"],
+            "variationNames": ["sound-samples/custom/rain-on-a-tent/3a.ogg", "sound-samples/custom/rain-on-a-tent/3b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4500
         },{
             "label": "Low Mids",
-            "variationNames": ["4a.ogg", "4b.ogg"],
+            "variationNames": ["sound-samples/custom/rain-on-a-tent/4a.ogg", "sound-samples/custom/rain-on-a-tent/4b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 6000
         },{
             "label": "Mids",
-            "variationNames": ["5a.ogg", "5b.ogg"],
+            "variationNames": ["sound-samples/custom/rain-on-a-tent/5a.ogg", "sound-samples/custom/rain-on-a-tent/5b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "High Mids",
-            "variationNames": ["6a.ogg", "6b.ogg"],
+            "variationNames": ["sound-samples/custom/rain-on-a-tent/6a.ogg", "sound-samples/custom/rain-on-a-tent/6b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 10000
         },{
             "label": "Low Treble",
-            "variationNames": ["7a.ogg", "7b.ogg"],
+            "variationNames": ["sound-samples/custom/rain-on-a-tent/7a.ogg", "sound-samples/custom/rain-on-a-tent/7b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 3000
         },{
             "label": "Treble",
-            "variationNames": ["8a.ogg", "8b.ogg"],
+            "variationNames": ["sound-samples/custom/rain-on-a-tent/8a.ogg", "sound-samples/custom/rain-on-a-tent/8b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 9000
         },{
             "label": "High Treble",
-            "variationNames": ["9a.ogg", "9b.ogg"],
+            "variationNames": ["sound-samples/custom/rain-on-a-tent/9a.ogg", "sound-samples/custom/rain-on-a-tent/9b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         }],
@@ -1809,52 +1809,52 @@
         "directory": "./sound-samples/custom/stormy-weather",
         "samples": [{
             "label": "Storm Wind",
-            "variationNames": ["0a.ogg", "0b.ogg"],
+            "variationNames": ["sound-samples/custom/stormy-weather/0a.ogg", "sound-samples/custom/stormy-weather/0b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 10000
         },{
             "label": "Storm Rain",
-            "variationNames": ["1a.ogg", "1b.ogg"],
+            "variationNames": ["sound-samples/custom/stormy-weather/1a.ogg", "sound-samples/custom/stormy-weather/1b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 10000
         },{
             "label": "Wind and Rain",
-            "variationNames": ["2a.ogg", "2b.ogg"],
+            "variationNames": ["sound-samples/custom/stormy-weather/2a.ogg", "sound-samples/custom/stormy-weather/2b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 8000
         },{
             "label": "Rain and Thunder",
-            "variationNames": ["3a.ogg", "3b.ogg"],
+            "variationNames": ["sound-samples/custom/stormy-weather/3a.ogg", "sound-samples/custom/stormy-weather/3b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 10000
         },{
             "label": "Rain and Thunder",
-            "variationNames": ["4a.ogg", "4b.ogg"],
+            "variationNames": ["sound-samples/custom/stormy-weather/4a.ogg", "sound-samples/custom/stormy-weather/4b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 10000
         },{
             "label": "Rain and Thunder",
-            "variationNames": ["5a.ogg", "5b.ogg"],
+            "variationNames": ["sound-samples/custom/stormy-weather/5a.ogg", "sound-samples/custom/stormy-weather/5b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 10000
         },{
             "label": "Porch Rain",
-            "variationNames": ["6a.ogg", "6b.ogg"],
+            "variationNames": ["sound-samples/custom/stormy-weather/6a.ogg", "sound-samples/custom/stormy-weather/6b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 10000
         },{
             "label": "White Rain",
-            "variationNames": ["7a.ogg", "7b.ogg"],
+            "variationNames": ["sound-samples/custom/stormy-weather/7a.ogg", "sound-samples/custom/stormy-weather/7b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 10000
         },{
             "label": "Droplets",
-            "variationNames": ["8a.ogg", "8b.ogg"],
+            "variationNames": ["sound-samples/custom/stormy-weather/8a.ogg", "sound-samples/custom/stormy-weather/8b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 11000
         },{
             "label": "Sizzle",
-            "variationNames": ["9a.ogg", "9b.ogg"],
+            "variationNames": ["sound-samples/custom/stormy-weather/9a.ogg", "sound-samples/custom/stormy-weather/9b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 10000
         }],
@@ -1904,52 +1904,52 @@
         "directory": "./sound-samples/custom/the-falls-waterfall-full-spectrum",
         "samples": [{
             "label": "Rumble",
-            "variationNames": ["0a.ogg", "0b.ogg"],
+            "variationNames": ["sound-samples/custom/the-falls-waterfall-full-spectrum/0a.ogg", "sound-samples/custom/the-falls-waterfall-full-spectrum/0b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 10000
         },{
             "label": "Low Gurgle",
-            "variationNames": ["1a.ogg", "1b.ogg"],
+            "variationNames": ["sound-samples/custom/the-falls-waterfall-full-spectrum/1a.ogg", "sound-samples/custom/the-falls-waterfall-full-spectrum/1b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 10000
         },{
             "label": "Distant Lo",
-            "variationNames": ["2a.ogg", "2b.ogg"],
+            "variationNames": ["sound-samples/custom/the-falls-waterfall-full-spectrum/2a.ogg", "sound-samples/custom/the-falls-waterfall-full-spectrum/2b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 9000
         },{
             "label": "Distand Med",
-            "variationNames": ["3a.ogg", "3b.ogg"],
+            "variationNames": ["sound-samples/custom/the-falls-waterfall-full-spectrum/3a.ogg", "sound-samples/custom/the-falls-waterfall-full-spectrum/3b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 10000
         },{
             "label": "Distant Hi",
-            "variationNames": ["4a.ogg", "4b.ogg"],
+            "variationNames": ["sound-samples/custom/the-falls-waterfall-full-spectrum/4a.ogg", "sound-samples/custom/the-falls-waterfall-full-spectrum/4b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 11000
         },{
             "label": "Close Lo",
-            "variationNames": ["5a.ogg", "5b.ogg"],
+            "variationNames": ["sound-samples/custom/the-falls-waterfall-full-spectrum/5a.ogg", "sound-samples/custom/the-falls-waterfall-full-spectrum/5b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 10000
         },{
             "label": "Close Hi",
-            "variationNames": ["6a.ogg", "6b.ogg"],
+            "variationNames": ["sound-samples/custom/the-falls-waterfall-full-spectrum/6a.ogg", "sound-samples/custom/the-falls-waterfall-full-spectrum/6b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 9000
         },{
             "label": "Water Noise Lo",
-            "variationNames": ["7a.ogg", "7b.ogg"],
+            "variationNames": ["sound-samples/custom/the-falls-waterfall-full-spectrum/7a.ogg", "sound-samples/custom/the-falls-waterfall-full-spectrum/7b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 10000
         },{
             "label": "Water Noise Med",
-            "variationNames": ["8a.ogg", "8b.ogg"],
+            "variationNames": ["sound-samples/custom/the-falls-waterfall-full-spectrum/8a.ogg", "sound-samples/custom/the-falls-waterfall-full-spectrum/8b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 10000
         },{
             "label": "Water Noise Hi",
-            "variationNames": ["9a.ogg", "9b.ogg"],
+            "variationNames": ["sound-samples/custom/the-falls-waterfall-full-spectrum/9a.ogg", "sound-samples/custom/the-falls-waterfall-full-spectrum/9b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 9000
         }],
@@ -1999,52 +1999,52 @@
         "directory": "./sound-samples/custom/tin-roof-rain-full-spectrum",
         "samples": [{
             "label": "Sub-Bass",
-            "variationNames": ["0a.ogg", "0b.ogg"],
+            "variationNames": ["sound-samples/custom/tin-roof-rain-full-spectrum/0a.ogg", "sound-samples/custom/tin-roof-rain-full-spectrum/0b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 9000
         },{
             "label": "Low-Bass",
-            "variationNames": ["1a.ogg", "1b.ogg"],
+            "variationNames": ["sound-samples/custom/tin-roof-rain-full-spectrum/1a.ogg", "sound-samples/custom/tin-roof-rain-full-spectrum/1b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 9000
         },{
             "label": "Bass",
-            "variationNames": ["2a.ogg", "2b.ogg"],
+            "variationNames": ["sound-samples/custom/tin-roof-rain-full-spectrum/2a.ogg", "sound-samples/custom/tin-roof-rain-full-spectrum/2b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 9000
         },{
             "label": "High Bass",
-            "variationNames": ["3a.ogg", "3b.ogg"],
+            "variationNames": ["sound-samples/custom/tin-roof-rain-full-spectrum/3a.ogg", "sound-samples/custom/tin-roof-rain-full-spectrum/3b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 12000
         },{
             "label": "Low Mids",
-            "variationNames": ["4a.ogg", "4b.ogg"],
+            "variationNames": ["sound-samples/custom/tin-roof-rain-full-spectrum/4a.ogg", "sound-samples/custom/tin-roof-rain-full-spectrum/4b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 12000
         },{
             "label": "Mids",
-            "variationNames": ["5a.ogg", "5b.ogg"],
+            "variationNames": ["sound-samples/custom/tin-roof-rain-full-spectrum/5a.ogg", "sound-samples/custom/tin-roof-rain-full-spectrum/5b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 11000
         },{
             "label": "High Mids",
-            "variationNames": ["6a.ogg", "6b.ogg"],
+            "variationNames": ["sound-samples/custom/tin-roof-rain-full-spectrum/6a.ogg", "sound-samples/custom/tin-roof-rain-full-spectrum/6b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 11000
         },{
             "label": "Low Treble",
-            "variationNames": ["7a.ogg", "7b.ogg"],
+            "variationNames": ["sound-samples/custom/tin-roof-rain-full-spectrum/7a.ogg", "sound-samples/custom/tin-roof-rain-full-spectrum/7b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 10000
         },{
             "label": "Treble",
-            "variationNames": ["8a.ogg", "8b.ogg"],
+            "variationNames": ["sound-samples/custom/tin-roof-rain-full-spectrum/8a.ogg", "sound-samples/custom/tin-roof-rain-full-spectrum/8b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 6000
         },{
             "label": "High Treble",
-            "variationNames": ["9a.ogg", "9b.ogg"],
+            "variationNames": ["sound-samples/custom/tin-roof-rain-full-spectrum/9a.ogg", "sound-samples/custom/tin-roof-rain-full-spectrum/9b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         }],
@@ -2094,52 +2094,52 @@
         "directory": "./sound-samples/custom/unreal-wind-full-spectrum",
         "samples": [{
             "label": "Sub-Bass",
-            "variationNames": ["0a.ogg", "0b.ogg"],
+            "variationNames": ["sound-samples/custom/unreal-wind-full-spectrum/0a.ogg", "sound-samples/custom/unreal-wind-full-spectrum/0b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 7000
         },{
             "label": "Low-Bass",
-            "variationNames": ["1a.ogg", "1b.ogg"],
+            "variationNames": ["sound-samples/custom/unreal-wind-full-spectrum/1a.ogg", "sound-samples/custom/unreal-wind-full-spectrum/1b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 10000
         },{
             "label": "Bass",
-            "variationNames": ["2a.ogg", "2b.ogg"],
+            "variationNames": ["sound-samples/custom/unreal-wind-full-spectrum/2a.ogg", "sound-samples/custom/unreal-wind-full-spectrum/2b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 11000
         },{
             "label": "High Bass",
-            "variationNames": ["3a.ogg", "3b.ogg"],
+            "variationNames": ["sound-samples/custom/unreal-wind-full-spectrum/3a.ogg", "sound-samples/custom/unreal-wind-full-spectrum/3b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 9500
         },{
             "label": "Low Mids",
-            "variationNames": ["4a.ogg", "4b.ogg"],
+            "variationNames": ["sound-samples/custom/unreal-wind-full-spectrum/4a.ogg", "sound-samples/custom/unreal-wind-full-spectrum/4b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "Mids",
-            "variationNames": ["5a.ogg", "5b.ogg"],
+            "variationNames": ["sound-samples/custom/unreal-wind-full-spectrum/5a.ogg", "sound-samples/custom/unreal-wind-full-spectrum/5b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 6000
         },{
             "label": "High Mids",
-            "variationNames": ["6a.ogg", "6b.ogg"],
+            "variationNames": ["sound-samples/custom/unreal-wind-full-spectrum/6a.ogg", "sound-samples/custom/unreal-wind-full-spectrum/6b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4500
         },{
             "label": "Low Treble",
-            "variationNames": ["7a.ogg", "7b.ogg"],
+            "variationNames": ["sound-samples/custom/unreal-wind-full-spectrum/7a.ogg", "sound-samples/custom/unreal-wind-full-spectrum/7b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         },{
             "label": "Treble",
-            "variationNames": ["8a.ogg", "8b.ogg"],
+            "variationNames": ["sound-samples/custom/unreal-wind-full-spectrum/8a.ogg", "sound-samples/custom/unreal-wind-full-spectrum/8b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "High Treble",
-            "variationNames": ["9a.ogg", "9b.ogg"],
+            "variationNames": ["sound-samples/custom/unreal-wind-full-spectrum/9a.ogg", "sound-samples/custom/unreal-wind-full-spectrum/9b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 3000
         }],
@@ -2189,52 +2189,52 @@
         "directory": "./sound-samples/custom/water-stream-full-spectrum",
         "samples": [{
             "label": "Sub-Bass",
-            "variationNames": ["0a.ogg", "0b.ogg"],
+            "variationNames": ["sound-samples/custom/water-stream-full-spectrum/0a.ogg", "sound-samples/custom/water-stream-full-spectrum/0b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 10000
         },{
             "label": "Low-Bass",
-            "variationNames": ["1a.ogg", "1b.ogg"],
+            "variationNames": ["sound-samples/custom/water-stream-full-spectrum/1a.ogg", "sound-samples/custom/water-stream-full-spectrum/1b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 9000
         },{
             "label": "Bass",
-            "variationNames": ["2a.ogg", "2b.ogg"],
+            "variationNames": ["sound-samples/custom/water-stream-full-spectrum/2a.ogg", "sound-samples/custom/water-stream-full-spectrum/2b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 9000
         },{
             "label": "High Bass",
-            "variationNames": ["3a.ogg", "3b.ogg"],
+            "variationNames": ["sound-samples/custom/water-stream-full-spectrum/3a.ogg", "sound-samples/custom/water-stream-full-spectrum/3b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 6000
         },{
             "label": "Low Mids",
-            "variationNames": ["4a.ogg", "4b.ogg"],
+            "variationNames": ["sound-samples/custom/water-stream-full-spectrum/4a.ogg", "sound-samples/custom/water-stream-full-spectrum/4b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "Mids",
-            "variationNames": ["5a.ogg", "5b.ogg"],
+            "variationNames": ["sound-samples/custom/water-stream-full-spectrum/5a.ogg", "sound-samples/custom/water-stream-full-spectrum/5b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "High Mids",
-            "variationNames": ["6a.ogg", "6b.ogg"],
+            "variationNames": ["sound-samples/custom/water-stream-full-spectrum/6a.ogg", "sound-samples/custom/water-stream-full-spectrum/6b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4500
         },{
             "label": "Low Treble",
-            "variationNames": ["7a.ogg", "7b.ogg"],
+            "variationNames": ["sound-samples/custom/water-stream-full-spectrum/7a.ogg", "sound-samples/custom/water-stream-full-spectrum/7b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         },{
             "label": "Treble",
-            "variationNames": ["8a.ogg", "8b.ogg"],
+            "variationNames": ["sound-samples/custom/water-stream-full-spectrum/8a.ogg", "sound-samples/custom/water-stream-full-spectrum/8b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         },{
             "label": "High Treble",
-            "variationNames": ["9a.ogg", "9b.ogg"],
+            "variationNames": ["sound-samples/custom/water-stream-full-spectrum/9a.ogg", "sound-samples/custom/water-stream-full-spectrum/9b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4500
         }],
@@ -2284,52 +2284,52 @@
         "directory": "./sound-samples/custom/windy-mansion",
         "samples": [{
             "label": "Butler Upstairs",
-            "variationNames": ["0a.ogg", "0b.ogg"],
+            "variationNames": ["sound-samples/custom/windy-mansion/0a.ogg", "sound-samples/custom/windy-mansion/0b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1000
         },{
             "label": "Butler",
-            "variationNames": ["1a.ogg", "1b.ogg"],
+            "variationNames": ["sound-samples/custom/windy-mansion/1a.ogg", "sound-samples/custom/windy-mansion/1b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1000
         },{
             "label": "Butler",
-            "variationNames": ["2a.ogg", "2b.ogg"],
+            "variationNames": ["sound-samples/custom/windy-mansion/2a.ogg", "sound-samples/custom/windy-mansion/2b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1000
         },{
             "label": "Window Wind",
-            "variationNames": ["3a.ogg", "3b.ogg"],
+            "variationNames": ["sound-samples/custom/windy-mansion/3a.ogg", "sound-samples/custom/windy-mansion/3b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "Window Wind",
-            "variationNames": ["4a.ogg", "4b.ogg"],
+            "variationNames": ["sound-samples/custom/windy-mansion/4a.ogg", "sound-samples/custom/windy-mansion/4b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 6000
         },{
             "label": "Wind and creaks",
-            "variationNames": ["5a.ogg", "5b.ogg"],
+            "variationNames": ["sound-samples/custom/windy-mansion/5a.ogg", "sound-samples/custom/windy-mansion/5b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 3000
         },{
             "label": "Strong Wind",
-            "variationNames": ["6a.ogg", "6b.ogg"],
+            "variationNames": ["sound-samples/custom/windy-mansion/6a.ogg", "sound-samples/custom/windy-mansion/6b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         },{
             "label": "Howling",
-            "variationNames": ["7a.ogg", "7b.ogg"],
+            "variationNames": ["sound-samples/custom/windy-mansion/7a.ogg", "sound-samples/custom/windy-mansion/7b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         },{
             "label": "Howling",
-            "variationNames": ["8a.ogg", "8b.ogg"],
+            "variationNames": ["sound-samples/custom/windy-mansion/8a.ogg", "sound-samples/custom/windy-mansion/8b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 3000
         },{
             "label": "Rain",
-            "variationNames": ["9a.ogg", "9b.ogg"],
+            "variationNames": ["sound-samples/custom/windy-mansion/9a.ogg", "sound-samples/custom/windy-mansion/9b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1200
         }],
@@ -2379,52 +2379,52 @@
         "directory": "./sound-samples/custom/meadow-land",
         "samples": [{
             "label": "Water Cavity",
-            "variationNames": ["0a.ogg", "0b.ogg"],
+            "variationNames": ["sound-samples/custom/meadow-land/0a.ogg", "sound-samples/custom/meadow-land/0b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 6000
         },{
             "label": "Distant Stream",
-            "variationNames": ["1a.ogg", "1b.ogg"],
+            "variationNames": ["sound-samples/custom/meadow-land/1a.ogg", "sound-samples/custom/meadow-land/1b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 7500
         },{
             "label": "Beaver Dam",
-            "variationNames": ["2a.ogg", "2b.ogg"],
+            "variationNames": ["sound-samples/custom/meadow-land/2a.ogg", "sound-samples/custom/meadow-land/2b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 6000
         },{
             "label": "Creak",
-            "variationNames": ["3a.ogg", "3b.ogg"],
+            "variationNames": ["sound-samples/custom/meadow-land/3a.ogg", "sound-samples/custom/meadow-land/3b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 6500
         },{
             "label": "Brook",
-            "variationNames": ["4a.ogg", "4b.ogg"],
+            "variationNames": ["sound-samples/custom/meadow-land/4a.ogg", "sound-samples/custom/meadow-land/4b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 7000
         },{
             "label": "Water and Birds",
-            "variationNames": ["5a.ogg", "5b.ogg"],
+            "variationNames": ["sound-samples/custom/meadow-land/5a.ogg", "sound-samples/custom/meadow-land/5b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1500
         },{
             "label": "Thrush",
-            "variationNames": ["6a.ogg", "6b.ogg"],
+            "variationNames": ["sound-samples/custom/meadow-land/6a.ogg", "sound-samples/custom/meadow-land/6b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1200
         },{
             "label": "Thrush",
-            "variationNames": ["7a.ogg", "7b.ogg"],
+            "variationNames": ["sound-samples/custom/meadow-land/7a.ogg", "sound-samples/custom/meadow-land/7b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1100
         },{
             "label": "Grass Winds",
-            "variationNames": ["8a.ogg", "8b.ogg"],
+            "variationNames": ["sound-samples/custom/meadow-land/8a.ogg", "sound-samples/custom/meadow-land/8b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         },{
             "label": "Crickets",
-            "variationNames": ["9a.ogg", "9b.ogg"],
+            "variationNames": ["sound-samples/custom/meadow-land/9a.ogg", "sound-samples/custom/meadow-land/9b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1000
         }],
@@ -2474,52 +2474,52 @@
         "directory": "./sound-samples/custom/spring-walk",
         "samples": [{
             "label": "Footsteps",
-            "variationNames": ["0a.ogg", "0b.ogg"],
+            "variationNames": ["sound-samples/custom/spring-walk/0a.ogg", "sound-samples/custom/spring-walk/0b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 500
         },{
             "label": "Footsteps",
-            "variationNames": ["1a.ogg", "1b.ogg"],
+            "variationNames": ["sound-samples/custom/spring-walk/1a.ogg", "sound-samples/custom/spring-walk/1b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 500
         },{
             "label": "Bees",
-            "variationNames": ["2a.ogg", "2b.ogg"],
+            "variationNames": ["sound-samples/custom/spring-walk/2a.ogg", "sound-samples/custom/spring-walk/2b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 2000
         },{
             "label": "Wind",
-            "variationNames": ["3a.ogg", "3b.ogg"],
+            "variationNames": ["sound-samples/custom/spring-walk/3a.ogg", "sound-samples/custom/spring-walk/3b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "Water",
-            "variationNames": ["4a.ogg", "4b.ogg"],
+            "variationNames": ["sound-samples/custom/spring-walk/4a.ogg", "sound-samples/custom/spring-walk/4b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4000
         },{
             "label": "Blackbird",
-            "variationNames": ["5a.ogg", "5b.ogg"],
+            "variationNames": ["sound-samples/custom/spring-walk/5a.ogg", "sound-samples/custom/spring-walk/5b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1000
         },{
             "label": "Birds",
-            "variationNames": ["6a.ogg", "6b.ogg"],
+            "variationNames": ["sound-samples/custom/spring-walk/6a.ogg", "sound-samples/custom/spring-walk/6b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1000
         },{
             "label": "Birds",
-            "variationNames": ["7a.ogg", "7b.ogg"],
+            "variationNames": ["sound-samples/custom/spring-walk/7a.ogg", "sound-samples/custom/spring-walk/7b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1000
         },{
             "label": "Birds",
-            "variationNames": ["8a.ogg", "8b.ogg"],
+            "variationNames": ["sound-samples/custom/spring-walk/8a.ogg", "sound-samples/custom/spring-walk/8b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1000
         },{
             "label": "Birds",
-            "variationNames": ["9a.ogg", "9b.ogg"],
+            "variationNames": ["sound-samples/custom/spring-walk/9a.ogg", "sound-samples/custom/spring-walk/9b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1000
         }],
@@ -2569,52 +2569,52 @@
         "directory": "./sound-samples/custom/summer-walk",
         "samples": [{
             "label": "Warm Wind",
-            "variationNames": ["0a.ogg", "0b.ogg"],
+            "variationNames": ["sound-samples/custom/summer-walk/0a.ogg", "sound-samples/custom/summer-walk/0b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1000
         },{
             "label": "River",
-            "variationNames": ["1a.ogg", "1b.ogg"],
+            "variationNames": ["sound-samples/custom/summer-walk/1a.ogg", "sound-samples/custom/summer-walk/1b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 8000
         },{
             "label": "Footsteps",
-            "variationNames": ["2a.ogg", "2b.ogg"],
+            "variationNames": ["sound-samples/custom/summer-walk/2a.ogg", "sound-samples/custom/summer-walk/2b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 700
         },{
             "label": "Bees Flying",
-            "variationNames": ["3a.ogg", "3b.ogg"],
+            "variationNames": ["sound-samples/custom/summer-walk/3a.ogg", "sound-samples/custom/summer-walk/3b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1000
         },{
             "label": "Buzzy Bees",
-            "variationNames": ["4a.ogg", "4b.ogg"],
+            "variationNames": ["sound-samples/custom/summer-walk/4a.ogg", "sound-samples/custom/summer-walk/4b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 8000
         },{
             "label": "Larks",
-            "variationNames": ["5a.ogg", "5b.ogg"],
+            "variationNames": ["sound-samples/custom/summer-walk/5a.ogg", "sound-samples/custom/summer-walk/5b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 3000
         },{
             "label": "Grass Wind",
-            "variationNames": ["6a.ogg", "6b.ogg"],
+            "variationNames": ["sound-samples/custom/summer-walk/6a.ogg", "sound-samples/custom/summer-walk/6b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 2000
         },{
             "label": "Grasshopers",
-            "variationNames": ["7a.ogg", "7b.ogg"],
+            "variationNames": ["sound-samples/custom/summer-walk/7a.ogg", "sound-samples/custom/summer-walk/7b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1000
         },{
             "label": "Grasshopers",
-            "variationNames": ["8a.ogg", "8b.ogg"],
+            "variationNames": ["sound-samples/custom/summer-walk/8a.ogg", "sound-samples/custom/summer-walk/8b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1000
         },{
             "label": "Grasshopers",
-            "variationNames": ["9a.ogg", "9b.ogg"],
+            "variationNames": ["sound-samples/custom/summer-walk/9a.ogg", "sound-samples/custom/summer-walk/9b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 2000
         }],
@@ -2664,52 +2664,52 @@
         "directory": "./sound-samples/custom/palm-garden",
         "samples": [{
             "label": "Wind",
-            "variationNames": ["0a.ogg", "0b.ogg"],
+            "variationNames": ["sound-samples/custom/palm-garden/0a.ogg", "sound-samples/custom/palm-garden/0b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "Wind",
-            "variationNames": ["1a.ogg", "1b.ogg"],
+            "variationNames": ["sound-samples/custom/palm-garden/1a.ogg", "sound-samples/custom/palm-garden/1b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4500
         },{
             "label": "Wind",
-            "variationNames": ["2a.ogg", "2b.ogg"],
+            "variationNames": ["sound-samples/custom/palm-garden/2a.ogg", "sound-samples/custom/palm-garden/2b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "Water",
-            "variationNames": ["3a.ogg", "3b.ogg"],
+            "variationNames": ["sound-samples/custom/palm-garden/3a.ogg", "sound-samples/custom/palm-garden/3b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 6000
         },{
             "label": "Water",
-            "variationNames": ["4a.ogg", "4b.ogg"],
+            "variationNames": ["sound-samples/custom/palm-garden/4a.ogg", "sound-samples/custom/palm-garden/4b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 5000
         },{
             "label": "Water",
-            "variationNames": ["5a.ogg", "5b.ogg"],
+            "variationNames": ["sound-samples/custom/palm-garden/5a.ogg", "sound-samples/custom/palm-garden/5b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 6000
         },{
             "label": "Birds",
-            "variationNames": ["6a.ogg", "6b.ogg"],
+            "variationNames": ["sound-samples/custom/palm-garden/6a.ogg", "sound-samples/custom/palm-garden/6b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 4500
         },{
             "label": "Dove",
-            "variationNames": ["7a.ogg", "7b.ogg"],
+            "variationNames": ["sound-samples/custom/palm-garden/7a.ogg", "sound-samples/custom/palm-garden/7b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1000
         },{
             "label": "Sparrows",
-            "variationNames": ["8a.ogg", "8b.ogg"],
+            "variationNames": ["sound-samples/custom/palm-garden/8a.ogg", "sound-samples/custom/palm-garden/8b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1000
         },{
             "label": "Sparrows",
-            "variationNames": ["9a.ogg", "9b.ogg"],
+            "variationNames": ["sound-samples/custom/palm-garden/9a.ogg", "sound-samples/custom/palm-garden/9b.ogg"],
             "stitchingMethd": "JOIN_WITH_OVERLAY",
             "concatOverlayMs": 1500
         }],
@@ -2749,6 +2749,23 @@
                         {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
                         {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
                         {"minVol": 49, "maxVol": 51, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                    ]
+                }
+                
+            ]
+        }]
+    },
+    {  "sceneName": "Aggregated",
+        "directory": "./sound-samples/custom/aggregated",
+        "samples": [],
+        "subscenes": [{
+            "label": "All Muted",
+            "subsceneWindows": [
+                {
+                    "startAt": 0,
+                    "config": [
+                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                        
                     ]
                 }
                 
