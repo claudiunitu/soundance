@@ -8,10 +8,8 @@ let sceneSamplesAudioData = [];
 
 
 
-
-
 let audioContext = new (window.AudioContext || window.webkitAudioContext)();
-let isStarted = false; // Flag to prevent re-initialization
+let isStarted = true; // Flag to prevent re-initialization
 
 const ctas = {
     startAudioButton: document.getElementById('startAudioButton'),
@@ -78,29 +76,43 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
     for (let i = 0; i < sceneObject.samples.length; i++) {
         const sampleVariationsAudioData = [];
 
-        for (let j = 0; j < sceneObject.samples[i].variationNames.length; j++) {
-            const variationFilePath = `${sceneObject.samples[i].variationNames[j]}`;
-
-            const audioBuffer = await loadSound(variationFilePath).catch(e => { throw e });
-
-            const gainNode = audioContext.createGain();
-            gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
-
-            if (audioBuffer) {
-                sampleVariationsAudioData.push({
-                    variationFilePath,
-                    audioBuffer,
-                    gainNode,
-                });
-            }
-        }
-
+        
         const sampleSubsceneConfigParams = sceneObject.subscenes.map(scene => {
             return {
                 label: scene.label,
                 params: !scene.subsceneWindows[_selectedSubsceneWindowIndex] ? null : scene.subsceneWindows[_selectedSubsceneWindowIndex].config[i]
             }
         });
+        
+        const currentSubsceneParams = sampleSubsceneConfigParams[_selectedSubsceneIndex].params;
+
+        let currentSceneSampleVol = 0; 
+        if(typeof currentSubsceneParams.currentVol === "number"){
+            currentSceneSampleVol = currentSubsceneParams.currentVol;
+        } else if(typeof currentSubsceneParams.minVol === "number" && typeof currentSubsceneParams.maxVol === "number") {
+            currentSceneSampleVol = Math.floor((currentSubsceneParams.minVol + currentSubsceneParams.maxVol) / 2 );
+        }
+
+        const shouldLoad = currentSceneSampleVol > 0;
+
+        for (let j = 0; j < sceneObject.samples[i].variationNames.length; j++) {
+            const variationFilePath = `${sceneObject.samples[i].variationNames[j]}`;
+
+            const audioBuffer = shouldLoad ? await loadSound(variationFilePath).catch(e => { throw e }) : null;
+
+            const gainNode = audioContext.createGain();
+            gainNode.gain.setValueAtTime(currentSceneSampleVol, audioContext.currentTime);
+
+            sampleVariationsAudioData.push({
+                variationFilePath,
+                audioBuffer,
+                isAudioBufferLoading: false,
+                gainNode,
+            });
+            
+        }
+
+        
 
         const stitchingMethd = sceneObject.samples[i].stitchingMethd;
         const concatOverlayMs = sceneObject.samples[i].concatOverlayMs;
@@ -108,20 +120,16 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
         const sampleContainer = document.createElement('div');
         slidersContainer.appendChild(sampleContainer)
 
+        
         addSeparatorToSlidersContainer('sample-fields-separator',sampleContainer);
 
         addLabelToSampleControlsGroup(`${sceneObject.sceneName} - ${sceneObject.samples[i].label}`, 'sample-fields-groul-label', sampleContainer);
 
-        let currentSceneSampleVol = 0; 
-        if(typeof sampleSubsceneConfigParams[_selectedSubsceneIndex].params.currentVol === "number"){
-            currentSceneSampleVol = sampleSubsceneConfigParams[_selectedSubsceneIndex].params.currentVol;
-        } else if(typeof sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minVol === "number" && typeof sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxVol === "number") {
-            currentSceneSampleVol = Math.floor((sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minVol + sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxVol) / 2 );
-        }
+        const forCurrentSampleIndex = sceneSamplesAudioData.length;
         const associatedCurrentVolumeSliderHtmlElement = setupCurrentVolumeSlider(
             currentSceneSampleVol,
             sampleVariationsAudioData,
-            (event) => {
+            async (event) => {
                 const value = parseInt(event.target.value);
 
                 if(value > associatedMaxVolSliderHtmlElement.value){
@@ -141,6 +149,43 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
 
                 // persist value in state
                 sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].currentVol = parseInt(event.target.value)
+
+                
+
+                if(parseInt(event.target.value) > 0){
+                    let wasLoadedAndNotPlayed = false;
+                    for(let k = 0; k < sampleVariationsAudioData.length; k++) {
+                        const sampleVariationAudioData = sampleVariationsAudioData[k];
+                        if(sampleVariationAudioData.audioBuffer === null && sampleVariationAudioData.isAudioBufferLoading === false ){
+                            sampleVariationAudioData.isAudioBufferLoading = true;
+                            sampleVariationAudioData.audioBuffer = await loadSound(sampleVariationAudioData.variationFilePath).catch(e => { throw e });
+                            sampleVariationAudioData.isAudioBufferLoading = false;
+                            if( k === sampleVariationsAudioData.length - 1){
+
+                                wasLoadedAndNotPlayed = true;
+                            }
+                        }
+                    }
+                    if(wasLoadedAndNotPlayed){
+                        wasLoadedAndNotPlayed = false;
+                        playRandomVariation(sceneSamplesAudioData[forCurrentSampleIndex]); 
+                        
+                    }
+                    
+                } else {
+                    stopSceneSampleVariations(sceneSamplesAudioData[forCurrentSampleIndex]);
+                    for(let k = 0; k < sampleVariationsAudioData.length; k++) {
+                        const sampleVariationAudioData = sampleVariationsAudioData[k];
+                        if(sampleVariationAudioData.audioBuffer !== null ){
+                            sampleVariationAudioData.audioBuffer = null;
+                        }
+                    }
+                }
+                
+                // console.log(sceneSamplesAudioData[i].sampleVariationsAudioData)
+                // // sceneSamplesAudioData[_selectedSceneIndex].sampleSubsceneConfigParams[]
+                // sceneSamplesAudioData[i].sampleVariationsAudioData[randomIndex].audioBuffer
+
             },
             sampleContainer
         );
@@ -164,7 +209,7 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
 
                 const shouldAnimate = ctas.animationToggle.checked;
                 if(shouldAnimate){
-                    stopAudio();
+                    stopAllAudio();
                 }
             },
             sampleContainer
@@ -189,7 +234,7 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
                 
                 const shouldAnimate = ctas.animationToggle.checked;
                 if(shouldAnimate){
-                    stopAudio();
+                    stopAllAudio();
                 }
             },
             sampleContainer
@@ -217,7 +262,7 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
                 
                 const shouldAnimate = ctas.animationToggle.checked;
                 if(shouldAnimate){
-                    stopAudio();
+                    stopAllAudio();
                 }
             },
             sampleContainer
@@ -245,7 +290,7 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
 
                 const shouldAnimate = ctas.animationToggle.checked;
                 if(shouldAnimate){
-                    stopAudio();
+                    stopAllAudio();
                 }
             },
             sampleContainer
@@ -371,23 +416,29 @@ async function startAudio(_selectedSubsceneIndex) {
 }
 
 
-function stopAudio() {
+function stopAllAudio() {
     if (isStarted === false) return;
     isStarted = false;
 
-    for (let i = 0; i < sceneSamplesAudioData.length; i++) {
-        if(sceneSamplesAudioData[i].overlayTimeout){
 
-            clearTimeout(sceneSamplesAudioData[i].overlayTimeout)
+    stopSceneSampleVariations(sceneSamplesAudioData)
+        
+
+}
+
+function stopSceneSampleVariations(sceneSamplesAudio) {
+
+    for (let i = 0; i < sceneSamplesAudioData.length; i++) {
+        if(sceneSamplesAudio.overlayTimeout){
+
+            clearTimeout(sceneSamplesAudio.overlayTimeout)
         }
-        const currentSource = sceneSamplesAudioData[i].currentSource;
+        const currentSource = sceneSamplesAudio.currentSource;
         if (currentSource) {
             currentSource.stop();  // Stop the audio
-            sceneSamplesAudioData[i].currentSource = null;  // Clear the reference
+            sceneSamplesAudio.currentSource = null;  // Clear the reference
         }
     }
-
-
 }
 
 // Function to fetch and decode an audio file
@@ -752,20 +803,20 @@ function downloadJsonFile(jsonString, filename) {
 
 function addCtaEventListeners(){
     ctas.startAudioButton.addEventListener('click', () => startAudio(parseInt(ctas.subsceneSelect.value)));
-    ctas.stopAudioButton.addEventListener('click', stopAudio);
+    ctas.stopAudioButton.addEventListener('click', stopAllAudio);
 
     ctas.sceneSelect.addEventListener('change', (event) => {
-        stopAudio();  // Stop the audio
+        stopAllAudio();  // Stop the audio
         initScene(localConfigData, parseInt(event.target.value, 10), 0, 0).then().catch(e => { throw e });
     });
 
     ctas.subsceneSelect.addEventListener('change', (event) => {
-        stopAudio();  // Stop the audio
+        stopAllAudio();  // Stop the audio
         initScene(localConfigData, parseInt(ctas.sceneSelect.value), parseInt(event.target.value), 0, 0).then().catch(e => { throw e });
     });
 
     ctas.subsceneWindowSelect.addEventListener('change', (event) => {
-        stopAudio();  // Stop the audio
+        stopAllAudio();  // Stop the audio
         initScene(localConfigData, parseInt(ctas.sceneSelect.value), parseInt(ctas.subsceneSelect.value), parseInt(event.target.value)).then().catch(e => { throw e });
     });
 
