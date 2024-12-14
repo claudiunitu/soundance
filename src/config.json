@@ -2258,7 +2258,82 @@
                 }
                 
             ]
-        },{
+        }]
+    },
+    {  "sceneName": "Cave Water",
+            "directory": "./sound-samples/custom/water-cave",
+            "samples": [{
+                "label": "Sub-Bass",
+                "variationNames": ["sound-samples/custom/water-cave/0a.ogg", "sound-samples/custom/water-cave/0b.ogg"],
+                "stitchingMethd": "JOIN_WITH_OVERLAY",
+                "concatOverlayMs": 5500
+            },{
+                "label": "Low-Bass",
+                "variationNames": ["sound-samples/custom/water-cave/1a.ogg", "sound-samples/custom/water-cave/1b.ogg"],
+                "stitchingMethd": "JOIN_WITH_OVERLAY",
+                "concatOverlayMs": 10000
+            },{
+                "label": "Bass",
+                "variationNames": ["sound-samples/custom/water-cave/2a.ogg", "sound-samples/custom/water-cave/2b.ogg"],
+                "stitchingMethd": "JOIN_WITH_OVERLAY",
+                "concatOverlayMs": 6500
+            },{
+                "label": "High Bass",
+                "variationNames": ["sound-samples/custom/water-cave/3a.ogg", "sound-samples/custom/water-cave/3b.ogg"],
+                "stitchingMethd": "JOIN_WITH_OVERLAY",
+                "concatOverlayMs": 6000
+            },{
+                "label": "Low Mids",
+                "variationNames": ["sound-samples/custom/water-cave/4a.ogg", "sound-samples/custom/water-cave/4b.ogg"],
+                "stitchingMethd": "JOIN_WITH_OVERLAY",
+                "concatOverlayMs": 6000
+            },{
+                "label": "Mids",
+                "variationNames": ["sound-samples/custom/water-cave/5a.ogg", "sound-samples/custom/water-cave/5b.ogg"],
+                "stitchingMethd": "JOIN_WITH_OVERLAY",
+                "concatOverlayMs": 6000
+            },{
+                "label": "High Mids",
+                "variationNames": ["sound-samples/custom/water-cave/6a.ogg", "sound-samples/custom/water-cave/6b.ogg"],
+                "stitchingMethd": "JOIN_WITH_OVERLAY",
+                "concatOverlayMs": 5500
+            },{
+                "label": "Low Treble",
+                "variationNames": ["sound-samples/custom/water-cave/7a.ogg", "sound-samples/custom/water-cave/7b.ogg"],
+                "stitchingMethd": "JOIN_WITH_OVERLAY",
+                "concatOverlayMs": 4700
+            },{
+                "label": "Treble",
+                "variationNames": ["sound-samples/custom/water-cave/8a.ogg", "sound-samples/custom/water-cave/8b.ogg"],
+                "stitchingMethd": "JOIN_WITH_OVERLAY",
+                "concatOverlayMs": 5000
+            },{
+                "label": "High Treble",
+                "variationNames": ["sound-samples/custom/water-cave/9a.ogg", "sound-samples/custom/water-cave/9b.ogg"],
+                "stitchingMethd": "JOIN_WITH_OVERLAY",
+                "concatOverlayMs": 4000
+            }],
+            "subscenes": [{
+                "label": "All Muted",
+                "subsceneWindows": [
+                    {
+                        "startAt": 0,
+                        "config": [
+                            {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                            {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                            {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                            {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                            {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                            {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                            {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                            {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                            {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                            {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
+                        ]
+                    }
+                    
+                ]
+            },{
             "label": "Equal",
             "subsceneWindows": [
                 {
@@ -2280,6 +2355,8 @@
             ]
         }]
     },
+
+        
     {  "sceneName": "Windy Mansion",
         "directory": "./sound-samples/custom/windy-mansion",
         "samples": [{
