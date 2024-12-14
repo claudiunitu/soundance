@@ -1,3 +1,7 @@
+*{
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -13,6 +17,14 @@ body {
     gap: 10px;
     width: 80%;
     margin-top: 20px;
+}
+
+.sample{
+    padding: 10px;
+    background-color: rgb(233, 233, 233);
+}
+.sample.active{
+    background-color: rgb(200, 255, 200);
 }
 
 input[type="range"] {
@@ -31,6 +43,8 @@ input[type="range"] {
 .sample-fields-separator {
     display: block;
     width: 100%;
+    margin: 0;
+    display: none;
 }
 .sample-fields-groul-label {
     text-align: center;
