@@ -70,8 +70,8 @@ async function initScene(scenes, _selectedSceneIndex, _selectedSubsceneIndex, _s
 
 async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _selectedSubsceneIndex, _selectedSubsceneWindowIndex) {
 
-
-    const slidersContainer = document.getElementById('sliders');
+    const groupHTMLParent = document.createElement('div');
+    const slidersContainer = [];
     const sceneObject = scenes[_selectedSceneIndex];
     for (let i = 0; i < sceneObject.samples.length; i++) {
         const sampleVariationsAudioData = [];
@@ -119,7 +119,8 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
 
         const sampleContainer = document.createElement('div');
         sampleContainer.classList.add("sample")
-        slidersContainer.appendChild(sampleContainer)
+        groupHTMLParent.appendChild(sampleContainer);
+        slidersContainer.push(groupHTMLParent);
 
     
 
@@ -326,6 +327,7 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
     
     
     }
+    return slidersContainer;
 }
 
 async function loadAndParseNewSceneData(scenes, _selectedSceneIndex, _selectedSubsceneIndex, _selectedSubsceneWindowIndex) {
@@ -335,14 +337,39 @@ async function loadAndParseNewSceneData(scenes, _selectedSceneIndex, _selectedSu
     removeCurrentSliders();
 
     sceneSamplesAudioData = [];
-    
+    const slidersContainer = document.getElementById('sliders');
+
     if(loadAllAtOnce) {
         for (let sceneIndex = 0; sceneIndex < scenes.length; sceneIndex++) {
+            const groupHTMLParent = document.createElement('div');
+            const groupLabel =  document.createElement('label');
+            groupLabel.classList.add('group-label');
+            groupLabel.innerText = scenes[sceneIndex].sceneName;
             
-            await loadAndParseDataForSceneData(scenes, sceneIndex, _selectedSubsceneIndex, _selectedSubsceneWindowIndex);
+            groupLabel.addEventListener('click', (event)=>{
+                if(event.target.classList.contains('group-label-open')){
+                    event.target.classList.remove('group-label-open');
+                } else{
+                    event.target.classList.add('group-label-open');
+                }
+            })
+
+            groupHTMLParent.appendChild(groupLabel);
+            const groupSamplesWrapper = document.createElement('div');
+            groupSamplesWrapper.classList.add('group-samples-wrapper');
+            groupHTMLParent.appendChild(groupSamplesWrapper);
+            
+            
+            const samplesGroupHtmlElement = await loadAndParseDataForSceneData(scenes, sceneIndex, _selectedSubsceneIndex, _selectedSubsceneWindowIndex);
+            samplesGroupHtmlElement.forEach(sampleHTMLElement => {
+                groupSamplesWrapper.appendChild(sampleHTMLElement);
+            })
+            
+            slidersContainer.appendChild(groupHTMLParent);
         }
     } else{
-        await loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _selectedSubsceneIndex, _selectedSubsceneWindowIndex);
+        const samplesGroupHtmlElement = await loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _selectedSubsceneIndex, _selectedSubsceneWindowIndex);
+        slidersContainer.appendChild(samplesGroupHtmlElement);
     }
 
     onLoadingFinished();

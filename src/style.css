@@ -18,6 +18,19 @@ body {
     width: 80%;
     margin-top: 20px;
 }
+.group-label.group-label-open + .group-samples-wrapper{
+    display: block;
+}
+.group-label:before{
+    content:"+";
+}
+.group-label.group-label-open:before{
+    content:"-";
+}
+.group-samples-wrapper{
+    display: none;
+}
+
 
 .sample{
     padding: 10px;
