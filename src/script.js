@@ -118,14 +118,53 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
         const concatOverlayMs = sceneObject.samples[i].concatOverlayMs;
 
         const sampleContainer = document.createElement('div');
+        sampleContainer.classList.add("sample")
         slidersContainer.appendChild(sampleContainer)
 
-        
-        addSeparatorToSlidersContainer('sample-fields-separator',sampleContainer);
+    
 
         addLabelToSampleControlsGroup(`${sceneObject.sceneName} - ${sceneObject.samples[i].label}`, 'sample-fields-groul-label', sampleContainer);
 
         const forCurrentSampleIndex = sceneSamplesAudioData.length;
+
+        const associatedSampleTogglerHtmlElement = setupSampleToggler( sampleContainer, async (event) => {
+            if(event.target.checked){
+                sampleContainer.classList.add("active");
+                let wasLoadedAndNotPlayed = false;
+                for(let k = 0; k < sampleVariationsAudioData.length; k++) {
+                    const sampleVariationAudioData = sampleVariationsAudioData[k];
+                    if(sampleVariationAudioData.audioBuffer === null && sampleVariationAudioData.isAudioBufferLoading === false ){
+                        sampleVariationAudioData.isAudioBufferLoading = true;
+                        sampleVariationAudioData.audioBuffer = await loadSound(sampleVariationAudioData.variationFilePath).catch(e => { throw e });
+                        sampleVariationAudioData.isAudioBufferLoading = false;
+                        if( k === sampleVariationsAudioData.length - 1){
+                            // all variations loaded
+                            wasLoadedAndNotPlayed = true;
+                        }
+                    }
+                }
+                if(wasLoadedAndNotPlayed){
+                    wasLoadedAndNotPlayed = false;
+                    try{
+
+                        playRandomVariation(sceneSamplesAudioData[forCurrentSampleIndex]); // mark*
+                    } catch(e){
+                        console.error(e);
+                    }
+                    
+                }
+                
+            } else {
+                sampleContainer.classList.remove("active");
+                stopSceneSampleVariations(sceneSamplesAudioData[forCurrentSampleIndex]);
+                for(let k = 0; k < sampleVariationsAudioData.length; k++) {
+                    const sampleVariationAudioData = sampleVariationsAudioData[k];
+                    if(sampleVariationAudioData.audioBuffer !== null ){
+                        sampleVariationAudioData.audioBuffer = null;
+                    }
+                }
+            }
+        }, sampleContainer);
         const associatedCurrentVolumeSliderHtmlElement = setupCurrentVolumeSlider(
             currentSceneSampleVol,
             sampleVariationsAudioData,
@@ -152,35 +191,7 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
 
                 
 
-                if(parseInt(event.target.value) > 0){
-                    let wasLoadedAndNotPlayed = false;
-                    for(let k = 0; k < sampleVariationsAudioData.length; k++) {
-                        const sampleVariationAudioData = sampleVariationsAudioData[k];
-                        if(sampleVariationAudioData.audioBuffer === null && sampleVariationAudioData.isAudioBufferLoading === false ){
-                            sampleVariationAudioData.isAudioBufferLoading = true;
-                            sampleVariationAudioData.audioBuffer = await loadSound(sampleVariationAudioData.variationFilePath).catch(e => { throw e });
-                            sampleVariationAudioData.isAudioBufferLoading = false;
-                            if( k === sampleVariationsAudioData.length - 1){
-
-                                wasLoadedAndNotPlayed = true;
-                            }
-                        }
-                    }
-                    if(wasLoadedAndNotPlayed){
-                        wasLoadedAndNotPlayed = false;
-                        playRandomVariation(sceneSamplesAudioData[forCurrentSampleIndex]); 
-                        
-                    }
-                    
-                } else {
-                    stopSceneSampleVariations(sceneSamplesAudioData[forCurrentSampleIndex]);
-                    for(let k = 0; k < sampleVariationsAudioData.length; k++) {
-                        const sampleVariationAudioData = sampleVariationsAudioData[k];
-                        if(sampleVariationAudioData.audioBuffer !== null ){
-                            sampleVariationAudioData.audioBuffer = null;
-                        }
-                    }
-                }
+                
                 
                 // console.log(sceneSamplesAudioData[i].sampleVariationsAudioData)
                 // // sceneSamplesAudioData[_selectedSceneIndex].sampleSubsceneConfigParams[]
@@ -305,13 +316,13 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
             concatOverlayMs,
             sampleSubsceneConfigParams,
             sampleVariationsAudioData,
+            associatedSampleTogglerHtmlElement,
             associatedCurrentVolumeSliderHtmlElement,
             associatedMinVolSliderHtmlElement,
             associatedMaxVolSliderHtmlElement,
             associatedMinTimeframeLengthSliderHtmlElement,
             associatedMaxTimeframeLengthSliderHtmlElement,
         });
-        addSeparatorToSlidersContainer('sample-fields-separator', sampleContainer);
     
     
     }
@@ -491,7 +502,7 @@ function playRandomVariation(scenerySampleAudioData) {
     } else if(scenerySampleAudioData.stitchingMethd === "JOIN_WITH_OVERLAY") {
 
         // Schedule the next variation to start before the current one ends
-        let nextStartTime = audioBuffer.duration * 1000 - scenerySampleAudioData.concatOverlayMs;
+        let nextStartTime = audioBuffer.duration * 1000 - scenerySampleAudioData.concatOverlayMs; // mark*
 
         if(nextStartTime <= 0){
             console.warn(`
@@ -583,6 +594,32 @@ function setupScenePropertySlider(inputType, propertyName, min, max, currentValu
     return input;
 }
 
+function setupSampleToggler(container, onChangeFunction) {
+
+
+    const togglerWrapper = document.createElement('div');
+    togglerWrapper.className = "property-slider-wrapper";
+    const togglerWrapperCheckbox = document.createElement('div');
+    togglerWrapperCheckbox.className = "sample-toggler-checkbox";
+
+
+
+    const togglerLabel = document.createElement('label');
+    togglerLabel.innerText = `Activate sample`;
+
+    const input = document.createElement('input');
+    input.type = 'checkbox';
+
+    input.addEventListener('input', (e) => onChangeFunction(e));
+
+    togglerWrapperCheckbox.appendChild(input);
+    togglerWrapper.appendChild(togglerLabel);
+    togglerWrapper.appendChild(togglerWrapperCheckbox);
+
+    container.appendChild(togglerWrapper);
+    return input;
+}
+
 function setupSubscenesWindowsSelectorCurrentEdit(subscenes, selectedSubsceneIndex, selectedSubsceneWindowIndex, min, max, currentValue) {
     const container = document.getElementById('subscene-window-selector-current-edit-wrapper');
 
@@ -610,15 +647,6 @@ function setupSubscenesWindowsSelectorCurrentEdit(subscenes, selectedSubsceneInd
 
     });
     return input;
-}
-
-function addSeparatorToSlidersContainer(className, container) {
-    
-
-    const separatorElement = document.createElement('hr');
-    separatorElement.classList.add(className)
-
-    container.appendChild(separatorElement);
 }
 
 function addLabelToSampleControlsGroup(label, className, container) {
