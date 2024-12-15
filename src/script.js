@@ -137,6 +137,9 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
                 }
             } else {
                 sampleContainer.classList.remove("active");
+                maxVolElement.value = 0;
+                maxVolElement.dispatchEvent(new Event('valueChange'));
+                
                 stopSceneSampleVariations(sceneSamplesAudioData[forCurrentSampleIndex]);
                 for(let k = 0; k < sampleVariationsAudioData.length; k++) {
                     const sampleVariationAudioData = sampleVariationsAudioData[k];
@@ -161,16 +164,19 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
             volElement.max = 100;
             volElement.scaleUnitLabel = '%';
             volElement.addEventListener('valueChange', async (event) => {
+                
                 const value = event.target.value;
+
+                
 
                 if(maxVolElement && value > maxVolElement.value){
                     maxVolElement.value = event.target.value;
-                    maxVolElement.dispatchEvent(new Event('input'));
+                    maxVolElement.dispatchEvent(new Event('valueChange'));
                 }
 
                 if(minVolElement && value < minVolElement.value){
                     minVolElement.value = event.target.value;
-                    minVolElement.dispatchEvent(new Event('input'));
+                    minVolElement.dispatchEvent(new Event('valueChange'));
                 }
         
                 for (let j = 0; j < sampleVariationsAudioData.length; j++) {
@@ -179,7 +185,7 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
                 }
 
                 // persist value in state
-                sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].currentVol = parseInt(event.target.value)
+                sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].currentVol = parseInt(event.target.value);
 
             });
 
@@ -223,6 +229,14 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
         maxVolElement.value = sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxVol;
         maxVolElement.addEventListener('valueChange', (event) => {
             const value = parseInt(event.target.value, 10);
+
+            if(value > 0 && sampleTogglerElement.state == false) {
+                sampleTogglerElement.state = true;
+                sampleTogglerElement.dispatchEvent(new Event('toggle'));
+            } else if(value <= 0 && sampleTogglerElement.state == true) {
+                sampleTogglerElement.state = false;
+                sampleTogglerElement.dispatchEvent(new Event('toggle'));
+            }
 
             if(volElement && value < volElement.value){
                 volElement.value = event.target.value;
@@ -572,88 +586,6 @@ function setupCurrentVolumeSlider(currentValue, onChangeFunction, container) {
 
 }
 
-function setupScenePropertySlider(inputType, propertyName, min, max, currentValue, onChangeFunction, container) {
-
-
-    /**
-   *  @type {RangeSliderHTMLElement} 
-   */
-    const volElement = document.createElement('range-slider');
-    volElement.addEventListener('valueChange', (e) => onChangeFunction(e))
-    volElement.value = currentValue;
-
-    container.append(container.appendChild(volElement));
-
-    return volElement
-
-
-    const sliderWrapper = document.createElement('div');
-    sliderWrapper.className = "property-slider-wrapper";
-
-
-
-    const sliderLabel = document.createElement('label');
-    sliderLabel.innerText = `${propertyName}: `;
-
-    const input = document.createElement('input');
-    input.type = inputType;
-    input.min = min;
-    input.max = max;
-    input.value = currentValue
-
-    input.addEventListener('input', (e) => onChangeFunction(e));
-
-    sliderWrapper.appendChild(sliderLabel);
-    sliderWrapper.appendChild(input);
-
-    container.appendChild(sliderWrapper);
-    return input;
-}
-
-
-function setupSubscenesWindowsSelectorCurrentEdit(subscenes, selectedSubsceneIndex, selectedSubsceneWindowIndex, min, max, currentValue) {
-    const container = document.getElementById('subscene-window-selector-current-edit-wrapper');
-
-    // empty the container to avoid previous inputs and their event listeners
-    container.innerHTML = '';
-
-    const input = document.createElement('input');
-    input.type = 'number';
-    input.min = min;
-    input.max = max;
-    input.value = currentValue
-
-    container.appendChild(input);
-
-    input.addEventListener('input', (e) => {
-        subscenes[selectedSubsceneIndex].subsceneWindows[selectedSubsceneWindowIndex].startAt = parseInt(e.target.value);
-        for ( let option of ctas.subsceneWindowSelect.querySelectorAll('option')){
-            if(option.selected){
-                option.value = subscenes[selectedSubsceneIndex].subsceneWindows[selectedSubsceneWindowIndex].startAt;
-                option.innerText =  subscenes[selectedSubsceneIndex].subsceneWindows[selectedSubsceneWindowIndex].startAt;
-                return;
-            }
-
-        }
-
-    });
-    return input;
-}
-
-function addLabelToSampleControlsGroup(label, className, container) {
-
-    
-
-    const labelElement = document.createElement('label');
-    labelElement.classList.add(className);
-    labelElement.innerText = label;
-
-    container.appendChild(labelElement);
-    
-}
-
-
-
 
 function generateCurrentConfigJsonForScene (currentScene, currentSubscene){
     return currentScene.samples.map((sample, sampleIndex) => {
@@ -690,7 +622,7 @@ function generateCurrentConfigJsonForScene (currentScene, currentSubscene){
 
 function generateCurrentConfigJson() {
     
-
+    sceneSamplesAudioData;
     let sampleDataConfig = []
 
     if(loadAllAtOnce) {
@@ -715,46 +647,6 @@ function generateCurrentConfigJson() {
 
     const jsonString = JSON.stringify(configData, null, 2); // Pretty print the JSON
     downloadJsonFile(jsonString, 'currentConfig.json'); // Trigger download
-}
-
-function generateCurrentSubsceneJson() {
-
-    console.log({
-        label: "Subscene Label",
-        subsceneWindows: [
-            {
-                startAt: 0,
-                config: sceneSamplesAudioData.map(item => {
-                    return {
-                        minVol: parseInt(item.minVolElement.value),
-                        maxVol: parseInt(item.maxVolElement.value),
-                        minTimeframeLength: parseInt(item.minTimeframeElement.value), 
-                        maxTimeframeLength: parseInt(item.maxTimeframeElement.value),
-                    }
-                })
-            }
-            
-        ]
-    })
-    console.log(JSON.stringify({
-        label: "Subscene Label",
-        subsceneWindows: [
-            {
-                startAt: 0,
-                config: sceneSamplesAudioData.map(item => {
-                    return {
-                        minVol: parseInt(item.minVolElement.value),
-                        maxVol: parseInt(item.maxVolElement.value),
-                        minTimeframeLength: parseInt(item.minTimeframeElement.value), 
-                        maxTimeframeLength: parseInt(item.maxTimeframeElement.value),
-                    }
-                })
-            }
-            
-        ]
-    }, null, '    '))
-
-        
 }
 
 function downloadJsonFile(jsonString, filename) {

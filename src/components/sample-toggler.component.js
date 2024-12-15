@@ -30,7 +30,7 @@ class SampleTogglerHTMLElement extends HTMLElement {
    */
     set state(value) {
         this._state = Boolean(value) || false;
-        this.render();
+        this.inputHTMLElement.checked = this._state;
     }
 
 
@@ -66,9 +66,6 @@ class SampleTogglerHTMLElement extends HTMLElement {
         );
     }
 
-    render() {
-        this.inputHTMLElement.checked = this.state;
-    }
 
     constructor() {
         super();
