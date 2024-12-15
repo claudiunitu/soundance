@@ -1,7 +1,7 @@
-const HTML_ELEMENT_NAME = 'sample-volume';
-const HTML_ELEMENT_ON_CHANGE_EVENT_NAME = 'volumeChange';
+const HTML_ELEMENT_NAME = 'sample-toggler';
+const HTML_ELEMENT_ON_CHANGE_EVENT_NAME = 'toggle';
 
-class SampleVolumeHTMLElement extends HTMLElement {
+class SampleTogglerHTMLElement extends HTMLElement {
     
     /**
    *  @type {ShadowRoot | null} 
@@ -14,22 +14,22 @@ class SampleVolumeHTMLElement extends HTMLElement {
     inputHTMLElement = null;
 
     /**
-   *  @type {number} 
+   *  @type {boolean} 
    */
-    _volumeValue = 0;
+    _state = false;
 
     /**
    *  @type {number} 
    */
-    get volumeValue() {
-        return Number(this._volumeValue);
+    get state() {
+        return this._state;
     }
 
     /**
-   * @param {number | string} value
+   * @param {boolean} value
    */
-    set volumeValue(value) {
-        this._volumeValue = Number(value) || 0;
+    set state(value) {
+        this._state = Boolean(value) || false;
         this.render();
     }
 
@@ -54,15 +54,11 @@ class SampleVolumeHTMLElement extends HTMLElement {
    * @param {InputEvent} event
    */
     _onInputListener(event) {
-        this.volumeValue = event.target.value;
-        this.dispatchVolumeChange(this.volumeValue);
-    }
-
-    dispatchVolumeChange(volumeValue){
+        this.state = event.target.checked;
         this.dispatchEvent(
             new CustomEvent(HTML_ELEMENT_ON_CHANGE_EVENT_NAME, { 
                 detail: { 
-                    volumeValue
+                    state: this.state 
                 },
                 bubbles: true, // Allow the event to bubble up
                 composed: true, // Allow it to cross shadow DOM boundaries
@@ -71,7 +67,7 @@ class SampleVolumeHTMLElement extends HTMLElement {
     }
 
     render() {
-        this.inputHTMLElement.value = this.volumeValue;
+        this.inputHTMLElement.checked = this.state;
     }
 
     constructor() {
@@ -80,20 +76,20 @@ class SampleVolumeHTMLElement extends HTMLElement {
 
         this.shadowRoot = this.attachShadow({ mode: 'open' });
 
-        const wrapper = document.createElement('div');
-        wrapper.setAttribute('class', 'property-slider-wrapper');
+        const togglerWrapper = document.createElement('div');
+        togglerWrapper.className = "property-slider-wrapper";
+        const togglerWrapperCheckbox = document.createElement('div');
+        togglerWrapperCheckbox.className = "sample-toggler-checkbox";
 
-        const label = document.createElement('label');
-        label.textContent = 'Volume';
+        const togglerLabel = document.createElement('label');
+        togglerLabel.innerText = `Activate sample`;
 
         this.inputHTMLElement = document.createElement('input');
-        this.inputHTMLElement.type = "range";
-        this.inputHTMLElement.min = "0";
-        this.inputHTMLElement.max = "100";
-        this.inputHTMLElement.value = this.volumeValue;
+        this.inputHTMLElement.type = 'checkbox';
 
-        wrapper.appendChild(label);
-        wrapper.appendChild(this.inputHTMLElement);
+        togglerWrapperCheckbox.appendChild(this.inputHTMLElement);
+        togglerWrapper.appendChild(togglerLabel);
+        togglerWrapper.appendChild(togglerWrapperCheckbox);
 
         const style = document.createElement('style');
         style.textContent = `
@@ -101,15 +97,15 @@ class SampleVolumeHTMLElement extends HTMLElement {
                 display: flex;
             }
             .property-slider-wrapper label, 
-            .property-slider-wrapper input {
+            .property-slider-wrapper .sample-toggler-checkbox {
                 width: 50%;
             }
         `;
 
         this.shadowRoot.appendChild(style);
-        this.shadowRoot.appendChild(wrapper);
+        this.shadowRoot.appendChild(togglerWrapper);
 
     }
 }
 
-customElements.define(HTML_ELEMENT_NAME, SampleVolumeHTMLElement);
+customElements.define(HTML_ELEMENT_NAME, SampleTogglerHTMLElement);

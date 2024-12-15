@@ -1,4 +1,5 @@
 import './components/sample-volume.component.js';
+import './components/sample-toggler.component.js';
 
 let localConfigData; // will be populated with config.json data
 
@@ -95,13 +96,10 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
             currentSceneSampleVol = Math.floor((currentSubsceneParams.minVol + currentSubsceneParams.maxVol) / 2 );
         }
 
-        const shouldLoad = currentSceneSampleVol > 0;
 
         for (let j = 0; j < sceneObject.samples[i].variationNames.length; j++) {
             const variationFilePath = `${sceneObject.samples[i].variationNames[j]}`;
-
-            const audioBuffer = shouldLoad ? await loadSound(variationFilePath).catch(e => { throw e }) : null;
-
+            const audioBuffer =  null;
             const gainNode = audioContext.createGain();
             gainNode.gain.setValueAtTime(currentSceneSampleVol, audioContext.currentTime);
 
@@ -113,6 +111,7 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
             });
             
         }
+
 
         
 
@@ -131,7 +130,7 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
         const forCurrentSampleIndex = sceneSamplesAudioData.length;
 
         const associatedSampleTogglerHtmlElement = setupSampleToggler( sampleContainer, async (event) => {
-            if(event.target.checked){
+            if(event.target.state === true){
                 sampleContainer.classList.add("active");
                 let wasLoadedAndNotPlayed = false;
                 for(let k = 0; k < sampleVariationsAudioData.length; k++) {
@@ -168,18 +167,21 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
                 }
             }
         }, sampleContainer);
+
+
+        
+
         const associatedCurrentVolumeSliderHtmlElement = setupCurrentVolumeSlider(
             currentSceneSampleVol,
-            sampleVariationsAudioData,
             async (event) => {
                 const value = event.target.volumeValue;
 
-                if(value > associatedMaxVolSliderHtmlElement.value){
+                if(associatedMaxVolSliderHtmlElement && value > associatedMaxVolSliderHtmlElement.value){
                     associatedMaxVolSliderHtmlElement.value = event.target.volumeValue;
                     associatedMaxVolSliderHtmlElement.dispatchEvent(new Event('input'));
                 }
 
-                if(value < associatedMinVolSliderHtmlElement.value){
+                if(associatedMinVolSliderHtmlElement && value < associatedMinVolSliderHtmlElement.value){
                     associatedMinVolSliderHtmlElement.value = event.target.volumeValue;
                     associatedMinVolSliderHtmlElement.dispatchEvent(new Event('input'));
                 }
@@ -192,13 +194,6 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
                 // persist value in state
                 sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].currentVol = parseInt(event.target.volumeValue)
 
-                
-
-                
-                
-                // console.log(sceneSamplesAudioData[i].sampleVariationsAudioData)
-                // // sceneSamplesAudioData[_selectedSceneIndex].sampleSubsceneConfigParams[]
-                // sceneSamplesAudioData[i].sampleVariationsAudioData[randomIndex].audioBuffer
 
             },
             sampleContainer
@@ -213,9 +208,9 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
             (event) => {
                 const value = parseInt(event.target.value, 10);
 
-                if(value > associatedCurrentVolumeSliderHtmlElement.value){
-                    associatedCurrentVolumeSliderHtmlElement.value = event.target.value;
-                    associatedCurrentVolumeSliderHtmlElement.dispatchEvent(new Event('input'));
+                if(associatedCurrentVolumeSliderHtmlElement && value > associatedCurrentVolumeSliderHtmlElement.volumeValue){
+                    associatedCurrentVolumeSliderHtmlElement.volumeValue = event.target.value;
+                    associatedCurrentVolumeSliderHtmlElement.dispatchEvent(new Event('volumeChange'));
                 }
 
                 // persist value in state
@@ -238,9 +233,9 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
             (event) => {
                 const value = parseInt(event.target.value, 10);
 
-                if(value < associatedCurrentVolumeSliderHtmlElement.value){
-                    associatedCurrentVolumeSliderHtmlElement.value = event.target.value;
-                    associatedCurrentVolumeSliderHtmlElement.dispatchEvent(new Event('input'));
+                if(associatedCurrentVolumeSliderHtmlElement && value < associatedCurrentVolumeSliderHtmlElement.volumeValue){
+                    associatedCurrentVolumeSliderHtmlElement.volumeValue = event.target.value;
+                    associatedCurrentVolumeSliderHtmlElement.dispatchEvent(new Event('volumeChange'));
                 }
 
                 // persist value in state
@@ -578,23 +573,16 @@ function removeCurrentSliders() {
  * @param {*} container 
  * @returns 
  */
-function setupCurrentVolumeSlider(currentValue, sampleVariationsAudioData, onChangeFunction, container) {
+function setupCurrentVolumeSlider(currentValue, onChangeFunction, container) {
 
     /**
    *  @type {SampleVolumeHTMLElement} 
    */
     const volElement = document.createElement('sample-volume');
-    volElement.addEventListener('volumeChange', (e)=>onChangeFunction)
+    volElement.addEventListener('volumeChange', (e) => onChangeFunction(e))
     volElement.volumeValue = currentValue;
 
 
-    // set initial volume
-    for (let j = 0; j < sampleVariationsAudioData.length; j++) {
-        // we don't know which variation is playing so we should set the vorlume to all of them
-        sampleVariationsAudioData[j].gainNode.gain.setValueAtTime(currentValue / 100, audioContext.currentTime);
-    }
-
-    volElement.addEventListener('volumeChange', onChangeFunction);
 
     container.append(container.appendChild(volElement));
 
@@ -630,28 +618,11 @@ function setupScenePropertySlider(inputType, propertyName, min, max, currentValu
 
 function setupSampleToggler(container, onChangeFunction) {
 
+    const sampleTogglerElement = document.createElement('sample-toggler');
+    sampleTogglerElement.addEventListener('toggle', (e) => onChangeFunction(e))
 
-    const togglerWrapper = document.createElement('div');
-    togglerWrapper.className = "property-slider-wrapper";
-    const togglerWrapperCheckbox = document.createElement('div');
-    togglerWrapperCheckbox.className = "sample-toggler-checkbox";
-
-
-
-    const togglerLabel = document.createElement('label');
-    togglerLabel.innerText = `Activate sample`;
-
-    const input = document.createElement('input');
-    input.type = 'checkbox';
-
-    input.addEventListener('input', (e) => onChangeFunction(e));
-
-    togglerWrapperCheckbox.appendChild(input);
-    togglerWrapper.appendChild(togglerLabel);
-    togglerWrapper.appendChild(togglerWrapperCheckbox);
-
-    container.appendChild(togglerWrapper);
-    return input;
+    container.appendChild(sampleTogglerElement);
+    return sampleTogglerElement;
 }
 
 function setupSubscenesWindowsSelectorCurrentEdit(subscenes, selectedSubsceneIndex, selectedSubsceneWindowIndex, min, max, currentValue) {
