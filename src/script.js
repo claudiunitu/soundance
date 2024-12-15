@@ -3,8 +3,6 @@ import './components/sample-toggler.component.js';
 
 let localConfigData; // will be populated with config.json data
 
-const loadAllAtOnce = true
-
 let sceneSamplesAudioData = [];
 
 
@@ -338,123 +336,35 @@ async function loadAndParseNewSceneData(scenes, _selectedSceneIndex, _selectedSu
     sceneSamplesAudioData = [];
     const slidersContainer = document.getElementById('sliders');
 
-    if(loadAllAtOnce) {
-        for (let sceneIndex = 0; sceneIndex < scenes.length; sceneIndex++) {
-            const groupHTMLParent = document.createElement('div');
-            const groupLabel =  document.createElement('label');
-            groupLabel.classList.add('group-label');
-            groupLabel.innerText = scenes[sceneIndex].sceneName;
-            
-            groupLabel.addEventListener('click', (event)=>{
-                if(event.target.classList.contains('group-label-open')){
-                    event.target.classList.remove('group-label-open');
-                } else{
-                    event.target.classList.add('group-label-open');
-                }
-            })
+    for (let sceneIndex = 0; sceneIndex < scenes.length; sceneIndex++) {
+        const groupHTMLParent = document.createElement('div');
+        const groupLabel =  document.createElement('label');
+        groupLabel.classList.add('group-label');
+        groupLabel.innerText = scenes[sceneIndex].sceneName;
+        
+        groupLabel.addEventListener('click', (event)=>{
+            if(event.target.classList.contains('group-label-open')){
+                event.target.classList.remove('group-label-open');
+            } else{
+                event.target.classList.add('group-label-open');
+            }
+        })
 
-            groupHTMLParent.appendChild(groupLabel);
-            const groupSamplesWrapper = document.createElement('div');
-            groupSamplesWrapper.classList.add('group-samples-wrapper');
-            groupHTMLParent.appendChild(groupSamplesWrapper);
-            
-            
-            const samplesGroupHtmlElement = await loadAndParseDataForSceneData(scenes, sceneIndex, _selectedSubsceneIndex, _selectedSubsceneWindowIndex);
-            samplesGroupHtmlElement.forEach(sampleHTMLElement => {
-                groupSamplesWrapper.appendChild(sampleHTMLElement);
-            })
-            
-            slidersContainer.appendChild(groupHTMLParent);
-        }
-    } else{
-        const samplesGroupHtmlElement = await loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _selectedSubsceneIndex, _selectedSubsceneWindowIndex);
-        slidersContainer.appendChild(samplesGroupHtmlElement);
+        groupHTMLParent.appendChild(groupLabel);
+        const groupSamplesWrapper = document.createElement('div');
+        groupSamplesWrapper.classList.add('group-samples-wrapper');
+        groupHTMLParent.appendChild(groupSamplesWrapper);
+        
+        
+        const samplesGroupHtmlElement = await loadAndParseDataForSceneData(scenes, sceneIndex, _selectedSubsceneIndex, _selectedSubsceneWindowIndex);
+        samplesGroupHtmlElement.forEach(sampleHTMLElement => {
+            groupSamplesWrapper.appendChild(sampleHTMLElement);
+        })
+        
+        slidersContainer.appendChild(groupHTMLParent);
     }
 
     onLoadingFinished();
-}
-
-// Function to populate the scene selector
-function populateScenesSelector(scenes, selectedIndex) {
-    const sceneSelector = ctas.sceneSelect;
-
-    // Clear existing options
-    sceneSelector.innerHTML = '';
-
-    // Create an option for each scene
-    scenes.forEach((scene, index) => {
-        const option = document.createElement('option');
-        option.value = index;  // Using the index as the value
-        option.textContent = scene.sceneName;  // Displaying the scene label
-        if(index === selectedIndex) {
-            option.selected = "selected"
-        }
-        sceneSelector.appendChild(option);
-    });
-}
-
-// Function to populate the subscene selector
-function populateSubscenesSelector(subscenes, selectedIndex) {
-    const subscenesSelector = ctas.subsceneSelect;
-
-    // Clear existing options
-    subscenesSelector.innerHTML = '';
-
-    // Create an option for each scene
-    subscenes.forEach((subscene, index) => {
-        const option = document.createElement('option');
-        option.value = index;  // Using the index as the value
-        option.textContent = subscene.label;  // Displaying the scene label
-        if(index === selectedIndex) {
-            option.selected = "selected"
-        }
-        subscenesSelector.appendChild(option);
-    });
-}
-
-// Function to populate the subscene windows selector
-function populateSubscenesWindowsSelector(subscenes, selectedSubsceneIndex, selectedSubsceneWindowIndex) {
-    const subscenesWindowSelector = ctas.subsceneWindowSelect;
-
-    // Clear existing options
-    subscenesWindowSelector.innerHTML = '';
-
-    // Create an option for each scene
-    subscenes[selectedSubsceneIndex].subsceneWindows.forEach((subsceneWindow, index) => {
-        const option = document.createElement('option');
-        option.value = index;  // Using the index as the value
-        option.textContent = subsceneWindow.startAt;
-        if(index === selectedSubsceneWindowIndex) {
-            option.selected = "selected"
-        }
-        subscenesWindowSelector.appendChild(option);
-    });
-}
-
-
-
-
-
-// Function to start the audio context and load sounds
-async function startAudio(_selectedSubsceneIndex) {
-    if (isStarted) return; // Prevents multiple initializations
-    isStarted = true;
-
-
-    // await loadSounds();
-    await playAllSamples();
-    
-}
-
-
-function stopAllAudio() {
-    if (isStarted === false) return;
-    isStarted = false;
-
-
-    stopSceneSampleVariations(sceneSamplesAudioData)
-        
-
 }
 
 function stopSceneSampleVariations(sceneSamplesAudio) {
@@ -542,14 +452,6 @@ function playRandomVariation(scenerySampleAudioData) {
     audioBufferSource.start();
 }
 
-async function playAllSamples() {
-    for (let i = 0; i < sceneSamplesAudioData.length; i++) {
-
-        // Play one of the variations initially
-        playRandomVariation(sceneSamplesAudioData[i]);
-    }
-}
-
 
 function removeCurrentSliders() {
     const slidersContainer = document.getElementById('sliders');
@@ -622,19 +524,10 @@ function generateCurrentConfigJsonForScene (currentScene, currentSubscene){
 
 function generateCurrentConfigJson() {
     
-    sceneSamplesAudioData;
     let sampleDataConfig = []
 
-    if(loadAllAtOnce) {
-        for(let sceneIndex = 0; sceneIndex < localConfigData.length; sceneIndex++){
-            sampleDataConfig = [...sampleDataConfig, ...generateCurrentConfigJsonForScene(localConfigData[sceneIndex], localConfigData[sceneIndex].subscenes[0])]
-        }
-    } else {
-        const selectedSceneIndex = parseInt(ctas.sceneSelect.value);
-        const selectedSubsceneIndex = parseInt(ctas.subsceneSelect.value);
-        const currentScene = localConfigData[selectedSceneIndex];
-        const currentSubscene = currentScene.subscenes[selectedSubsceneIndex];
-        sampleDataConfig = generateCurrentConfigJsonForScene(currentScene,currentSubscene)
+    for(let sceneIndex = 0; sceneIndex < localConfigData.length; sceneIndex++){
+        sampleDataConfig = [...sampleDataConfig, ...generateCurrentConfigJsonForScene(localConfigData[sceneIndex], localConfigData[sceneIndex].subscenes[0])]
     }
 
     const configData = {

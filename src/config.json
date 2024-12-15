@@ -25,7 +25,7 @@
                 {
                     "startAt": 0,
                     "config": [
-                        {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
+                        {"minVol": 0, "maxVol": 0, "currentVol": 50, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
                         {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000},
                         {"minVol": 0, "maxVol": 0, "currentVol": 0, "minTimeframeLength": 360000, "maxTimeframeLength": 720000}
                     ]
