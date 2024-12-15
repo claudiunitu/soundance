@@ -3,8 +3,6 @@ import './components/sample-toggler.component.js';
 
 let localConfigData; // will be populated with config.json data
 
-const shouldAnimate = false;
-
 const loadAllAtOnce = true
 
 let sceneSamplesAudioData = [];
@@ -15,14 +13,7 @@ let audioContext = new (window.AudioContext || window.webkitAudioContext)();
 let isStarted = true; // Flag to prevent re-initialization
 
 const ctas = {
-    startAudioButton: document.getElementById('startAudioButton'),
-    stopAudioButton: document.getElementById('stopAudioButton'),
     exportJsonButton: document.getElementById('generateJsonButton'),
-    exportCurrentSubscene: document.getElementById('exportCurrentSubscene'),
-    sceneSelect: document.getElementById('scene-selector'),
-    subsceneSelect: document.getElementById('subscene-selector'),
-    subsceneWindowSelect: document.getElementById('subscene-window-selector'),
-    animationToggle: document.getElementById('animation-toggle')
 }
 
 function onLoadingStarted(){
@@ -48,24 +39,7 @@ async function loadConfig() {
 
 async function initScene(scenes, _selectedSceneIndex, _selectedSubsceneIndex, _selectedSubsceneWindowIndex) {
 
-    const selectedScene = scenes[_selectedSceneIndex];
     await loadAndParseNewSceneData(scenes, _selectedSceneIndex, _selectedSubsceneIndex, _selectedSubsceneWindowIndex);
-
-
-    // Populate the scene selector
-    populateScenesSelector(scenes, _selectedSceneIndex);
-    // Populate the subscene selector
-    populateSubscenesSelector(selectedScene.subscenes, _selectedSubsceneIndex);
-
-    populateSubscenesWindowsSelector(selectedScene.subscenes, _selectedSubsceneIndex, _selectedSubsceneWindowIndex);
-    setupSubscenesWindowsSelectorCurrentEdit(
-        selectedScene.subscenes, 
-        _selectedSubsceneIndex, 
-        _selectedSubsceneWindowIndex, 
-        0, 
-        60*60*1000, 
-        selectedScene.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].startAt
-    )
 
 }
 
@@ -233,10 +207,6 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
             // persist value in state
             sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].minVol = parseInt(event.target.value)
 
-            const shouldAnimate = ctas.animationToggle.checked;
-            if(shouldAnimate){
-                stopAllAudio();
-            }
         });
         sampleContainer.appendChild(minVolElement);
 
@@ -262,10 +232,6 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
             // persist value in state
             sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].maxVol = parseInt(event.target.value)
             
-            const shouldAnimate = ctas.animationToggle.checked;
-            if(shouldAnimate){
-                stopAllAudio();
-            }
         });
         sampleContainer.appendChild(maxVolElement);
 
@@ -295,10 +261,6 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
             // persist value in state
             sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].minTimeframeLength = parseInt(event.target.value) * 1000
 
-            const shouldAnimate = ctas.animationToggle.checked;
-            if(shouldAnimate){
-                stopAllAudio();
-            }
         });
         sampleContainer.appendChild(minTimeframeElement);
 
@@ -328,10 +290,6 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
             // persist value in state
             sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].maxTimeframeLength = parseInt(event.target.value) * 1000
 
-            const shouldAnimate = ctas.animationToggle.checked;
-            if(shouldAnimate){
-                stopAllAudio();
-            }
         });
         sampleContainer.appendChild(maxTimeframeElement);
 
@@ -471,12 +429,6 @@ async function startAudio(_selectedSubsceneIndex) {
 
     // await loadSounds();
     await playAllSamples();
-
-    const shouldAnimate = ctas.animationToggle.checked;
-    if(shouldAnimate){
-        // delay initSlidersAnimations(selectedSceneIndex) by a fraction of a second to ensure all sounds have started and prevent race conditions.
-        setTimeout(() => initSlidersAnimations(_selectedSubsceneIndex), 100);
-    }
     
 }
 
@@ -702,60 +654,6 @@ function addLabelToSampleControlsGroup(label, className, container) {
 
 
 
-// Animate sliders over random timeframes to random positions
-function initSlidersAnimations(_selectedSubsceneIndex) {
-    if (isStarted === false) {
-        return;
-    }
-    for (let i = 0; i < sceneSamplesAudioData.length; i++) {
-
-        const selectedSceneConfigParams = sceneSamplesAudioData[i].sampleSubsceneConfigParams[_selectedSubsceneIndex].params;
-        const volMin = selectedSceneConfigParams.minVol;
-        const volMax = selectedSceneConfigParams.maxVol;
-        const durationMin = selectedSceneConfigParams.minTimeframeLength;
-        const durationMax = selectedSceneConfigParams.maxTimeframeLength;
-        triggerAnimationLoopForSlider(sceneSamplesAudioData[i].associatedCurrentVolumeSliderHtmlElement, sceneSamplesAudioData[i].sampleVariationsAudioData, volMin, volMax, durationMin, durationMax);
-    }
-
-}
-
-
-function triggerAnimationLoopForSlider(sliderHtmlElement, sampleVariationsAudioData, volMin, volMax, durationMin, durationMax) {
-    if (isStarted === false) {
-        return;
-    }
-
-    const targetVolume = Math.floor(Math.random() * (volMax - volMin + 1)) + volMin;
-    const duration = Math.floor(Math.random() * (durationMax - durationMin + 1)) + durationMin;
-
-    const startVolume = parseInt(sliderHtmlElement.value, 10);
-    const volumeChange = targetVolume - startVolume;
-    const steps = 100;
-    let startTime = null;
-
-    const animate = (timestamp) => {
-        if (!isStarted) return;  // Check if `isStarted` is false and exit the animation loop
-        if (!startTime) startTime = timestamp;
-        const elapsedTime = timestamp - startTime;
-        const progress = Math.min(elapsedTime / duration, 1);
-
-        const newVolume = startVolume + volumeChange * progress;
-        sliderHtmlElement.value = newVolume;
-
-        sampleVariationsAudioData.forEach(data => {
-            data.gainNode.gain.setValueAtTime(newVolume / 100, audioContext.currentTime);
-        });
-
-        if (progress < 1) {
-            requestAnimationFrame(animate);
-        } else {
-            // Restart with a new target
-            triggerAnimationLoopForSlider(sliderHtmlElement, sampleVariationsAudioData, volMin, volMax, durationMin, durationMax);
-        }
-    };
-
-    requestAnimationFrame(animate);
-}
 
 function generateCurrentConfigJsonForScene (currentScene, currentSubscene){
     return currentScene.samples.map((sample, sampleIndex) => {
@@ -872,35 +770,12 @@ function downloadJsonFile(jsonString, filename) {
 }
 
 function addCtaEventListeners(){
-    ctas.startAudioButton.addEventListener('click', () => startAudio(parseInt(ctas.subsceneSelect.value)));
-    ctas.stopAudioButton.addEventListener('click', stopAllAudio);
-
-    ctas.sceneSelect.addEventListener('change', (event) => {
-        stopAllAudio();  // Stop the audio
-        initScene(localConfigData, parseInt(event.target.value, 10), 0, 0).then().catch(e => { throw e });
-    });
-
-    ctas.subsceneSelect.addEventListener('change', (event) => {
-        stopAllAudio();  // Stop the audio
-        initScene(localConfigData, parseInt(ctas.sceneSelect.value), parseInt(event.target.value), 0, 0).then().catch(e => { throw e });
-    });
-
-    ctas.subsceneWindowSelect.addEventListener('change', (event) => {
-        stopAllAudio();  // Stop the audio
-        initScene(localConfigData, parseInt(ctas.sceneSelect.value), parseInt(ctas.subsceneSelect.value), parseInt(event.target.value)).then().catch(e => { throw e });
-    });
-
     ctas.exportJsonButton.addEventListener('click', generateCurrentConfigJson);
-
-    ctas.exportCurrentSubscene.addEventListener('click', generateCurrentSubsceneJson);
-
-    
 }
 
 function initApp(config){
     localConfigData = config;
     initScene(localConfigData, 0, 0, 0).then().catch(e => { throw e });
-    
 }
 
 loadConfig().then((config) => {
