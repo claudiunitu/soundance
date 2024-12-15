@@ -1,3 +1,5 @@
+import './components/sample-volume.component.js';
+
 let localConfigData; // will be populated with config.json data
 
 const shouldAnimate = false;
@@ -170,25 +172,25 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
             currentSceneSampleVol,
             sampleVariationsAudioData,
             async (event) => {
-                const value = parseInt(event.target.value);
+                const value = event.target.volumeValue;
 
                 if(value > associatedMaxVolSliderHtmlElement.value){
-                    associatedMaxVolSliderHtmlElement.value = event.target.value;
+                    associatedMaxVolSliderHtmlElement.value = event.target.volumeValue;
                     associatedMaxVolSliderHtmlElement.dispatchEvent(new Event('input'));
                 }
 
                 if(value < associatedMinVolSliderHtmlElement.value){
-                    associatedMinVolSliderHtmlElement.value = event.target.value;
+                    associatedMinVolSliderHtmlElement.value = event.target.volumeValue;
                     associatedMinVolSliderHtmlElement.dispatchEvent(new Event('input'));
                 }
         
                 for (let j = 0; j < sampleVariationsAudioData.length; j++) {
                     // we don't know which variation is playing so we should set the vorlume to all of them
-                    sampleVariationsAudioData[j].gainNode.gain.setValueAtTime(parseInt(event.target.value) / 100, audioContext.currentTime);
+                    sampleVariationsAudioData[j].gainNode.gain.setValueAtTime(parseInt(event.target.volumeValue) / 100, audioContext.currentTime);
                 }
 
                 // persist value in state
-                sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].currentVol = parseInt(event.target.value)
+                sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].currentVol = parseInt(event.target.volumeValue)
 
                 
 
@@ -563,18 +565,28 @@ function removeCurrentSliders() {
     slidersContainer.innerHTML = '';
 }
 
+
+/**
+ * @callback SampleVolumeChangeCallback
+ * @param {CustomEvent<detail: {volumeValue: this.volumeValue}>} event
+ */
+/**
+ * 
+ * @param {*} currentValue 
+ * @param {*} sampleVariationsAudioData 
+ * @param {SampleVolumeChangeCallback} onChangeFunction 
+ * @param {*} container 
+ * @returns 
+ */
 function setupCurrentVolumeSlider(currentValue, sampleVariationsAudioData, onChangeFunction, container) {
 
-    const sliderWrapper = document.createElement('div');
-    sliderWrapper.className = "property-slider-wrapper";
-    const slider = document.createElement('input');
-    // slider.id = `#slider-${i}`;
-    slider.type = "range";
-    slider.min = "0";
-    slider.max = "100";
-    slider.value = currentValue;
+    /**
+   *  @type {SampleVolumeHTMLElement} 
+   */
+    const volElement = document.createElement('sample-volume');
+    volElement.addEventListener('volumeChange', (e)=>onChangeFunction)
+    volElement.volumeValue = currentValue;
 
-    
 
     // set initial volume
     for (let j = 0; j < sampleVariationsAudioData.length; j++) {
@@ -582,16 +594,11 @@ function setupCurrentVolumeSlider(currentValue, sampleVariationsAudioData, onCha
         sampleVariationsAudioData[j].gainNode.gain.setValueAtTime(currentValue / 100, audioContext.currentTime);
     }
 
-    slider.addEventListener('input', onChangeFunction);
+    volElement.addEventListener('volumeChange', onChangeFunction);
 
-    const sliderLabel = document.createElement('label');
-    sliderLabel.innerText =' current volume';
+    container.append(container.appendChild(volElement));
 
-    sliderWrapper.append(sliderLabel)
-    sliderWrapper.append(slider);
-    container.append(sliderWrapper);
-
-    return slider
+    return volElement
 
 }
 
@@ -678,11 +685,14 @@ function setupSubscenesWindowsSelectorCurrentEdit(subscenes, selectedSubsceneInd
 
 function addLabelToSampleControlsGroup(label, className, container) {
 
+    
+
     const labelElement = document.createElement('label');
     labelElement.classList.add(className);
     labelElement.innerText = label;
 
     container.appendChild(labelElement);
+    
 }
 
 
