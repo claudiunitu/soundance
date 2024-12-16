@@ -1,5 +1,4 @@
-const HTML_ELEMENT_NAME = 'sample-toggler';
-const HTML_ELEMENT_ON_CHANGE_EVENT_NAME = 'toggle';
+// @ts-check
 
 class SampleTogglerHTMLElement extends HTMLElement {
     
@@ -19,7 +18,7 @@ class SampleTogglerHTMLElement extends HTMLElement {
     _state = false;
 
     /**
-   *  @type {number} 
+   *  @type {boolean} 
    */
     get state() {
         return this._state;
@@ -29,6 +28,9 @@ class SampleTogglerHTMLElement extends HTMLElement {
    * @param {boolean} value
    */
     set state(value) {
+        if( this.inputHTMLElement === null) {
+            return;
+        }
         this._state = Boolean(value) || false;
         this.inputHTMLElement.checked = this._state;
     }
@@ -46,17 +48,24 @@ class SampleTogglerHTMLElement extends HTMLElement {
         }
     }
 
+    /**
+     * 
+     * @param {Event} event 
+     */
     _onInputListenerOnCurrentContext = (event) => {
         this._onInputListener(event);
     }
 
+
     /**
-   * @param {InputEvent} event
+   * @param {Event} event
    */
     _onInputListener(event) {
-        this.state = event.target.checked;
+        /** @type {HTMLInputElement} */
+        const target = /** @type {HTMLInputElement} */ (event.target);
+        this.state = target.checked;
         this.dispatchEvent(
-            new CustomEvent(HTML_ELEMENT_ON_CHANGE_EVENT_NAME, { 
+            new CustomEvent('toggle', { 
                 detail: { 
                     state: this.state 
                 },
@@ -105,4 +114,4 @@ class SampleTogglerHTMLElement extends HTMLElement {
     }
 }
 
-customElements.define(HTML_ELEMENT_NAME, SampleTogglerHTMLElement);
+customElements.define('sample-toggler', SampleTogglerHTMLElement);

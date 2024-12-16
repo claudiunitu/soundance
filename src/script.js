@@ -1,77 +1,183 @@
+// @ts-check
+
+
 import './components/range-slider.component.js';
 import './components/sample-toggler.component.js';
 
-let localConfigData; // will be populated with config.json data
+/**
+ * @typedef {Object} SampleStitchingMethods
+ * @property {string} JOIN_WITH_CROSSFADE When processed by the sound exporter fading will be applied to the looped samples
+ * @property {string} JOIN_WITH_OVERLAY When processed by the sound exporter the loops will be overlaid but no fading will be applied to the looped samples. The samples files need to already be faded on both ends
+ */
+
+/**
+ * @typedef {keyof SampleStitchingMethods} SampleStitchingMethod
+ */
+
+/** @type {SampleStitchingMethods} */
+const SampleStitchingMethods = {
+    JOIN_WITH_CROSSFADE: 'JOIN_WITH_CROSSFADE',
+    JOIN_WITH_OVERLAY: 'JOIN_WITH_OVERLAY'
+};
+
+/**
+ * @typedef {Object} SubsceneWindowsConfig
+ * 
+ * @property {number} currentVol 
+ * @property {number} minVol 
+ * @property {number} maxVol 
+ * @property {number} minTimeframeLength 
+ * @property {number} maxTimeframeLength 
+ */
+
+/**
+ * @typedef {Object} SubsceneWindow
+ * 
+ * @property {number} startAt At which point (in milliseconds) the config should start when the final sound will be processed
+ * @property {SubsceneWindowsConfig[]} config Subscene window config
+ */
+
+/**
+ * @typedef {Object} SubsceneConfig
+ * 
+ * @property {string} label Subscene name
+ * @property {SubsceneWindow[]} subsceneWindows Sequential config that to describe what happens at different time intervals
+ */
+
+/**
+ * @typedef {Object} SoundSampleConfig
+ * 
+ * @property {number} concatOverlayMs How much to overlap when looping sound sample
+ * @property {string} label Sound samples name
+ * @property {SampleStitchingMethod} stitchingMethd Sound sample stitching method when looping
+ * @property {string[]} variationNames Sound sample variations file paths
+ */
+
+/**
+ * @typedef {Object} SoundSceneConfig
+ * 
+ * @property {string} directory Directory path for the sound files
+ * @property {SoundSampleConfig[]} samples Sound samples config
+ * @property {string} sceneName Sound samples config
+ * @property {SubsceneConfig[]} subscenes Subscene config
+ */
+
+/** 
+ * @type {SoundSceneConfig[]} will be populated with config.json data
+ * */
+let localConfigData;
 
 let sceneSamplesAudioData = [];
 
 
+/**
+ * @type {AudioContext}
+ */
+let audioContext = new window.AudioContext();
 
-let audioContext = new (window.AudioContext || window.webkitAudioContext)();
+/**
+ * @type {boolean}
+ */
 let isStarted = true; // Flag to prevent re-initialization
 
+/**
+ * @type {{exportJsonButton: HTMLElement | null}}
+ */
 const ctas = {
     exportJsonButton: document.getElementById('generateJsonButton'),
 }
 
-function onLoadingStarted(){
-    for(let ctaKey in ctas){
+/**
+ * @returns {void}
+ */
+function onLoadingStarted() {
+    for (let ctaKey in ctas) {
         ctas[ctaKey].setAttribute("disabled", "disabled");
     }
 }
 
-function onLoadingFinished(){
-    for(let ctaKey in ctas){
+/**
+ * @returns {void}
+ */
+function onLoadingFinished() {
+    for (let ctaKey in ctas) {
         ctas[ctaKey].removeAttribute("disabled");
     }
 }
 
 
-
+/**
+ * @returns {Promise<SoundSceneConfig[]>}
+ */
 async function loadConfig() {
     onLoadingStarted();
-    const config =  await loadJson(`/config.json`).catch(e => { throw e });
+    const config = await loadJson(`/config.json`).catch(e => { throw e });
     onLoadingFinished();
     return config;
 }
 
+/**
+ * 
+ * @param {SoundSceneConfig[]} scenes 
+ * @param {number} _selectedSceneIndex 
+ * @param {number} _selectedSubsceneIndex 
+ * @param {number} _selectedSubsceneWindowIndex 
+ * @returns {Promise<void>}
+ */
 async function initScene(scenes, _selectedSceneIndex, _selectedSubsceneIndex, _selectedSubsceneWindowIndex) {
-
     await loadAndParseNewSceneData(scenes, _selectedSceneIndex, _selectedSubsceneIndex, _selectedSubsceneWindowIndex);
-
 }
 
 
-
+/**
+ * 
+ * @param {SoundSceneConfig[]} scenes 
+ * @param {number} _selectedSceneIndex 
+ * @param {number} _selectedSubsceneIndex 
+ * @param {number} _selectedSubsceneWindowIndex 
+ * @returns {Promise<HTMLDivElement[]>} The HTML element containing the groupped sample controlers for one scene
+ */
 async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _selectedSubsceneIndex, _selectedSubsceneWindowIndex) {
 
     const groupHTMLParent = document.createElement('div');
     const slidersContainer = [];
     const sceneObject = scenes[_selectedSceneIndex];
     for (let i = 0; i < sceneObject.samples.length; i++) {
+
+        /**
+         * @typedef {Object} SampleVariationAudioData
+         * 
+         * @property {string} variationFilePath 
+         * @property {AudioBuffer | null} audioBuffer 
+         * @property {boolean} isAudioBufferLoading 
+         * @property {GainNode} gainNode 
+         */
+        /**
+         * @type {SampleVariationAudioData[]}
+         */
         const sampleVariationsAudioData = [];
 
-        
+
         const sampleSubsceneConfigParams = sceneObject.subscenes.map(scene => {
             return {
                 label: scene.label,
-                params: !scene.subsceneWindows[_selectedSubsceneWindowIndex] ? null : scene.subsceneWindows[_selectedSubsceneWindowIndex].config[i]
+                params: !scene.subsceneWindows[_selectedSubsceneWindowIndex] ? null : scene.subsceneWindows[_selectedSubsceneWindowIndex].config[i],
             }
         });
-        
+
         const currentSubsceneParams = sampleSubsceneConfigParams[_selectedSubsceneIndex].params;
 
-        let currentSceneSampleVol = 0; 
-        if(typeof currentSubsceneParams.currentVol === "number"){
+        let currentSceneSampleVol = 0;
+        if (typeof currentSubsceneParams?.currentVol === "number") {
             currentSceneSampleVol = currentSubsceneParams.currentVol;
-        } else if(typeof currentSubsceneParams.minVol === "number" && typeof currentSubsceneParams.maxVol === "number") {
-            currentSceneSampleVol = Math.floor((currentSubsceneParams.minVol + currentSubsceneParams.maxVol) / 2 );
+        } else if (typeof currentSubsceneParams?.minVol === "number" && typeof currentSubsceneParams.maxVol === "number") {
+            currentSceneSampleVol = Math.floor((currentSubsceneParams.minVol + currentSubsceneParams.maxVol) / 2);
         }
 
 
         for (let j = 0; j < sceneObject.samples[i].variationNames.length; j++) {
             const variationFilePath = `${sceneObject.samples[i].variationNames[j]}`;
-            const audioBuffer =  null;
+            const audioBuffer = null;
             const gainNode = audioContext.createGain();
             gainNode.gain.setValueAtTime(currentSceneSampleVol, audioContext.currentTime);
 
@@ -81,11 +187,8 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
                 isAudioBufferLoading: false,
                 gainNode,
             });
-            
+
         }
-
-
-        
 
         const stitchingMethd = sceneObject.samples[i].stitchingMethd;
         const concatOverlayMs = sceneObject.samples[i].concatOverlayMs;
@@ -95,7 +198,6 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
         groupHTMLParent.appendChild(sampleContainer);
         slidersContainer.push(groupHTMLParent);
 
-    
         // add label to controls group
         const labelElement = document.createElement('label');
         labelElement.classList.add('sample-fields-groul-label');
@@ -106,42 +208,47 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
         const forCurrentSampleIndex = sceneSamplesAudioData.length;
 
         // setup sample toggler
-        const sampleTogglerElement = document.createElement('sample-toggler');
+        /**
+         * @type {SampleTogglerHTMLElement}
+         */
+        const sampleTogglerElement = /** @type {SampleTogglerHTMLElement} */ (document.createElement('sample-toggler'));
         sampleTogglerElement.addEventListener('toggle', async (event) => {
-            if(event.target.state === true){
+            /** @type {SampleTogglerHTMLElement} */
+            const target = /** @type {SampleTogglerHTMLElement} */ (event.target);
+            if (target.state === true) {
                 sampleContainer.classList.add("active");
                 let wasLoadedAndNotPlayed = false;
-                for(let k = 0; k < sampleVariationsAudioData.length; k++) {
+                for (let k = 0; k < sampleVariationsAudioData.length; k++) {
                     const sampleVariationAudioData = sampleVariationsAudioData[k];
-                    if(sampleVariationAudioData.audioBuffer === null && sampleVariationAudioData.isAudioBufferLoading === false ){
+                    if (sampleVariationAudioData.audioBuffer === null && sampleVariationAudioData.isAudioBufferLoading === false) {
                         sampleVariationAudioData.isAudioBufferLoading = true;
                         sampleVariationAudioData.audioBuffer = await loadSound(sampleVariationAudioData.variationFilePath).catch(e => { throw e });
                         sampleVariationAudioData.isAudioBufferLoading = false;
-                        if( k === sampleVariationsAudioData.length - 1){
+                        if (k === sampleVariationsAudioData.length - 1) {
                             // all variations loaded
                             wasLoadedAndNotPlayed = true;
                         }
                     }
                 }
-                if(wasLoadedAndNotPlayed){
+                if (wasLoadedAndNotPlayed) {
                     wasLoadedAndNotPlayed = false;
-                    try{
+                    try {
 
                         playRandomVariation(sceneSamplesAudioData[forCurrentSampleIndex]); // mark*
-                    } catch(e){
+                    } catch (e) {
                         console.error(e);
                     }
-                    
+
                 }
             } else {
                 sampleContainer.classList.remove("active");
                 maxVolElement.value = 0;
                 maxVolElement.dispatchEvent(new Event('valueChange'));
-                
+
                 stopSceneSampleVariations(sceneSamplesAudioData[forCurrentSampleIndex]);
-                for(let k = 0; k < sampleVariationsAudioData.length; k++) {
+                for (let k = 0; k < sampleVariationsAudioData.length; k++) {
                     const sampleVariationAudioData = sampleVariationsAudioData[k];
-                    if(sampleVariationAudioData.audioBuffer !== null ){
+                    if (sampleVariationAudioData.audioBuffer !== null) {
                         sampleVariationAudioData.audioBuffer = null;
                     }
                 }
@@ -149,67 +256,68 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
         });
         sampleContainer.appendChild(sampleTogglerElement);
 
-        
+
 
         // setup volume slider
         /**
          *  @type {RangeSliderHTMLElement} 
          */
-            const volElement = document.createElement('range-slider');
-            volElement.label = 'Volume';
-            volElement.value = currentSceneSampleVol;
-            volElement.min = 0;
-            volElement.max = 100;
-            volElement.scaleUnitLabel = '%';
-            volElement.addEventListener('valueChange', async (event) => {
-                
-                const value = event.target.value;
+        const volElement = /** @type {RangeSliderHTMLElement} */(document.createElement('range-slider'));
+        volElement.label = 'Volume';
+        volElement.value = currentSceneSampleVol;
+        volElement.min = 0;
+        volElement.max = 100;
+        volElement.scaleUnitLabel = '%';
+        volElement.addEventListener('valueChange', async (event) => {
+            /** @type {RangeSliderHTMLElement} */
+            const target = /** @type {RangeSliderHTMLElement} */ (event.target);
+            const value = target.value;
 
-                
+            if (maxVolElement && value > maxVolElement.value) {
+                maxVolElement.value = target.value;
+                maxVolElement.dispatchEvent(new Event('valueChange'));
+            }
 
-                if(maxVolElement && value > maxVolElement.value){
-                    maxVolElement.value = event.target.value;
-                    maxVolElement.dispatchEvent(new Event('valueChange'));
-                }
+            if (minVolElement && value < minVolElement.value) {
+                minVolElement.value = target.value;
+                minVolElement.dispatchEvent(new Event('valueChange'));
+            }
 
-                if(minVolElement && value < minVolElement.value){
-                    minVolElement.value = event.target.value;
-                    minVolElement.dispatchEvent(new Event('valueChange'));
-                }
-        
-                for (let j = 0; j < sampleVariationsAudioData.length; j++) {
-                    // we don't know which variation is playing so we should set the vorlume to all of them
-                    sampleVariationsAudioData[j].gainNode.gain.setValueAtTime(parseInt(event.target.value) / 100, audioContext.currentTime);
-                }
+            for (let j = 0; j < sampleVariationsAudioData.length; j++) {
+                // we don't know which variation is playing so we should set the vorlume to all of them
+                sampleVariationsAudioData[j].gainNode.gain.setValueAtTime(target.value / 100, audioContext.currentTime);
+            }
 
-                // persist value in state
-                sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].currentVol = parseInt(event.target.value);
+            // persist value in state
+            sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].currentVol = target.value;
 
-            });
+        });
 
-            sampleContainer.appendChild(volElement);
+        sampleContainer.appendChild(volElement);
 
 
         // setup volume min slider
         /**
          *  @type {RangeSliderHTMLElement} 
          */
-        const minVolElement = document.createElement('range-slider');
+        const minVolElement = /** @type {RangeSliderHTMLElement} */ (document.createElement('range-slider'));
         minVolElement.label = 'Volume Min';
         minVolElement.min = 0;
         minVolElement.max = 100;
         volElement.scaleUnitLabel = '%';
-        minVolElement.value = sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minVol;
+        minVolElement.value = sampleSubsceneConfigParams[_selectedSubsceneIndex].params !== null ? sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minVol : 0;
         minVolElement.addEventListener('valueChange', (event) => {
-            const value = parseInt(event.target.value, 10);
 
-            if(volElement && value > volElement.value){
-                volElement.value = event.target.value;
+            /** @type {RangeSliderHTMLElement} */
+            const target = /** @type {RangeSliderHTMLElement} */ (event.target);
+
+            if (volElement && target.value > volElement.value) {
+                volElement.value = target.value;
                 volElement.dispatchEvent(new Event('valueChange'));
             }
 
             // persist value in state
-            sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].minVol = parseInt(event.target.value)
+            sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].minVol = target.value
 
         });
         sampleContainer.appendChild(minVolElement);
@@ -219,31 +327,33 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
         /**
          *  @type {RangeSliderHTMLElement} 
          */
-        const maxVolElement = document.createElement('range-slider');
+        const maxVolElement = /** @type {RangeSliderHTMLElement} */ (document.createElement('range-slider'));
         maxVolElement.label = 'Volume Max';
         maxVolElement.min = 0;
         maxVolElement.max = 100;
         volElement.scaleUnitLabel = '%';
-        maxVolElement.value = sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxVol;
+        maxVolElement.value = sampleSubsceneConfigParams[_selectedSubsceneIndex].params !== null ? sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxVol : 0;
         maxVolElement.addEventListener('valueChange', (event) => {
-            const value = parseInt(event.target.value, 10);
 
-            if(value > 0 && sampleTogglerElement.state == false) {
+            /** @type {RangeSliderHTMLElement} */
+            const target = /** @type {RangeSliderHTMLElement} */ (event.target);
+
+            if (target.value > 0 && sampleTogglerElement.state == false) {
                 sampleTogglerElement.state = true;
                 sampleTogglerElement.dispatchEvent(new Event('toggle'));
-            } else if(value <= 0 && sampleTogglerElement.state == true) {
+            } else if (target.value <= 0 && sampleTogglerElement.state == true) {
                 sampleTogglerElement.state = false;
                 sampleTogglerElement.dispatchEvent(new Event('toggle'));
             }
 
-            if(volElement && value < volElement.value){
-                volElement.value = event.target.value;
+            if (volElement && target.value < volElement.value) {
+                volElement.value = target.value;
                 volElement.dispatchEvent(new Event('valueChange'));
             }
 
             // persist value in state
-            sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].maxVol = parseInt(event.target.value)
-            
+            sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].maxVol = target.value
+
         });
         sampleContainer.appendChild(maxVolElement);
 
@@ -252,26 +362,32 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
         /**
          *  @type {RangeSliderHTMLElement} 
          */
-        const minTimeframeElement = document.createElement('range-slider');
+        const minTimeframeElement =  /**@type {RangeSliderHTMLElement} */ (document.createElement('range-slider'));
         minTimeframeElement.label = 'Timeframe Min';
         minTimeframeElement.min = 2;
         minTimeframeElement.max = 60 * 60;
         minTimeframeElement.scaleUnitLabel = 's';
         minTimeframeElement.step = 10;
-        minTimeframeElement.value = Math.floor(sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minTimeframeLength / 1000);
+        minTimeframeElement.value = sampleSubsceneConfigParams[_selectedSubsceneIndex].params !== null ? Math.floor(sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minTimeframeLength / 1000) : 60;
         minTimeframeElement.addEventListener('valueChange', (event) => {
-            const value = parseInt(event.target.value, 10);
 
-            const limitingValue = Math.floor(sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxTimeframeLength / 1000) - 2;
-            if(value >= limitingValue){
-                sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minTimeframeLength = limitingValue * 1000;
-                event.target.value = limitingValue;
+            /** @type {RangeSliderHTMLElement} */
+            const target = /** @type {RangeSliderHTMLElement} */ (event.target);
+
+            const limitingValue = sampleSubsceneConfigParams[_selectedSubsceneIndex].params !== null ? Math.floor(sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxTimeframeLength / 1000) - 2 : 120;
+            if (target.value >= limitingValue) {
+                if(sampleSubsceneConfigParams[_selectedSubsceneIndex].params){
+                    sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minTimeframeLength = limitingValue * 1000;
+                }
+                target.value = limitingValue;
             } else {
-                sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minTimeframeLength = value * 1000;
+                if(sampleSubsceneConfigParams[_selectedSubsceneIndex].params){
+                    sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minTimeframeLength = target.value * 1000;
+                }
             }
 
             // persist value in state
-            sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].minTimeframeLength = parseInt(event.target.value) * 1000
+            sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].minTimeframeLength = target.value * 1000
 
         });
         sampleContainer.appendChild(minTimeframeElement);
@@ -281,31 +397,34 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
         /**
          *  @type {RangeSliderHTMLElement} 
          */
-        const maxTimeframeElement = document.createElement('range-slider');
+        const maxTimeframeElement = /**@type {RangeSliderHTMLElement} */ (document.createElement('range-slider'));
         maxTimeframeElement.label = 'Timeframe Max';
         maxTimeframeElement.min = 2;
         maxTimeframeElement.max = 60 * 60;
         maxTimeframeElement.scaleUnitLabel = 's';
         maxTimeframeElement.step = 10;
-        maxTimeframeElement.value = Math.floor(sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxTimeframeLength / 1000);
+        maxTimeframeElement.value = sampleSubsceneConfigParams[_selectedSubsceneIndex].params !== null ? Math.floor(sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxTimeframeLength / 1000) : 120;
         maxTimeframeElement.addEventListener('valueChange', (event) => {
-            const value = parseInt(event.target.value, 10);
+            /** @type {RangeSliderHTMLElement} */
+            const target = /** @type {RangeSliderHTMLElement} */ (event.target);
 
-            const limitingValue = Math.floor(sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minTimeframeLength / 1000) + 2;
-            if(value <= limitingValue){
-                sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxTimeframeLength = limitingValue * 1000;
-                event.target.value = limitingValue;
+            const limitingValue = sampleSubsceneConfigParams[_selectedSubsceneIndex].params !== null ? Math.floor(sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minTimeframeLength / 1000) + 2 : 60;
+            if (target.value <= limitingValue) {
+                if(sampleSubsceneConfigParams[_selectedSubsceneIndex].params){
+                    sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxTimeframeLength = limitingValue * 1000;
+                }
+                target.value = limitingValue;
             } else {
-                sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxTimeframeLength = value * 1000;
+                if(sampleSubsceneConfigParams[_selectedSubsceneIndex].params){
+                    sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxTimeframeLength = target.value * 1000;
+                }
             }
 
             // persist value in state
-            sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].maxTimeframeLength = parseInt(event.target.value) * 1000
+            sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].maxTimeframeLength = target.value * 1000
 
         });
         sampleContainer.appendChild(maxTimeframeElement);
-
-        
 
         sceneSamplesAudioData.push({
             overlayTimeout: null,
@@ -321,8 +440,6 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
             minTimeframeElement,
             maxTimeframeElement,
         });
-    
-    
     }
     return slidersContainer;
 }
@@ -338,15 +455,17 @@ async function loadAndParseNewSceneData(scenes, _selectedSceneIndex, _selectedSu
 
     for (let sceneIndex = 0; sceneIndex < scenes.length; sceneIndex++) {
         const groupHTMLParent = document.createElement('div');
-        const groupLabel =  document.createElement('label');
+        const groupLabel = /** @type {HTMLLabelElement} */ (document.createElement('label'));
         groupLabel.classList.add('group-label');
         groupLabel.innerText = scenes[sceneIndex].sceneName;
-        
-        groupLabel.addEventListener('click', (event)=>{
-            if(event.target.classList.contains('group-label-open')){
-                event.target.classList.remove('group-label-open');
-            } else{
-                event.target.classList.add('group-label-open');
+
+        groupLabel.addEventListener('click', (event) => {
+             /** @type {HTMLLabelElement} */
+             const target = /** @type {HTMLLabelElement} */ (event.target);
+            if (target.classList.contains('group-label-open')) {
+                target.classList.remove('group-label-open');
+            } else {
+                target.classList.add('group-label-open');
             }
         })
 
@@ -354,14 +473,14 @@ async function loadAndParseNewSceneData(scenes, _selectedSceneIndex, _selectedSu
         const groupSamplesWrapper = document.createElement('div');
         groupSamplesWrapper.classList.add('group-samples-wrapper');
         groupHTMLParent.appendChild(groupSamplesWrapper);
-        
-        
+
+
         const samplesGroupHtmlElement = await loadAndParseDataForSceneData(scenes, sceneIndex, _selectedSubsceneIndex, _selectedSubsceneWindowIndex);
         samplesGroupHtmlElement.forEach(sampleHTMLElement => {
             groupSamplesWrapper.appendChild(sampleHTMLElement);
         })
-        
-        slidersContainer.appendChild(groupHTMLParent);
+
+        slidersContainer?.appendChild(groupHTMLParent);
     }
 
     onLoadingFinished();
@@ -370,7 +489,7 @@ async function loadAndParseNewSceneData(scenes, _selectedSceneIndex, _selectedSu
 function stopSceneSampleVariations(sceneSamplesAudio) {
 
     for (let i = 0; i < sceneSamplesAudioData.length; i++) {
-        if(sceneSamplesAudio.overlayTimeout){
+        if (sceneSamplesAudio.overlayTimeout) {
 
             clearTimeout(sceneSamplesAudio.overlayTimeout)
         }
@@ -393,7 +512,10 @@ async function loadSound(url) {
         return null; // Return null to prevent errors from breaking the whole program
     }
 }
-
+/**
+ * @param {string} url URL of config.json file
+ * @returns {Promise<SoundSceneConfig[]>}
+ */
 async function loadJson(url) {
 
     const response = await fetch(url);
@@ -422,19 +544,19 @@ function playRandomVariation(scenerySampleAudioData) {
     // Store the buffer source for later stopping
     scenerySampleAudioData.currentSource = audioBufferSource;
 
-    if(scenerySampleAudioData.stitchingMethd === "JOIN_WITH_CROSSFADE") {
+    if (scenerySampleAudioData.stitchingMethd === "JOIN_WITH_CROSSFADE") {
 
         // this will only start immediately after one sample ended and does not really create a crossfade
         audioBufferSource.onended = () => {
             if (isStarted) playRandomVariation(scenerySampleAudioData);
         };
 
-    } else if(scenerySampleAudioData.stitchingMethd === "JOIN_WITH_OVERLAY") {
+    } else if (scenerySampleAudioData.stitchingMethd === "JOIN_WITH_OVERLAY") {
 
         // Schedule the next variation to start before the current one ends
         let nextStartTime = audioBuffer.duration * 1000 - scenerySampleAudioData.concatOverlayMs; // mark*
 
-        if(nextStartTime <= 0){
+        if (nextStartTime <= 0) {
             console.warn(`
                 The overlay duration must be higher than the sample duration.\n
                 Will play the next variation after the current one ends:\n
@@ -448,61 +570,63 @@ function playRandomVariation(scenerySampleAudioData) {
         }, nextStartTime);
 
     }
-    
+
     audioBufferSource.start();
 }
 
 
 function removeCurrentSliders() {
     const slidersContainer = document.getElementById('sliders');
+    if(!slidersContainer){
+        return;
+    }
     slidersContainer.innerHTML = '';
 }
 
 
 /**
- * @callback SampleVolumeChangeCallback
- * @param {CustomEvent<detail: {volumeValue: number}>} event
+ * @typedef {Object} SubsceneWindowsConfigExportable
+ * @property {number} minVolRatio
+ * @property {number} maxVolRatio
+ * @property {number} minTimeframeLengthMs
+ * @property {number} maxTimeframeLengthMs
+
+ */
+/**
+ * @typedef {Object} SubsceneWindowExportable
+ * 
+ * @property {number} startAt At which point (in milliseconds) the config should start when the final sound will be processed
+ * @property {SubsceneWindowsConfigExportable} params Subscene window config
+ */
+
+/**
+ * @typedef {Object} ExportableSceneSamplesConfig
+ * 
+ * @property {string[]} variationFilePath
+ * @property {SampleStitchingMethod} stitchingMethod
+ * @property {number} concatOverlayMs
+ * @property {SubsceneWindowExportable[]} timingWindows
  */
 /**
  * 
- * @param {*} currentValue 
- * @param {*} sampleVariationsAudioData 
- * @param {SampleVolumeChangeCallback} onChangeFunction 
- * @param {*} container 
- * @returns 
+ * @param {SoundSceneConfig} currentScene 
+ * @param {SubsceneConfig} currentSubscene 
+ * @returns {ExportableSceneSamplesConfig[]}
  */
-function setupCurrentVolumeSlider(currentValue, onChangeFunction, container) {
-
-    /**
-   *  @type {RangeSliderHTMLElement} 
-   */
-    const volElement = document.createElement('range-slider');
-    volElement.addEventListener('valueChange', (e) => onChangeFunction(e))
-    volElement.value = currentValue;
-    volElement.min = 0;
-    volElement.max = 100;
-
-    container.append(container.appendChild(volElement));
-
-    return volElement
-
-}
-
-
-function generateCurrentConfigJsonForScene (currentScene, currentSubscene){
+function generateCurrentConfigJsonForScene(currentScene, currentSubscene) {
     return currentScene.samples.map((sample, sampleIndex) => {
 
         const timingWindows = currentSubscene.subsceneWindows.map((subsceneWindow, i) => {
-            if(i === 0 && subsceneWindow.startAt !== 0){
-               throw new Error("The property 'startAt' needs to be 0 in the first timing window") 
+            if (i === 0 && subsceneWindow.startAt !== 0) {
+                throw new Error("The property 'startAt' needs to be 0 in the first timing window")
             }
             return {
                 startAt: subsceneWindow.startAt,
-                
+
                 params: {
-                    
-                    minVolRatio: subsceneWindow.config[sampleIndex].minVol/100,
-                    maxVolRatio: subsceneWindow.config[sampleIndex].maxVol/100,
+
+                    minVolRatio: subsceneWindow.config[sampleIndex].minVol / 100,
+                    maxVolRatio: subsceneWindow.config[sampleIndex].maxVol / 100,
                     minTimeframeLengthMs: subsceneWindow.config[sampleIndex].minTimeframeLength,
                     maxTimeframeLengthMs: subsceneWindow.config[sampleIndex].maxTimeframeLength
                 }
@@ -518,15 +642,15 @@ function generateCurrentConfigJsonForScene (currentScene, currentSubscene){
             timingWindows
         };
     })
-    // do not add to export file the samples with max volume = 0
-    .filter(mappedSample => mappedSample.timingWindows.some(timingWindow => timingWindow.params.maxVolRatio !== 0))
+        // do not add to export file the samples with max volume = 0
+        .filter(mappedSample => mappedSample.timingWindows.some(timingWindow => timingWindow.params.maxVolRatio !== 0))
 }
 
 function generateCurrentConfigJson() {
-    
+
     let sampleDataConfig = []
 
-    for(let sceneIndex = 0; sceneIndex < localConfigData.length; sceneIndex++){
+    for (let sceneIndex = 0; sceneIndex < localConfigData.length; sceneIndex++) {
         sampleDataConfig = [...sampleDataConfig, ...generateCurrentConfigJsonForScene(localConfigData[sceneIndex], localConfigData[sceneIndex].subscenes[0])]
     }
 
@@ -554,19 +678,22 @@ function downloadJsonFile(jsonString, filename) {
     URL.revokeObjectURL(url); // Free up memory
 }
 
-function addCtaEventListeners(){
-    ctas.exportJsonButton.addEventListener('click', generateCurrentConfigJson);
+function addCtaEventListeners() {
+    ctas.exportJsonButton?.addEventListener('click', generateCurrentConfigJson);
 }
 
-function initApp(config){
+/**
+ * @param {SoundSceneConfig[]} config
+ */
+function initApp(config) {
     localConfigData = config;
     initScene(localConfigData, 0, 0, 0).then().catch(e => { throw e });
 }
 
 loadConfig().then((config) => {
     initApp(config)
-    addCtaEventListeners(localConfigData);
-    
+    addCtaEventListeners();
+
 }).catch(e => { throw e });
 
 

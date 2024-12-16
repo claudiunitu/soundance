@@ -1,3 +1,5 @@
+// @ts-check
+
 const HTML_ELEMENT_NAME = 'range-slider';
 const HTML_ELEMENT_ON_CHANGE_EVENT_NAME = 'valueChange';
 
@@ -70,6 +72,9 @@ class RangeSliderHTMLElement extends HTMLElement {
    */
     set label(label) {
         this._label = label;
+        if(!this.labelHTMLElement){
+            return;
+        }
         this.labelHTMLElement.textContent = label;
 
     }
@@ -101,7 +106,10 @@ class RangeSliderHTMLElement extends HTMLElement {
    */
     set value(value) {
         this._value = Number(value) || 0;
-        this.inputHTMLElement.value = this._value;
+        if(!this.inputHTMLElement){
+            return;
+        }
+        this.inputHTMLElement.value = this._value.toString();
         this.renderScaleLabels()
     }
 
@@ -117,7 +125,10 @@ class RangeSliderHTMLElement extends HTMLElement {
    */
     set min(min) {
         this._min = Number(min) || 0;
-        this.inputHTMLElement.min = this._min;
+        if(!this.inputHTMLElement){
+            return;
+        }
+        this.inputHTMLElement.min = this._min.toString();
         this.renderScaleLabels();
     }
 
@@ -133,14 +144,17 @@ class RangeSliderHTMLElement extends HTMLElement {
    */
     set max(max) {
         this._max = Number(max) || 0;
-        this.inputHTMLElement.max = this._max;
+        if(!this.inputHTMLElement){
+            return;
+        }
+        this.inputHTMLElement.max = this._max.toString();
         this.renderScaleLabels();
     }
 
     /**
    *  @type {number} 
    */
-    _step = '1';
+    _step = 1;
     /**
    *  @type {number} 
    */
@@ -149,11 +163,14 @@ class RangeSliderHTMLElement extends HTMLElement {
     }
 
     /**
-   * @param {number | string} max
+   * @param {number | string} step
    */
     set step(step) {
         this._step = Number(step) || 1;
-        this.inputHTMLElement.step = this.step;
+        if(!this.inputHTMLElement){
+            return;
+        }
+        this.inputHTMLElement.step = this.step.toString();
     }
 
     connectedCallback() {
@@ -176,7 +193,9 @@ class RangeSliderHTMLElement extends HTMLElement {
    * @param {InputEvent} event
    */
     _onInputListener(event) {
-        this.value = event.target.value;
+        /** @type {HTMLInputElement} */
+        const target = /** @type {HTMLInputElement} */ (event.target);
+        this.value = target.value;
         this.dispatchValueChange(this.value);
     }
     /**
@@ -196,13 +215,13 @@ class RangeSliderHTMLElement extends HTMLElement {
     }
 
     renderScaleLabels() {
-
-        this.scaleUnitLabelsWrapperHTMLElement.innerHTML = `
-            <label><small>${Math.floor(this.min)}${this.scaleUnitLabel}</small></label>
-            <label><small>${this.value}</small></label>
-            <label><small>${Math.floor(this.max)}${this.scaleUnitLabel}</small></label>
-        `;
-
+        if(this.scaleUnitLabelsWrapperHTMLElement){
+            this.scaleUnitLabelsWrapperHTMLElement.innerHTML = `
+                <label><small>${Math.floor(this.min)}${this.scaleUnitLabel}</small></label>
+                <label><small>${this.value}</small></label>
+                <label><small>${Math.floor(this.max)}${this.scaleUnitLabel}</small></label>
+            `;
+        }
     }
 
     constructor() {
@@ -223,7 +242,7 @@ class RangeSliderHTMLElement extends HTMLElement {
 
         this.inputHTMLElement.type = "range";
 
-        this.inputHTMLElement.step = this.step;
+        this.inputHTMLElement.step = this.step.toString();
 
         this.inputWrapperHTMLElement = document.createElement('div');
         this.inputWrapperHTMLElement.classList.add('input-wrapper')
