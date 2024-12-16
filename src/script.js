@@ -216,7 +216,6 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
             /** @type {SampleTogglerHTMLElement} */
             const target = /** @type {SampleTogglerHTMLElement} */ (event.target);
             if (target.state === true) {
-                sampleContainer.classList.add("active");
                 let wasLoadedAndNotPlayed = false;
                 for (let k = 0; k < sampleVariationsAudioData.length; k++) {
                     const sampleVariationAudioData = sampleVariationsAudioData[k];
@@ -230,6 +229,16 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
                         }
                     }
                 }
+                sampleContainer.classList.add("active");
+                if(maxVolElement.value === 0){
+                    maxVolElement.value = 50;
+                    maxVolElement.dispatchEvent(new Event('valueChange'));
+                }
+                if(volElement.value === 0){
+                    volElement.value = 50;
+                    volElement.dispatchEvent(new Event('valueChange'));
+                }
+
                 if (wasLoadedAndNotPlayed) {
                     wasLoadedAndNotPlayed = false;
                     try {
