@@ -32,19 +32,7 @@ body {
 }
 
 
-.sample{
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: rgb(233, 233, 233);
-}
-.sample.active{
-    background-color: rgb(200, 255, 200);
-}
 
-.sample > * {
-    margin-bottom: 5px;
-    display: block;
-}
 
 input[type="range"] {
     width: 100px;

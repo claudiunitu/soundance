@@ -1,7 +1,5 @@
 // @ts-check
 
-const HTML_ELEMENT_NAME = 'range-slider';
-const HTML_ELEMENT_ON_CHANGE_EVENT_NAME = 'valueChange';
 
 class RangeSliderHTMLElement extends HTMLElement {
     
@@ -204,7 +202,7 @@ class RangeSliderHTMLElement extends HTMLElement {
      */
     dispatchValueChange(value){
         this.dispatchEvent(
-            new CustomEvent(HTML_ELEMENT_ON_CHANGE_EVENT_NAME, { 
+            new CustomEvent('valueChange', { 
                 detail: { 
                     volumeValue: value
                 },
@@ -307,4 +305,4 @@ class RangeSliderHTMLElement extends HTMLElement {
     }
 }
 
-customElements.define(HTML_ELEMENT_NAME, RangeSliderHTMLElement);
+customElements.define('range-slider', RangeSliderHTMLElement);
