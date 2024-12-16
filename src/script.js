@@ -21,6 +21,17 @@ const SampleStitchingMethods = {
 };
 
 /**
+ * @typedef {Object} SampleVariationAudioData
+ * 
+ * @property {string} variationFilePath 
+ * @property {AudioBuffer | null} audioBuffer 
+ * @property {boolean} isAudioBufferLoading 
+ * @property {GainNode} gainNode 
+ * 
+ * 
+ */
+
+/**
  * @typedef {Object} SubsceneWindowsConfig
  * 
  * @property {number} currentVol 
@@ -49,7 +60,7 @@ const SampleStitchingMethods = {
  * 
  * @property {number} concatOverlayMs How much to overlap when looping sound sample
  * @property {string} label Sound samples name
- * @property {SampleStitchingMethod} stitchingMethd Sound sample stitching method when looping
+ * @property {SampleStitchingMethod} stitchingMethod Sound sample stitching method when looping
  * @property {string[]} variationNames Sound sample variations file paths
  */
 
@@ -67,6 +78,27 @@ const SampleStitchingMethods = {
  * */
 let localConfigData;
 
+/**
+ * @typedef {Object} SampleSubsceneConfigParam
+ * 
+ * @property {string} label 
+ * @property {SubsceneWindowsConfig | null} params 
+ 
+ */
+/**
+ * @typedef {Object} LoadedSceneSamplesAudioData
+ * 
+ * @property {number | undefined | null} overlayTimeout 
+ * @property {AudioBufferSourceNode | null} currentSource 
+ * @property {SampleStitchingMethod} stitchingMethod 
+ * @property {number} concatOverlayMs 
+ * @property {SampleSubsceneConfigParam[]} sampleSubsceneConfigParams 
+ * @property {SampleVariationAudioData[]} sampleVariationsAudioData 
+ * @property {string} sampleLabel 
+ */
+/**
+ * @type {LoadedSceneSamplesAudioData[]}
+ */
 let sceneSamplesAudioData = [];
 
 
@@ -122,12 +154,11 @@ async function loadConfig() {
  * @param {number} _selectedSceneIndex 
  * @param {number} _selectedSubsceneIndex 
  * @param {number} _selectedSubsceneWindowIndex 
- * @returns {Promise<void>}
+ * @returns {void}
  */
-async function initScene(scenes, _selectedSceneIndex, _selectedSubsceneIndex, _selectedSubsceneWindowIndex) {
-    await loadAndParseNewSceneData(scenes, _selectedSceneIndex, _selectedSubsceneIndex, _selectedSubsceneWindowIndex);
+function initScene(scenes, _selectedSceneIndex, _selectedSubsceneIndex, _selectedSubsceneWindowIndex) {
+    loadAndParseNewSceneData(scenes, _selectedSceneIndex, _selectedSubsceneIndex, _selectedSubsceneWindowIndex);
 }
-
 
 /**
  * 
@@ -135,23 +166,15 @@ async function initScene(scenes, _selectedSceneIndex, _selectedSubsceneIndex, _s
  * @param {number} _selectedSceneIndex 
  * @param {number} _selectedSubsceneIndex 
  * @param {number} _selectedSubsceneWindowIndex 
- * @returns {Promise<HTMLDivElement[]>} The HTML element containing the groupped sample controlers for one scene
+ * @returns {LoadedSceneSamplesAudioData[]} 
  */
-async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _selectedSubsceneIndex, _selectedSubsceneWindowIndex) {
+function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _selectedSubsceneIndex, _selectedSubsceneWindowIndex) {
 
-    const groupHTMLParent = document.createElement('div');
-    const slidersContainer = [];
+    /** @type {LoadedSceneSamplesAudioData[]} */
+    const returnObj = []
     const sceneObject = scenes[_selectedSceneIndex];
     for (let i = 0; i < sceneObject.samples.length; i++) {
 
-        /**
-         * @typedef {Object} SampleVariationAudioData
-         * 
-         * @property {string} variationFilePath 
-         * @property {AudioBuffer | null} audioBuffer 
-         * @property {boolean} isAudioBufferLoading 
-         * @property {GainNode} gainNode 
-         */
         /**
          * @type {SampleVariationAudioData[]}
          */
@@ -165,21 +188,11 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
             }
         });
 
-        const currentSubsceneParams = sampleSubsceneConfigParams[_selectedSubsceneIndex].params;
-
-        let currentSceneSampleVol = 0;
-        if (typeof currentSubsceneParams?.currentVol === "number") {
-            currentSceneSampleVol = currentSubsceneParams.currentVol;
-        } else if (typeof currentSubsceneParams?.minVol === "number" && typeof currentSubsceneParams.maxVol === "number") {
-            currentSceneSampleVol = Math.floor((currentSubsceneParams.minVol + currentSubsceneParams.maxVol) / 2);
-        }
-
-
         for (let j = 0; j < sceneObject.samples[i].variationNames.length; j++) {
             const variationFilePath = `${sceneObject.samples[i].variationNames[j]}`;
             const audioBuffer = null;
             const gainNode = audioContext.createGain();
-            gainNode.gain.setValueAtTime(currentSceneSampleVol, audioContext.currentTime);
+            gainNode.gain.setValueAtTime(0, audioContext.currentTime);
 
             sampleVariationsAudioData.push({
                 variationFilePath,
@@ -190,22 +203,117 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
 
         }
 
-        const stitchingMethd = sceneObject.samples[i].stitchingMethd;
+        const stitchingMethod = sceneObject.samples[i].stitchingMethod;
         const concatOverlayMs = sceneObject.samples[i].concatOverlayMs;
 
+        returnObj.push({
+            overlayTimeout: null,
+            currentSource: null,
+            stitchingMethod,
+            concatOverlayMs,
+            sampleSubsceneConfigParams,
+            sampleVariationsAudioData,
+            sampleLabel: `${sceneObject.sceneName} - ${sceneObject.samples[i].label}`
+        });
+    }
+    return returnObj
+}
+
+/**
+ * @param {SoundSceneConfig[]} scenes
+ * @param {number} _selectedSceneIndex
+ * @param {number} _selectedSubsceneIndex
+ * @param {number} _selectedSubsceneWindowIndex
+ */
+function loadAndParseNewSceneData(scenes, _selectedSceneIndex, _selectedSubsceneIndex, _selectedSubsceneWindowIndex) {
+
+    onLoadingStarted();
+
+    removeCurrentSliders();
+
+    sceneSamplesAudioData = [];
+    const slidersContainer = document.getElementById('sliders');
+
+    for (let sceneIndex = 0; sceneIndex < scenes.length; sceneIndex++) {
+        const groupHTMLParent = document.createElement('div');
+        const groupLabel = /** @type {HTMLLabelElement} */ (document.createElement('label'));
+        groupLabel.classList.add('group-label');
+        groupLabel.innerText = scenes[sceneIndex].sceneName;
+
+        groupLabel.addEventListener('click', (event) => {
+            /** @type {HTMLLabelElement} */
+            const target = /** @type {HTMLLabelElement} */ (event.target);
+            if (target.classList.contains('group-label-open')) {
+                target.classList.remove('group-label-open');
+            } else {
+                target.classList.add('group-label-open');
+            }
+        })
+
+        groupHTMLParent.appendChild(groupLabel);
+        const groupSamplesWrapper = document.createElement('div');
+        groupSamplesWrapper.classList.add('group-samples-wrapper');
+        groupHTMLParent.appendChild(groupSamplesWrapper);
+
+
+
+        const sceneData = loadAndParseDataForSceneData(scenes, sceneIndex, _selectedSubsceneIndex, _selectedSubsceneWindowIndex);
+
+        sceneSamplesAudioData = [...sceneSamplesAudioData, ...sceneData];
+
+        sceneData.forEach((data) => {
+            groupSamplesWrapper.appendChild(
+                createUIForSample(
+                    data, 
+                    _selectedSubsceneIndex, 
+                    _selectedSubsceneWindowIndex
+                )
+            )
+        });
+
+        slidersContainer?.appendChild(groupHTMLParent);
+    }
+
+    onLoadingFinished();
+}
+
+/**
+ * 
+ * @param {LoadedSceneSamplesAudioData} loadedSceneSampleAudioData 
+ * @param {number} _selectedSubsceneIndex 
+ * @param {number} _selectedSubsceneWindowIndex
+ * 
+ * @returns {HTMLDivElement}
+ */
+function createUIForSample(loadedSceneSampleAudioData, _selectedSubsceneIndex, _selectedSubsceneWindowIndex) {
+
+    const {sampleVariationsAudioData, sampleSubsceneConfigParams } =  loadedSceneSampleAudioData
+
+    const currentSubsceneParams = sampleSubsceneConfigParams[_selectedSubsceneIndex].params;
+
+    let currentSceneSampleVol = 0;
+    if (typeof currentSubsceneParams?.currentVol === "number") {
+        currentSceneSampleVol = currentSubsceneParams.currentVol;
+    } else if (typeof currentSubsceneParams?.minVol === "number" && typeof currentSubsceneParams.maxVol === "number") {
+        currentSceneSampleVol = Math.floor((currentSubsceneParams.minVol + currentSubsceneParams.maxVol) / 2);
+    }
+
+    const groupHTMLParent = document.createElement('div');
+    
+
+    
+    // for (let i = 0; i < sceneObject.samples.length; i++) {
         const sampleContainer = document.createElement('div');
         sampleContainer.classList.add("sample")
-        groupHTMLParent.appendChild(sampleContainer);
-        slidersContainer.push(groupHTMLParent);
 
         // add label to controls group
         const labelElement = document.createElement('label');
         labelElement.classList.add('sample-fields-groul-label');
-        labelElement.innerText = `${sceneObject.sceneName} - ${sceneObject.samples[i].label}`;
+        labelElement.innerText = loadedSceneSampleAudioData.sampleLabel;
         sampleContainer.appendChild(labelElement);
 
 
-        const forCurrentSampleIndex = sceneSamplesAudioData.length;
+        // const forCurrentSampleIndex = 0;
 
         // setup sample toggler
         /**
@@ -230,20 +338,21 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
                     }
                 }
                 sampleContainer.classList.add("active");
-                if(maxVolElement.value === 0){
-                    maxVolElement.value = 50;
-                    maxVolElement.dispatchEvent(new Event('valueChange'));
+                
+                if (volElement.value === 0) {
+                    if(minVolElement.value > 0){
+                        volElement.value = minVolElement.value;
+                    } else {
+                        volElement.value = 50;
+                    }
                 }
-                if(volElement.value === 0){
-                    volElement.value = 50;
-                    volElement.dispatchEvent(new Event('valueChange'));
-                }
+                volElement.dispatchEvent(new Event('valueChange'));
+
 
                 if (wasLoadedAndNotPlayed) {
                     wasLoadedAndNotPlayed = false;
                     try {
-
-                        playRandomVariation(sceneSamplesAudioData[forCurrentSampleIndex]); // mark*
+                        playRandomVariation(loadedSceneSampleAudioData);
                     } catch (e) {
                         console.error(e);
                     }
@@ -254,7 +363,7 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
                 maxVolElement.value = 0;
                 maxVolElement.dispatchEvent(new Event('valueChange'));
 
-                stopSceneSampleVariations(sceneSamplesAudioData[forCurrentSampleIndex]);
+                stopSceneSampleVariations(loadedSceneSampleAudioData);
                 for (let k = 0; k < sampleVariationsAudioData.length; k++) {
                     const sampleVariationAudioData = sampleVariationsAudioData[k];
                     if (sampleVariationAudioData.audioBuffer !== null) {
@@ -272,11 +381,7 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
          *  @type {RangeSliderHTMLElement} 
          */
         const volElement = /** @type {RangeSliderHTMLElement} */(document.createElement('range-slider'));
-        volElement.label = 'Volume';
-        volElement.value = currentSceneSampleVol;
-        volElement.min = 0;
-        volElement.max = 100;
-        volElement.scaleUnitLabel = '%';
+        
         volElement.addEventListener('valueChange', async (event) => {
             /** @type {RangeSliderHTMLElement} */
             const target = /** @type {RangeSliderHTMLElement} */ (event.target);
@@ -298,9 +403,19 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
             }
 
             // persist value in state
-            sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].currentVol = target.value;
+            if(currentSubsceneParams){
+                currentSubsceneParams.currentVol = target.value;
+            }
 
         });
+
+        volElement.label = 'Volume';
+        volElement.value = currentSceneSampleVol;
+        volElement.min = 0;
+        volElement.max = 100;
+        volElement.scaleUnitLabel = '%';
+
+        // volElement.dispatchEvent(new CustomEvent('valueChange'));
 
         sampleContainer.appendChild(volElement);
 
@@ -310,11 +425,7 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
          *  @type {RangeSliderHTMLElement} 
          */
         const minVolElement = /** @type {RangeSliderHTMLElement} */ (document.createElement('range-slider'));
-        minVolElement.label = 'Volume Min';
-        minVolElement.min = 0;
-        minVolElement.max = 100;
-        volElement.scaleUnitLabel = '%';
-        minVolElement.value = sampleSubsceneConfigParams[_selectedSubsceneIndex].params !== null ? sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minVol : 0;
+        
         minVolElement.addEventListener('valueChange', (event) => {
 
             /** @type {RangeSliderHTMLElement} */
@@ -326,9 +437,18 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
             }
 
             // persist value in state
-            sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].minVol = target.value
+            if(currentSubsceneParams){
+                currentSubsceneParams.minVol = target.value;
+            }
 
         });
+        minVolElement.label = 'Volume Min';
+        minVolElement.min = 0;
+        minVolElement.max = 100;
+        minVolElement.scaleUnitLabel = '%';
+        minVolElement.value = sampleSubsceneConfigParams[_selectedSubsceneIndex].params !== null ? sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minVol : 0;
+        
+
         sampleContainer.appendChild(minVolElement);
 
 
@@ -337,11 +457,7 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
          *  @type {RangeSliderHTMLElement} 
          */
         const maxVolElement = /** @type {RangeSliderHTMLElement} */ (document.createElement('range-slider'));
-        maxVolElement.label = 'Volume Max';
-        maxVolElement.min = 0;
-        maxVolElement.max = 100;
-        volElement.scaleUnitLabel = '%';
-        maxVolElement.value = sampleSubsceneConfigParams[_selectedSubsceneIndex].params !== null ? sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxVol : 0;
+        
         maxVolElement.addEventListener('valueChange', (event) => {
 
             /** @type {RangeSliderHTMLElement} */
@@ -361,9 +477,18 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
             }
 
             // persist value in state
-            sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].maxVol = target.value
+            if(currentSubsceneParams){
+                currentSubsceneParams.maxVol = target.value
+            }
 
         });
+
+        maxVolElement.label = 'Volume Max';
+        maxVolElement.min = 0;
+        maxVolElement.max = 100;
+        maxVolElement.scaleUnitLabel = '%';
+        maxVolElement.value = sampleSubsceneConfigParams[_selectedSubsceneIndex].params !== null ? sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxVol : 0;
+
         sampleContainer.appendChild(maxVolElement);
 
 
@@ -372,12 +497,7 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
          *  @type {RangeSliderHTMLElement} 
          */
         const minTimeframeElement =  /**@type {RangeSliderHTMLElement} */ (document.createElement('range-slider'));
-        minTimeframeElement.label = 'Timeframe Min';
-        minTimeframeElement.min = 2;
-        minTimeframeElement.max = 60 * 60;
-        minTimeframeElement.scaleUnitLabel = 's';
-        minTimeframeElement.step = 10;
-        minTimeframeElement.value = sampleSubsceneConfigParams[_selectedSubsceneIndex].params !== null ? Math.floor(sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minTimeframeLength / 1000) : 60;
+        
         minTimeframeElement.addEventListener('valueChange', (event) => {
 
             /** @type {RangeSliderHTMLElement} */
@@ -385,20 +505,30 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
 
             const limitingValue = sampleSubsceneConfigParams[_selectedSubsceneIndex].params !== null ? Math.floor(sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxTimeframeLength / 1000) - 2 : 120;
             if (target.value >= limitingValue) {
-                if(sampleSubsceneConfigParams[_selectedSubsceneIndex].params){
+                if (sampleSubsceneConfigParams[_selectedSubsceneIndex].params) {
                     sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minTimeframeLength = limitingValue * 1000;
                 }
                 target.value = limitingValue;
             } else {
-                if(sampleSubsceneConfigParams[_selectedSubsceneIndex].params){
+                if (sampleSubsceneConfigParams[_selectedSubsceneIndex].params) {
                     sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minTimeframeLength = target.value * 1000;
                 }
             }
 
             // persist value in state
-            sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].minTimeframeLength = target.value * 1000
+            if(currentSubsceneParams){
+                currentSubsceneParams.minTimeframeLength = target.value * 1000
+            }
 
         });
+
+        minTimeframeElement.label = 'Timeframe Min';
+        minTimeframeElement.min = 2;
+        minTimeframeElement.max = 60 * 60;
+        minTimeframeElement.scaleUnitLabel = 's';
+        minTimeframeElement.step = 10;
+        minTimeframeElement.value = sampleSubsceneConfigParams[_selectedSubsceneIndex].params !== null ? Math.floor(sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minTimeframeLength / 1000) : 60;
+
         sampleContainer.appendChild(minTimeframeElement);
 
 
@@ -407,92 +537,42 @@ async function loadAndParseDataForSceneData(scenes, _selectedSceneIndex, _select
          *  @type {RangeSliderHTMLElement} 
          */
         const maxTimeframeElement = /**@type {RangeSliderHTMLElement} */ (document.createElement('range-slider'));
-        maxTimeframeElement.label = 'Timeframe Max';
-        maxTimeframeElement.min = 2;
-        maxTimeframeElement.max = 60 * 60;
-        maxTimeframeElement.scaleUnitLabel = 's';
-        maxTimeframeElement.step = 10;
-        maxTimeframeElement.value = sampleSubsceneConfigParams[_selectedSubsceneIndex].params !== null ? Math.floor(sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxTimeframeLength / 1000) : 120;
+        
         maxTimeframeElement.addEventListener('valueChange', (event) => {
             /** @type {RangeSliderHTMLElement} */
             const target = /** @type {RangeSliderHTMLElement} */ (event.target);
 
             const limitingValue = sampleSubsceneConfigParams[_selectedSubsceneIndex].params !== null ? Math.floor(sampleSubsceneConfigParams[_selectedSubsceneIndex].params.minTimeframeLength / 1000) + 2 : 60;
             if (target.value <= limitingValue) {
-                if(sampleSubsceneConfigParams[_selectedSubsceneIndex].params){
+                if (sampleSubsceneConfigParams[_selectedSubsceneIndex].params) {
                     sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxTimeframeLength = limitingValue * 1000;
                 }
                 target.value = limitingValue;
             } else {
-                if(sampleSubsceneConfigParams[_selectedSubsceneIndex].params){
+                if (sampleSubsceneConfigParams[_selectedSubsceneIndex].params) {
                     sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxTimeframeLength = target.value * 1000;
                 }
             }
 
             // persist value in state
-            sceneObject.subscenes[_selectedSubsceneIndex].subsceneWindows[_selectedSubsceneWindowIndex].config[i].maxTimeframeLength = target.value * 1000
-
-        });
-        sampleContainer.appendChild(maxTimeframeElement);
-
-        sceneSamplesAudioData.push({
-            overlayTimeout: null,
-            currentSource: null,
-            stitchingMethd,
-            concatOverlayMs,
-            sampleSubsceneConfigParams,
-            sampleVariationsAudioData,
-            sampleTogglerElement,
-            associatedCurrentVolumeSliderHtmlElement: volElement,
-            minVolElement,
-            maxVolElement,
-            minTimeframeElement,
-            maxTimeframeElement,
-        });
-    }
-    return slidersContainer;
-}
-
-async function loadAndParseNewSceneData(scenes, _selectedSceneIndex, _selectedSubsceneIndex, _selectedSubsceneWindowIndex) {
-
-    onLoadingStarted();
-
-    removeCurrentSliders();
-
-    sceneSamplesAudioData = [];
-    const slidersContainer = document.getElementById('sliders');
-
-    for (let sceneIndex = 0; sceneIndex < scenes.length; sceneIndex++) {
-        const groupHTMLParent = document.createElement('div');
-        const groupLabel = /** @type {HTMLLabelElement} */ (document.createElement('label'));
-        groupLabel.classList.add('group-label');
-        groupLabel.innerText = scenes[sceneIndex].sceneName;
-
-        groupLabel.addEventListener('click', (event) => {
-             /** @type {HTMLLabelElement} */
-             const target = /** @type {HTMLLabelElement} */ (event.target);
-            if (target.classList.contains('group-label-open')) {
-                target.classList.remove('group-label-open');
-            } else {
-                target.classList.add('group-label-open');
+            if(currentSubsceneParams){
+                currentSubsceneParams.maxTimeframeLength = target.value * 1000
             }
-        })
 
-        groupHTMLParent.appendChild(groupLabel);
-        const groupSamplesWrapper = document.createElement('div');
-        groupSamplesWrapper.classList.add('group-samples-wrapper');
-        groupHTMLParent.appendChild(groupSamplesWrapper);
+        });
 
-
-        const samplesGroupHtmlElement = await loadAndParseDataForSceneData(scenes, sceneIndex, _selectedSubsceneIndex, _selectedSubsceneWindowIndex);
-        samplesGroupHtmlElement.forEach(sampleHTMLElement => {
-            groupSamplesWrapper.appendChild(sampleHTMLElement);
-        })
-
-        slidersContainer?.appendChild(groupHTMLParent);
-    }
-
-    onLoadingFinished();
+        maxTimeframeElement.label = 'Timeframe Max';
+        maxTimeframeElement.min = 2;
+        maxTimeframeElement.max = 60 * 60;
+        maxTimeframeElement.scaleUnitLabel = 's';
+        maxTimeframeElement.step = 10;
+        maxTimeframeElement.value = sampleSubsceneConfigParams[_selectedSubsceneIndex].params !== null ? Math.floor(sampleSubsceneConfigParams[_selectedSubsceneIndex].params.maxTimeframeLength / 1000) : 120;
+        
+        sampleContainer.appendChild(maxTimeframeElement);
+        
+        groupHTMLParent.appendChild(sampleContainer);
+    // }
+    return groupHTMLParent;
 }
 
 function stopSceneSampleVariations(sceneSamplesAudio) {
@@ -536,6 +616,11 @@ async function loadJson(url) {
 
 }
 
+/**
+ * 
+ * @param {LoadedSceneSamplesAudioData} scenerySampleAudioData 
+ * @returns 
+ */
 function playRandomVariation(scenerySampleAudioData) {
     if (isStarted === false) return;
 
@@ -553,15 +638,18 @@ function playRandomVariation(scenerySampleAudioData) {
     // Store the buffer source for later stopping
     scenerySampleAudioData.currentSource = audioBufferSource;
 
-    if (scenerySampleAudioData.stitchingMethd === "JOIN_WITH_CROSSFADE") {
+    if (scenerySampleAudioData.stitchingMethod === "JOIN_WITH_CROSSFADE") {
 
         // this will only start immediately after one sample ended and does not really create a crossfade
         audioBufferSource.onended = () => {
             if (isStarted) playRandomVariation(scenerySampleAudioData);
         };
 
-    } else if (scenerySampleAudioData.stitchingMethd === "JOIN_WITH_OVERLAY") {
+    } else if (scenerySampleAudioData.stitchingMethod === "JOIN_WITH_OVERLAY") {
 
+        if(audioBuffer === null) {
+            return;
+        }
         // Schedule the next variation to start before the current one ends
         let nextStartTime = audioBuffer.duration * 1000 - scenerySampleAudioData.concatOverlayMs; // mark*
 
@@ -586,7 +674,7 @@ function playRandomVariation(scenerySampleAudioData) {
 
 function removeCurrentSliders() {
     const slidersContainer = document.getElementById('sliders');
-    if(!slidersContainer){
+    if (!slidersContainer) {
         return;
     }
     slidersContainer.innerHTML = '';
@@ -646,7 +734,7 @@ function generateCurrentConfigJsonForScene(currentScene, currentSubscene) {
 
         return {
             variationFilePath,
-            stitchingMethod: sample.stitchingMethd,
+            stitchingMethod: sample.stitchingMethod,
             concatOverlayMs: sample.concatOverlayMs,
             timingWindows
         };
@@ -696,7 +784,7 @@ function addCtaEventListeners() {
  */
 function initApp(config) {
     localConfigData = config;
-    initScene(localConfigData, 0, 0, 0).then().catch(e => { throw e });
+    initScene(localConfigData, 0, 0, 0);
 }
 
 loadConfig().then((config) => {
